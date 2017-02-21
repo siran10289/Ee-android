@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#00FFFFFF"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/LayRating"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <RelativeLayout
+            android:id="@+id/topLay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/mTxtRate">
+
+            <EditText
+                android:id="@+id/mEdtFName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/bg_white"
+                android:gravity="left|center"
+                android:hint="FirstName"
+                android:padding="5dp"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/mEdtLName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/mEdtFName"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/bg_white"
+                android:gravity="left|center"
+                android:hint="LastName"
+                android:padding="5dp"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+            <RelativeLayout
+                android:id="@+id/rlMobile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/mEdtLName">
+                <EditText
+                    android:id="@+id/mEdtMobile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:background="@drawable/bg_white"
+                    android:gravity="left|center"
+                    android:hint="Mobile No"
+                    android:padding="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <CheckBox
+                    android:text="Private"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="right|center"
+                    android:id="@+id/cbMobilePrivate"
+                    android:layout_marginRight="10dp"
+                    android:layout_alignBottom="@+id/mEdtMobile"
+                    android:layout_alignParentEnd="true" />
+
+
+            </RelativeLayout>
+            <EditText
+                android:id="@+id/mEdtMailid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rlMobile"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/bg_white"
+                android:gravity="left|center"
+                android:hint="Mail id"
+                android:padding="5dp"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+
+            <RelativeLayout
+                android:id="@+id/rlDOB"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/mEdtMailid">
+                <EditText
+                    android:id="@+id/mEdtDOB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_white"
+                    android:gravity="left|center"
+                    android:hint="Date of Birth (yyyy/mm/dd)"
+                    android:padding="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <CheckBox
+                    android:text="Private"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="right|center"
+                    android:id="@+id/cbDOBPrivate"
+                    android:layout_marginRight="10dp"
+                    android:layout_alignBottom="@+id/mEdtDOB"
+                    android:layout_alignParentEnd="true" />
+
+
+            </RelativeLayout>
+
+
+
+
+
+            <EditText
+                android:id="@+id/mEdtGender"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rlDOB"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/bg_white"
+                android:gravity="left|center"
+                android:hint="Gender"
+                android:padding="5dp"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+
+            <EditText
+                android:id="@+id/mEdtAbout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/mEdtGender"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/bg_white"
+                android:gravity="left|top"
+                android:hint="About me"
+                android:lines="3"
+                android:padding="5dp"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/topLay">
+
+
+            <TextView
+                android:id="@+id/btnOk"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/dialog_green_btn"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="Save"
+                android:textColor="@color/white" />
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+</LinearLayout>

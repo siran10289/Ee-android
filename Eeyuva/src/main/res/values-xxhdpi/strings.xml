@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="dimens">xxhdpi</string>
+    <dimen name="small">35px</dimen>
+    <string name="size">xxhdpi</string>
+    <dimen name="covermargin">-700dp</dimen>
+
+</resources>

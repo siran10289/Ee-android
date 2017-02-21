@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin">
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_above="@+id/mLayUsername"
+        android:padding="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/login_logo" />
+
+    <LinearLayout
+        android:id="@+id/mLayUsername"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="horizontal">
+
+
+        <EditText
+            android:id="@+id/mEdtUsername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="0.25"
+            android:background="@drawable/rounded_corner_stroke_grey"
+            android:drawableRight="@drawable/ic_action_perm_identity"
+            android:hint="@string/username"
+            android:imeOptions="actionNext"
+            android:nextFocusForward="@+id/EdtPassword"
+            android:padding="10dp"
+            android:singleLine="true"
+            android:textSize="@dimen/medium" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/mLayPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/mLayUsername"
+        android:orientation="horizontal">
+
+
+        <EditText
+            android:id="@+id/mEdtPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="0.25"
+            android:background="@drawable/rounded_corner_stroke_grey"
+            android:drawableRight="@drawable/ic_maps_local_mall"
+            android:hint="@string/password"
+            android:imeOptions="actionDone"
+            android:inputType="textPassword"
+            android:padding="10dp"
+            android:singleLine="true"
+            android:textSize="@dimen/medium" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/mLayBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/mLayPassword"
+        android:layout_centerInParent="true"
+        android:orientation="horizontal">
+
+
+        <Button
+            android:id="@+id/mBtnLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="0.6"
+            android:background="@drawable/rounded_corner_green"
+            android:padding="10dp"
+            android:text="@string/txt_login"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/medium" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/LayForget"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/mLayBtn"
+        android:layout_centerInParent="true"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/mTxtSignup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:padding="5dp"
+            android:text="@string/signup"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/mTxtForgot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:padding="5dp"
+            android:text="@string/forgot_password"
+            android:textSize="14sp" />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

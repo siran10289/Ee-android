@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <com.eeyuva.screens.home.infiniteHotCoverFlow.InfiniteHotLinearLayout
+        android:id="@+id/hotroot"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@android:color/transparent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/hotimage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:scaleType="fitXY" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|left"
+                android:gravity="bottom|left"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:id="@+id/label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|left"
+                    android:background="@drawable/bg_transparent"
+                    android:gravity="bottom|left"
+                    android:lines="1"
+                    android:padding="2dp"
+
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/labeltitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|left"
+                    android:background="@drawable/bg_transparent"
+                    android:gravity="bottom|left"
+                    android:lines="1"
+                    android:padding="2dp"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+
+                    android:textColor="#ffff00"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </FrameLayout>
+    </com.eeyuva.screens.home.infiniteHotCoverFlow.InfiniteHotLinearLayout>
+</LinearLayout>

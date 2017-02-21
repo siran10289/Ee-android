@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:coverflow="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="7dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <LinearLayout
+                android:id="@+id/LayToolbar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/LayBottom"
+                android:layout_alignParentTop="true"
+                android:orientation="vertical">
+
+
+                <include
+                    android:id="@+id/tool_bar"
+                    layout="@layout/toolbar"></include>
+
+                <ScrollView
+                    android:id="@+id/activity_main_swipe_refresh_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <include
+                            android:id="@+id/search_view"
+                            layout="@layout/search_dialog"
+                            android:visibility="gone"></include>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/light_gray_line"
+                            android:orientation="vertical"
+                            android:gravity="center">
+
+
+                            <ImageView
+                                android:id="@+id/imageView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_marginBottom="10dp"
+                                android:layout_marginTop="10dp"
+                                android:src="@drawable/img_13" />
+                            <TextView
+                                android:id="@+id/textView2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="APP INFO"
+                                android:gravity="center"
+                                android:textStyle="bold"
+                                android:layout_marginBottom="10dp"
+                                android:textSize="20dp" />
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="10dp"
+                            android:orientation="vertical">
+                            <TextView
+                                android:id="@+id/textView"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="About Us\n"
+                                android:textStyle="bold"
+                                android:textSize="15dp" />
+                            <TextView
+                                android:id="@+id/textView1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/about_app"
+                                android:textStyle="normal"
+                                android:textSize="13dp" />
+
+
+                        </LinearLayout>
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.3dp"
+                            android:background="@color/light_gray_line"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="10dp"
+                            android:orientation="vertical">
+                            <TextView
+                                android:id="@+id/tvAppVersionTitle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/app_version"
+                                android:textStyle="bold"
+                                android:textSize="15dp" />
+                            <TextView
+                                android:id="@+id/tvAppVersion"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="EeYuva 1.0.0"
+                                android:layout_marginTop="@dimen/five_dp"
+                                android:textStyle="normal"
+                                android:textSize="13dp" />
+
+                        </LinearLayout>
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.3dp"
+                            android:background="@color/light_gray_line"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="10dp"
+                            android:orientation="vertical">
+                            <TextView
+                                android:id="@+id/tvAppSizeTitle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/app_size"
+                                android:textStyle="bold"
+                                android:textSize="15dp" />
+                            <TextView
+                                android:id="@+id/tvAppSize"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="EeYuva 1.0.0"
+                                android:textStyle="normal"
+                                android:layout_marginTop="@dimen/five_dp"
+                                android:textSize="13dp" />
+
+                        </LinearLayout>
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.3dp"
+                            android:background="@color/light_gray_line"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="10dp"
+                            android:orientation="vertical">
+                            <TextView
+                                android:id="@+id/tvLastUpdateTitle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/last_update"
+                                android:textStyle="bold"
+                                android:textSize="15dp" />
+                            <TextView
+                                android:id="@+id/tvLastUpdate"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="20 Feb 2017"
+                                android:textStyle="normal"
+                                android:layout_marginTop="@dimen/five_dp"
+                                android:textSize="13dp" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </ScrollView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/LayBottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:visibility="gone"
+                android:orientation="vertical">
+
+                <include
+                    android:id="@+id/bottom_bar"
+                    layout="@layout/bottom_menu"></include>
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <fragment
+            android:id="@+id/fragment_navigation_drawer"
+            android:name="com.eeyuva.screens.navigation.FragmentDrawer"
+            android:layout_width="220dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            app:layout="@layout/fragment_drawer"
+            tools:layout="@layout/fragment_drawer" />
+    </android.support.v4.widget.DrawerLayout>
+</LinearLayout>

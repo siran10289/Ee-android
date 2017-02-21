@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:coverflow="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LayHme"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="7dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <LinearLayout
+                android:id="@+id/LayToolbar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/LayBottom"
+                android:layout_alignParentTop="true"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <include
+                    android:id="@+id/tool_bar"
+                    layout="@layout/toolbar"></include>
+
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/orderlist"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:scrollbarSize="3dp"
+                    android:scrollbarThumbVertical="@color/colorPrimary"
+                    android:scrollbars="vertical" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/LayBottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/mTxtSave"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded_corner_green"
+                    android:padding="10dp"
+                    android:text="Save"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:textColor="@color/white" />
+
+                <include
+                    android:id="@+id/bottom_bar"
+                    layout="@layout/bottom_menu"></include>
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <fragment
+            android:id="@+id/fragment_navigation_drawer"
+            android:name="com.eeyuva.screens.navigation.FragmentDrawer"
+            android:layout_width="220dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            app:layout="@layout/fragment_drawer"
+            tools:layout="@layout/fragment_drawer" />
+    </android.support.v4.widget.DrawerLayout>
+</LinearLayout>

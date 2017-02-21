@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="@drawable/rounded_corner"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_margin="10dp"
+        android:clickable="false"
+        android:gravity="start"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/mTxtTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@color/white"
+            android:padding="10dp"
+            android:text="Large Text"
+            android:textDirection="locale"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/mTxtMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:padding="10dp"
+            android:text="Large Text"
+            android:textDirection="locale"
+            android:textSize="15sp"
+            android:visibility="gone"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginBottom="5dp"
+            android:layout_marginEnd="5dp"
+            android:clickable="false"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/mTxtNegative"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/dialog_buttons_style"
+                android:paddingBottom="5dp"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                android:paddingTop="5dp"
+                android:textDirection="locale"
+                android:text="No"
+                android:textSize="15sp"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/mTxtPositive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/dialog_buttons_style"
+                android:paddingBottom="5dp"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                android:textDirection="locale"
+                android:paddingTop="5dp"
+                android:text="Yes"
+                android:textSize="15sp"
+                android:visibility="gone"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

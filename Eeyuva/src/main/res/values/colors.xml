@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#4D98AF</color>
+    <color name="colorPrimaryDark">#055973</color>
+    <color name="colorAccent">#058AB1</color>
+
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="green">#46C454</color>
+    <color name="dialog_green">#35C464</color>
+    <color name="red">#E96449</color>
+    <color name="dialog_red">#FF0118</color>
+    <color name="home_red">#E13E40</color>
+    <color name="home_dark_pink">#C33369</color>
+    <color name="unpublish">#982D8B</color>
+
+    <color name="dark_gray">#302e2e</color>
+    <color name="light_gray">#868686</color>
+    <color name="light_gray_line">#55868686</color>
+
+    <color name="transparent_orange">#33FFFFFF</color>
+
+
+
+</resources>

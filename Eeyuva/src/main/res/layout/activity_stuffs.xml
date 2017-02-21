@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:coverflow="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LayHme"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="7dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <LinearLayout
+                android:id="@+id/LayToolbar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/LayBottom"
+                android:layout_alignParentTop="true"
+                android:background="@color/light_gray_line"
+                android:orientation="vertical">
+
+                <include
+                    android:id="@+id/tool_bar"
+                    layout="@layout/toolbar"></include>
+
+
+                <android.support.v4.widget.SwipeRefreshLayout
+                    android:id="@+id/activity_main_swipe_refresh_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:drawablePadding="10dp"
+                            android:drawableTop="@drawable/img_8"
+                            android:gravity="center"
+                            android:text="My Stuff"
+                            android:textColor="@color/black"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                        <android.support.design.widget.TabLayout
+                            android:id="@+id/tab_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/toolbar"
+                            android:layout_marginTop="10dp"
+                            android:background="@color/home_dark_pink"
+                            android:elevation="1dp"
+                            android:minHeight="?attr/actionBarSize"
+                            android:nestedScrollingEnabled="false"
+                            android:textAllCaps="false"
+                            android:theme="@style/tab_bg"
+                            app:tabIndicatorColor="@color/home_dark_pink"
+                            app:tabSelectedTextColor="@color/home_dark_pink"
+                            app:tabTextColor="@color/black"
+                            app:tabTextAppearance="@style/MyTabAppearence"/>
+
+                        <android.support.v4.view.ViewPager
+                            android:id="@+id/pager"
+                            android:layout_width="match_parent"
+                            android:layout_height="fill_parent"
+                            android:layout_below="@id/tab_layout"
+                            android:nestedScrollingEnabled="false" />
+                    </LinearLayout>
+                </android.support.v4.widget.SwipeRefreshLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/LayBottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:orientation="vertical">
+
+                <include
+                    android:id="@+id/bottom_bar"
+                    layout="@layout/bottom_menu"></include>
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <fragment
+            android:id="@+id/fragment_navigation_drawer"
+            android:name="com.eeyuva.screens.navigation.FragmentDrawer"
+            android:layout_width="220dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            app:layout="@layout/fragment_drawer"
+            tools:layout="@layout/fragment_drawer" />
+    </android.support.v4.widget.DrawerLayout>
+</LinearLayout>

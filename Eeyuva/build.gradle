@@ -1,0 +1,149 @@
+
+apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
+
+android {
+
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        applicationId "com.eeyuva"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 2
+        versionName "EeYuva 1.0.2"
+
+        multiDexEnabled true
+        buildConfigField "String", "BASE_URL", "\"http://www.eeyuva.com/\""
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    dexOptions {
+        javaMaxHeapSize "4g"
+
+    }
+    buildTypes {
+        debug{
+            versionNameSuffix ""
+            minifyEnabled false
+
+        }
+        release {
+            minifyEnabled false
+        }
+    }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+    }
+}
+
+def getDate() {
+    def date = new Date()
+    def formattedDate = date.format('yyyyMMddHHmmss')
+    return formattedDate
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile project(':models')
+    compile project(path: ':coverflow')
+    compile project(path: ':lib')
+    compile project(path: ':pinchzoomlib')
+    // Test dependencies
+    testCompile "junit:junit:$rootProject.junitVersion"
+    testCompile 'org.mockito:mockito-core:2.0.79-beta'
+    testCompile "org.powermock:powermock-api-mockito:$rootProject.powermockVersion"
+    testCompile "org.powermock:powermock-module-junit4-rule-agent:$rootProject.powermockVersion"
+    testCompile "org.powermock:powermock-module-junit4-rule:$rootProject.powermockVersion"
+    testCompile "org.powermock:powermock-module-junit4:$rootProject.powermockVersion"
+
+    // Android Testing Support Library's runner and rules
+    androidTestCompile "com.android.support.test:runner:$rootProject.runnerVersion"
+    androidTestCompile "com.android.support.test:rules:$rootProject.runnerVersion"
+
+    // Espresso UI Testing
+    androidTestCompile "com.android.support.test.espresso:espresso-core:$rootProject.espressoVersion"
+    androidTestCompile("com.android.support.test.espresso:espresso-contrib:$rootProject.espressoVersion")
+    androidTestCompile "com.android.support.test.espresso:espresso-intents:$rootProject.espressoVersion"
+
+    // Resolve conflicts between main and test APK:
+    androidTestCompile "com.android.support:support-annotations:$rootProject.supportLibraryVersion"
+    androidTestCompile "com.android.support:support-v4:$rootProject.supportLibraryVersion"
+    androidTestCompile "com.android.support:design:$rootProject.supportLibraryVersion"
+
+    // App's dependencies
+    compile "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
+    compile "com.android.support:design:$rootProject.supportLibraryVersion"
+    compile "com.android.support:support-v4:$rootProject.supportLibraryVersion"
+    compile "com.android.support:cardview-v7:$rootProject.supportLibraryVersion"
+
+    // Multidex dependencies
+    compile "com.android.support:multidex:$rootProject.multidexVersion"
+
+    // View injection dependencies
+    compile "com.jakewharton:butterknife:$rootProject.butterKnifeVersion"
+
+    // Dagger dependencies
+    apt "com.google.dagger:dagger-compiler:$rootProject.daggerVersion"
+    compile "com.google.dagger:dagger:$rootProject.daggerVersion"
+    compile 'javax.annotation:jsr250-api:1.0'
+
+    // okHttp dependencies
+    compile "com.squareup.okhttp3:okhttp:$rootProject.okhttpVersion"
+    compile "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttpVersion"
+
+    // socket dependencies
+    compile("io.socket:socket.io-client:$rootProject.ioClientVersion") {
+        // excluding org.json which is provided by Android
+        exclude group: 'org.json', module: 'json'
+    }
+
+    // Font dependencies
+    compile "uk.co.chrisjenx:calligraphy:$rootProject.calligraphyVersion"
+
+    // OrmLite dependencies
+    compile "com.j256.ormlite:ormlite-android:$rootProject.ormliteVersion"
+
+
+    compile 'com.karumi:dexter:2.2.1'
+    compile 'com.pixplicity.easyprefs:library:+'
+
+    compile 'com.googlecode.libphonenumber:prefixmapper:2.36'
+
+    compile 'com.google.android.gms:play-services-maps:9.8.0'
+    compile 'com.google.android.gms:play-services-location:9.8.0'
+
+    compile('com.guardanis:sigcap:1.0.1')
+
+    compile 'com.github.gcacace:signature-pad:1.2.0'
+
+    compile 'com.squareup.picasso:picasso:2.5.2'
+
+    compile 'com.google.firebase:firebase-config:9.8.0'
+
+    compile 'com.google.firebase:firebase-messaging:9.8.0'
+
+    compile('org.apache.httpcomponents:httpmime:4.+') {
+        exclude module: "httpclient"
+    }
+    compile('org.apache.httpcomponents:httpcore:4.+') {
+        exclude module: "httpclient"
+    }
+
+    compile 'joda-time:joda-time:2.9.4'
+
+
+    compile 'com.mikepenz:actionitembadge:3.3.0@aar'
+
+    //SUB-DEPENDENCIES
+    //Android-Iconics - used to provide an easy API for icons
+    compile 'com.mikepenz:iconics-core:2.8.0@aar'
+
+    compile 'com.google.android.gms:play-services-appindexing:9.8.0'
+
+}
+apply plugin: 'com.google.gms.google-services'

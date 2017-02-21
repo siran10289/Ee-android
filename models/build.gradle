@@ -1,0 +1,14 @@
+apply plugin: 'java'
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    // retrofit dependencies
+    compile "com.squareup.retrofit2:converter-jackson:$rootProject.retrofitVersion"
+    compile ("com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion") {
+        exclude module: 'okhttp'
+    }
+    compile "com.squareup.retrofit2:converter-gson:$rootProject.retrofitVersion"
+
+    compile 'com.j256.ormlite:ormlite-core:5.0'
+}

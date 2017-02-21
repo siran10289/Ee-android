@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:coverflow="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="7dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <LinearLayout
+                android:id="@+id/LayToolbar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/LayBottom"
+                android:layout_alignParentTop="true"
+                android:orientation="vertical">
+
+                <include
+                    android:id="@+id/tool_bar"
+                    layout="@layout/toolbar"></include>
+                <include
+                    android:id="@+id/search_view"
+                    layout="@layout/search_dialog"
+                    android:visibility="gone"></include>
+
+                <android.support.v4.widget.SwipeRefreshLayout
+                    android:id="@+id/activity_main_swipe_refresh_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/txtHotStories"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="left"
+                            android:padding="10dp"
+                            android:text="Hot Stories"
+                            android:textAllCaps="true"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="@color/black"
+                            android:textStyle="bold" />
+
+                        <View
+                            android:id="@+id/txtView"
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:background="@color/colorAccent" />
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/orderlist"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:scrollbarSize="3dp"
+                            android:scrollbarThumbVertical="@color/colorPrimary"
+                            android:scrollbars="vertical" />
+                    </LinearLayout>
+                </android.support.v4.widget.SwipeRefreshLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/LayBottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:orientation="vertical">
+
+                <include
+                    android:id="@+id/bottom_bar"
+                    layout="@layout/bottom_menu"></include>
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <fragment
+            android:id="@+id/fragment_navigation_drawer"
+            android:name="com.eeyuva.screens.navigation.FragmentDrawer"
+            android:layout_width="220dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            app:layout="@layout/fragment_drawer"
+            tools:layout="@layout/fragment_drawer" />
+    </android.support.v4.widget.DrawerLayout>
+</LinearLayout>

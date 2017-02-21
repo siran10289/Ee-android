@@ -1,0 +1,85 @@
+<resources>
+    <string name="app_name">Eeyuva</string>
+    <string name="txt_login">Login</string>
+    <string name="action_settings">Setting</string>
+    <string name="search_hint">Search with AWB</string>
+
+    <string name="enter_user_name">Please enter username.</string>
+    <string name="enter_first_name">Please enter Firstname.</string>
+    <string name="enter_last_name">Please enter Lastname.</string>
+    <string name="enter_email_id">Please enter Emailid.</string>
+    <string name="enter_valid_email_id">Please enter a valid Emailid.</string>
+    <string name="enter_password">Please enter password.</string>
+    <string name="enter_confirm_password">Please enter confrim password.</string>
+    <string name="txt_ok">Ok</string>
+    <string name="txt_cancel">Cancel</string>
+    <string name="enter_min_character_user_name">Sorry, your username must be at least 8 characters long.</string>
+    <string name="enter_min_character_first_name">Sorry, your firstname must be at least 3 characters long.</string>
+    <string name="enter_min_character_last_name">Sorry, your lastname must be at least 3 characters long.</string>
+    <string name="enter_min_character_password">Sorry, your password must be at least 8 characters long.</string>
+    <string name="enter_min_character_maxpassword">Sorry, your password must be max 12 characters long.</string>
+    <string name="enter_min_character_confirm_password">Sorry, your Confirm password must be at least 8 characters long.</string>
+    <string name="enter_min_character_not_confirm_password">Sorry, your password and Confirm password mis-matched.</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="timeout_error">Request timed out. Please retry</string>
+    <string name="generic_error">Something went wrong</string>
+    <string name="delivery_name_empty_error">Please enter the name</string>
+    <string name="delivery_sign_empty_error">Please enter the Signature</string>
+    <string name="server_error">Server Error</string>
+    <string name="network_error">Server Error</string>
+
+
+    <string name="signup">Signup</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="firstname">Firstname</string>
+    <string name="lastname">Lastname</string>
+    <string name="mailid">Mail Id</string>
+    <string name="confirmpassword">Confirm password</string>
+    <string name="gender">Gender</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="drawer_open">open</string>
+    <string name="drawer_close">close</string>
+    <string name="size">common</string>
+    <string name="about_app">EeYuva \n\n
+Learn. Share. Grow\n\n
+It’s the idealism and unrestrained exuberance that characterize youthfulness. It’s also time for the efflorescence of spirit and exploration of new turfs. Considering today’s youth are so driven and digitally empowered, Eenadu launches an exclusive portal which is trendy and appealing with an exciting blend of information and entertainment.\n\n
+
+With a firm conviction in the dictum - knowledge advantage is key to innovation - EeYuva engages in a spectrum of choicest topics that excite the new generation and help them sustain their growth. The paradigm of content it offers is highly insightful and relevant, encompassing all the topics of youth’s interest.\n\n
+
+List of Modules\n\n
+
+    Box Office\n
+    Elements Of Music\n
+    Humour Unlimited\n
+    Events &amp; Actions\n
+    Youth Trends\n
+    Cars &amp; Bikes\n
+    Gadgets\n
+    Health &amp; Fitness\n
+    Beauty &amp; Glamour\n
+    Fashion &amp; Styles\n
+    Just Food\n
+    Travel &amp; Tourism\n
+    Career &amp; Jobs\n
+    Money &amp; Business\n
+    Sports &amp; Games\n
+    Book-Mark\n
+    News Room\n\n
+
+
+Each module is enriched with insights and the integrated experience can be accessed through one single click. The dedicated offering from Ramoji group is to broad base the knowledge of the youth on many fronts, to promote a climate for a multi-dimensional growth and a broader culture of social discourse!\n\n
+
+The tag line is… “Learn. Share. Grow”… means, a user not only gets entertained, but also learns new issues and he can share it with others.
+</string>
+    <string name="app_size">APP SIZE</string>
+    <string name="app_version">APP VERSION</string>
+    <string name="last_update">LAST UPDATE</string>
+
+
+</resources>

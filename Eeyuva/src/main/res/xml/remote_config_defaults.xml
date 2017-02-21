@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?><!-- START xml_defaults -->
+<defaultsMap>
+    <entry>
+        <key>delivery_error_fine_amt</key>
+        <value>Fine of 50 INR for each wrong selection.</value>
+    </entry>
+
+</defaultsMap>

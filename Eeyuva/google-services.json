@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "324744925081",
+    "firebase_url": "https://android-9b7bd.firebaseio.com",
+    "project_id": "android-9b7bd",
+    "storage_bucket": "android-9b7bd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:324744925081:android:090176c66f6671e2",
+        "android_client_info": {
+          "package_name": "com.eeyuva"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "324744925081-lq810q3qhbrvniqgqrjje9mkkt4086c7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMw9hS9Jq4xTRA9gAuv7EuXiOxSxsapQY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="7dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/LayToolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/LayBottom"
+
+                android:layout_alignParentTop="true"
+                android:orientation="vertical">
+
+                <include
+                    android:id="@+id/tool_bar"
+                    layout="@layout/toolbar"></include>
+
+                <android.support.v4.widget.SwipeRefreshLayout
+                    android:id="@+id/activity_main_swipe_refresh_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ScrollView
+                        android:id="@+id/Layscroll"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            <include
+                                android:id="@+id/search_view"
+                                android:visibility="gone"
+                                layout="@layout/search_dialog"></include>
+
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <ImageView
+                                    android:id="@+id/imgTopLogo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="100dp"
+                                    android:layout_alignParentTop="true"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_gravity="center"
+                                    android:layout_margin="5dp"
+                                    android:padding="20dp"
+                                    android:gravity="center"
+                                    android:src="@drawable/login_logo" />
+
+                                <android.support.v4.view.ViewPager
+                                    android:id="@+id/infiniteviewpager"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="250dp"
+                                    android:layout_below="@+id/imgTopLogo"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_marginBottom="-50dp"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:layout_marginTop="-80dp"
+                                    android:overScrollMode="never"
+                                    android:visibility="gone" />
+
+                                <me.crosswall.lib.coverflow.core.LinkagePagerContainer
+                                    android:id="@+id/pager_container"
+                                    android:layout_width="match_parent"
+                                    android:layout_marginTop="-25dp"
+                                    android:layout_height="150dp"
+                                    android:layout_below="@+id/imgTopLogo">
+
+                                    <android.support.v4.view.LinkagePager
+                                        android:layout_width="110dp"
+                                        android:layout_height="110dp"
+                                        android:layout_gravity="center" />
+
+                                </me.crosswall.lib.coverflow.core.LinkagePagerContainer>
+
+                                <ImageView
+                                    android:id="@+id/trilabel"
+                                    android:layout_width="20dp"
+                                    android:layout_height="20dp"
+                                    android:layout_below="@+id/pager_container"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_gravity="center"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:layout_marginTop="-30dp"
+                                    android:src="@drawable/triangle" />
+
+                                <TextView
+                                    android:id="@+id/label"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/trilabel"
+                                    android:layout_gravity="center"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:layout_marginTop="-.5dp"
+                                    android:background="@drawable/label_background"
+                                    android:gravity="center"
+                                    android:padding="10dp"
+                                    android:textAppearance="?android:attr/textAppearanceMedium"
+                                    android:textColor="@color/white"
+                                    tools:text="Title" />
+
+
+                                <android.support.v7.widget.RecyclerView
+                                    android:id="@+id/orderlist"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_below="@+id/label"
+                                    android:layout_gravity="center"
+                                    android:keepScreenOn="false"
+                                    android:nestedScrollingEnabled="false"
+                                    android:padding="8dp"
+                                    android:scrollbarSize="3dp"
+                                    android:scrollbarThumbVertical="@color/colorPrimary"
+                                    android:scrollbars="vertical" />
+
+                                <TextView
+                                    android:id="@+id/imgLoadMore"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/orderlist"
+                                    android:layout_gravity="center"
+                                    android:layout_margin="10dp"
+                                    android:background="@drawable/rounded_corner_home_pink"
+                                    android:gravity="center"
+                                    android:padding="10dp"
+                                    android:text="Load more"
+                                    android:textAppearance="?android:attr/textAppearanceMedium"
+                                    android:textColor="@color/white" />
+
+                                <TextView
+                                    android:id="@+id/txtHotStories"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/imgLoadMore"
+                                    android:layout_gravity="center"
+                                    android:drawableLeft="@drawable/hot_stories"
+                                    android:drawablePadding="5dp"
+                                    android:gravity="left|center"
+                                    android:padding="10dp"
+                                    android:text="Hot Stories"
+                                    android:textAllCaps="true"
+                                    android:textAppearance="?android:attr/textAppearanceMedium"
+                                    android:textColor="@color/black"
+                                    android:textStyle="bold" />
+
+                                <View
+                                    android:id="@+id/txtView"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="2dp"
+                                    android:layout_below="@+id/txtHotStories"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:background="@color/colorAccent" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/txtView"
+                                    android:layout_margin="10dp"
+                                    android:orientation="vertical">
+
+                                    <android.support.v4.view.ViewPager
+                                        android:id="@+id/infinitehotviewpager"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="200dp"
+                                        android:layout_alignParentTop="true"
+                                        android:layout_centerHorizontal="true"
+                                        android:overScrollMode="never" />
+
+                                </LinearLayout>
+
+                            </RelativeLayout>
+                        </LinearLayout>
+                    </ScrollView>
+                </android.support.v4.widget.SwipeRefreshLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/LayBottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:orientation="vertical">
+
+                <include
+                    android:id="@+id/bottom_bar"
+                    layout="@layout/bottom_menu"></include>
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <fragment
+            android:id="@+id/fragment_navigation_drawer"
+            android:name="com.eeyuva.screens.navigation.FragmentDrawer"
+            android:layout_width="220dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            app:layout="@layout/fragment_drawer"
+            tools:layout="@layout/fragment_drawer" />
+    </android.support.v4.widget.DrawerLayout>
+
+</android.support.design.widget.CoordinatorLayout>
