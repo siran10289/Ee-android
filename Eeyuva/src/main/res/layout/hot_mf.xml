@@ -24,26 +24,27 @@
                 android:layout_height="match_parent"
                 android:layout_centerVertical="true"
                 android:layout_gravity="center"
+                android:src="@color/green"
                 android:scaleType="fitXY" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|left"
-                android:gravity="bottom|left"
+                android:gravity="left"
                 android:orientation="vertical">
-
 
                 <TextView
                     android:id="@+id/label"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|left"
+                    android:layout_gravity="left"
                     android:background="@drawable/bg_transparent"
-                    android:gravity="bottom|left"
-                    android:lines="1"
-                    android:padding="2dp"
-
+                    android:gravity="left"
+                    android:maxLines="2"
+                    android:paddingLeft="2dp"
+                    android:paddingTop="2dp"
+                    android:paddingRight="2dp"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="@color/white"
                     android:textSize="12sp" />
@@ -52,13 +53,12 @@
                     android:id="@+id/labeltitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|left"
+                    android:layout_gravity="left"
                     android:background="@drawable/bg_transparent"
                     android:gravity="bottom|left"
                     android:lines="1"
                     android:padding="2dp"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-
                     android:textColor="#ffff00"
                     android:textSize="12sp" />
             </LinearLayout>

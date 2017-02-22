@@ -31,14 +31,12 @@ public class InfiniteHotFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if (container == null) {
             return null;
         }
 
-        LinearLayout l = (LinearLayout)
-                inflater.inflate(R.layout.hot_mf, container, false);
+        LinearLayout l = (LinearLayout)inflater.inflate(R.layout.hot_mf, container, false);
 
         final int pos = this.getArguments().getInt("pos");
 //        ImageView tv = (ImageView) l.findViewById(R.id.hotimage);
@@ -50,9 +48,10 @@ public class InfiniteHotFragment extends Fragment {
         TextView label = (TextView) l.findViewById(R.id.label);
         TextView labeltitle = (TextView) l.findViewById(R.id.labeltitle);
         Picasso.with(getActivity()).load(HomeActivity.mHotModuleList.get((pos % HomeActivity.mHotModuleList.size())).getPicpath()).placeholder(l.getResources().getDrawable(R.drawable.ic_big_y_logo)).into(imageView);
-        imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        //imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
         label.setText(getSubString(HomeActivity.mHotModuleList.get((pos % HomeActivity.mHotModuleList.size())).getTitle()));
         labeltitle.setText(getSubString(HomeActivity.mHotModuleList.get((pos % HomeActivity.mHotModuleList.size())).getModulename()));
+        Log.e("Title:",HomeActivity.mHotModuleList.get(pos).getTitle());
 
         InfiniteHotLinearLayout root = (InfiniteHotLinearLayout) l.findViewById(R.id.hotroot);
         float scale = this.getArguments().getFloat("scale");
