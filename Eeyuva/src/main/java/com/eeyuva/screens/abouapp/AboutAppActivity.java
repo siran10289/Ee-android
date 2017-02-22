@@ -127,15 +127,15 @@ public class AboutAppActivity  extends ButterAppCompatActivity implements HomeCo
         File file = null;
         try {
             info = manager.getPackageInfo(AboutAppActivity.this.getPackageName(), 0);
-             file = new File(info.applicationInfo.publicSourceDir);
+             //file = new File(info.applicationInfo.publicSourceDir);
 
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
         tvAppVersion.setText(info.versionName);
-        long fileSizeInKB = file.length() / 1024;
-        long fileSizeInMB = fileSizeInKB / 1024;
-        tvAppSize.setText(fileSizeInMB+"MB");
+        /*long fileSizeInKB = file.length() / 1024;
+        long fileSizeInMB = fileSizeInKB / 1024;*/
+        tvAppSize.setText("6.8 MB");
 
     }
     @Override
@@ -215,7 +215,7 @@ public class AboutAppActivity  extends ButterAppCompatActivity implements HomeCo
         intent.putExtra("index", i);
         startActivity(intent);
     }
-   /* @Override
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.home_menu, menu);
@@ -243,7 +243,7 @@ public class AboutAppActivity  extends ButterAppCompatActivity implements HomeCo
         }
 
         return super.onOptionsItemSelected(item);
-    }*/
+    }
     private void goToLogin() {
         Intent intent = new Intent(AboutAppActivity.this, LoginActivity.class);
         intent.putExtra("from", Constants.SEARCH);
