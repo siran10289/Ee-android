@@ -10,6 +10,7 @@ import com.eeyuva.base.LoadListener;
 import com.eeyuva.interactor.ApiInteractor;
 import com.eeyuva.screens.profile.model.EditResponse;
 import com.eeyuva.utils.preferences.PrefsManager;
+import com.google.gson.Gson;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -34,6 +35,7 @@ public class LoginPresenterImpl implements LoginContract.Presenter {
     public LoadListener<LoginResponse> mLoginListener = new LoadListener<LoginResponse>() {
         @Override
         public void onSuccess(LoginResponse responseBody) {
+            Log.e("Login Response:",new Gson().toJson(responseBody));
             try {
                 if (responseBody.getStatusCode() != null) {
                     mPrefsManager.setUserDetail(responseBody);
@@ -156,6 +158,7 @@ public class LoginPresenterImpl implements LoginContract.Presenter {
     LoadListener<EditResponse> mEditProfileListener = new LoadListener<EditResponse>() {
         @Override
         public void onSuccess(EditResponse responseBody) {
+
             mView.showErrorDialog(responseBody.getSTATUSINFO());
         }
 

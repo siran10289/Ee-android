@@ -52,6 +52,7 @@ public class ApiInteractorImpl implements ApiInteractor {
     public void getLoginResponse(BaseView mView, String name, String pass, String appid, LoadListener<LoginResponse> mLoginListener) {
         UiCallback<LoginResponse> appConfigUiCallback = new UiCallback(mView, mLoginListener, true);
         Call<LoginResponse> appConfigCall = mApi.getAuthentication("http://www.eeyuva.com/user_mlogin/?username=" + name + "&password=" + pass + "&appid=" + appid);
+        Log.e("LoginInputUrl:","http://www.eeyuva.com/user_mlogin/?username=" + name + "&password=" + pass + "&appid=" + appid);
         appConfigUiCallback.start(appConfigCall);
     }
 

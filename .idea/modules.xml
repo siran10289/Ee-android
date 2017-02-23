@@ -3,16 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Ee-android.iml" filepath="$PROJECT_DIR$/Ee-android.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Ee-android.iml" filepath="$PROJECT_DIR$/Ee-android.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Eeyuva/Eeyuva.iml" filepath="$PROJECT_DIR$/Eeyuva/Eeyuva.iml" />
       <module fileurl="file://$PROJECT_DIR$/Eeyuva/Eeyuva.iml" filepath="$PROJECT_DIR$/Eeyuva/Eeyuva.iml" />
       <module fileurl="file://$PROJECT_DIR$/coverflow/coverflow.iml" filepath="$PROJECT_DIR$/coverflow/coverflow.iml" />
-      <module fileurl="file://$PROJECT_DIR$/coverflow/coverflow.iml" filepath="$PROJECT_DIR$/coverflow/coverflow.iml" />
-      <module fileurl="file://$PROJECT_DIR$/lib/lib.iml" filepath="$PROJECT_DIR$/lib/lib.iml" />
       <module fileurl="file://$PROJECT_DIR$/lib/lib.iml" filepath="$PROJECT_DIR$/lib/lib.iml" />
       <module fileurl="file://$PROJECT_DIR$/models/models.iml" filepath="$PROJECT_DIR$/models/models.iml" />
-      <module fileurl="file://$PROJECT_DIR$/models/models.iml" filepath="$PROJECT_DIR$/models/models.iml" />
-      <module fileurl="file://$PROJECT_DIR$/pinchzoomlib/pinchzoomlib.iml" filepath="$PROJECT_DIR$/pinchzoomlib/pinchzoomlib.iml" />
       <module fileurl="file://$PROJECT_DIR$/pinchzoomlib/pinchzoomlib.iml" filepath="$PROJECT_DIR$/pinchzoomlib/pinchzoomlib.iml" />
     </modules>
   </component>
