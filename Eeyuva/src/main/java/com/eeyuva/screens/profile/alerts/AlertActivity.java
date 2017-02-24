@@ -313,6 +313,11 @@ public class AlertActivity extends ButterAppCompatActivity implements ProfileCon
     }
 
     @Override
+    public void showArticleDeletedStatus(String message) {
+
+    }
+
+    @Override
     public void getComments(String moduleid, String artid) {
 
     }

@@ -41,6 +41,9 @@ public interface ProfileContract {
         void goToLogin();
 
         void updateSaveModules(String notificationModules);
+
+        void showArticleDeletedStatus(String message);
+
     }
 
     interface Presenter extends BasePresenter {
@@ -77,6 +80,7 @@ public interface ProfileContract {
         void updateNotification(String moduleId);
 
         void getSaveNotification();
+        void deleteMyArticle(String articleID);
     }
 
     interface AdapterCallBack {

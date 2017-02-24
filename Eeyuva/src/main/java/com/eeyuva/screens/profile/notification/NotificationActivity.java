@@ -19,6 +19,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.eeyuva.ButterAppCompatActivity;
@@ -42,6 +43,7 @@ import com.eeyuva.screens.profile.model.NotificationResponse;
 import com.eeyuva.screens.profile.model.ProfileResponse;
 import com.eeyuva.screens.searchpage.SearchActivity;
 import com.eeyuva.utils.Constants;
+import com.eeyuva.utils.Utils;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
@@ -92,6 +94,12 @@ public class NotificationActivity extends ButterAppCompatActivity implements Pro
 
     RecyclerView.LayoutManager mLayoutManager;
     public List<ResponseList> mModuleList = new ArrayList<ResponseList>();
+    @Bind(R.id.search_view)
+    LinearLayout ll_searchView;
+    @Bind(R.id.btnOk)
+    Button btnDoSearch;
+    @Bind(R.id.btnSearch)
+    EditText etSearch;
 
 
     @Override
@@ -100,14 +108,11 @@ public class NotificationActivity extends ButterAppCompatActivity implements Pro
         setContentView(R.layout.activity_notification);
         initComponent();
         mPresenter.setView(this);
-
         setSupportActionBar(mToolbar);
         mToolbar.setTitleTextColor(getResources().getColor(R.color.white));
-
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-
         drawerFragment = (FragmentDrawer) getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
 
     }
@@ -156,7 +161,7 @@ public class NotificationActivity extends ButterAppCompatActivity implements Pro
         int id = item.getItemId();
         switch (id) {
             case R.id.action_search:
-                showDialog();
+                Utils.getSearchQuery(NotificationActivity.this,etSearch,btnDoSearch,ll_searchView);
                 break;
             case R.id.action_add:
                 showModuleVideoPhoto(null);
@@ -170,8 +175,7 @@ public class NotificationActivity extends ButterAppCompatActivity implements Pro
 
     @OnClick(R.id.imgHome)
     public void onHomeClick() {
-        Intent intent =
-                new Intent(NotificationActivity.this, HomeActivity.class);
+        Intent intent = new Intent(NotificationActivity.this, HomeActivity.class);
         startActivity(intent);
     }
 
@@ -260,8 +264,7 @@ public class NotificationActivity extends ButterAppCompatActivity implements Pro
     }
 
     public void gotoHome(View v) {
-        Intent intent =
-                new Intent(NotificationActivity.this, HomeActivity.class);
+        Intent intent =  new Intent(NotificationActivity.this, HomeActivity.class);
         startActivity(intent);
     }
 
@@ -313,8 +316,7 @@ public class NotificationActivity extends ButterAppCompatActivity implements Pro
 
     @Override
     public void goToLogin() {
-        Intent intent =
-                new Intent(NotificationActivity.this, HomeActivity.class);
+        Intent intent =  new Intent(NotificationActivity.this, HomeActivity.class);
         startActivity(intent);
     }
 
@@ -322,6 +324,11 @@ public class NotificationActivity extends ButterAppCompatActivity implements Pro
     public void updateSaveModules(String notificationModules) {
         if (notificationModules != null)
             mAlertAdapter.setCheckedItem(notificationModules);
+    }
+
+    @Override
+    public void showArticleDeletedStatus(String message) {
+
     }
 
     @Override

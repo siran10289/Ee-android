@@ -29,6 +29,7 @@ import com.eeyuva.screens.profile.model.ChangePasswordResponse;
 import com.eeyuva.screens.profile.model.CommentResponse;
 import com.eeyuva.screens.profile.model.EditResponse;
 import com.eeyuva.screens.profile.model.NewsResponse;
+import com.eeyuva.screens.profile.model.NotificationEditResponse;
 import com.eeyuva.screens.profile.model.NotificationResponse;
 import com.eeyuva.screens.profile.model.ProfileResponse;
 import com.eeyuva.screens.registration.RegistrationContract;
@@ -74,9 +75,8 @@ public interface ApiInteractor {
     void getUserAlerts(BaseView mView, String s, LoadListener<AlertResponse> mAlertListner);
 
     void getStuffComments(BaseView mView, String s, LoadListener<CommentResponse> mCommentListener);
-
     void getStuffNews(BaseView mView, String s, LoadListener<NewsResponse> mNewsListener);
-
+    void deleteStuffNews(BaseView mView,String url,LoadListener<NotificationEditResponse> mNewsListener);
     void getNotificationComments(BaseView mView, String s, LoadListener<NotificationResponse> mNotificationListener);
 
     void uploadImage(BaseView mView, String url, String uid, String bitmapImg, LoadListener<EditResponse> mEditProfileListener);
@@ -85,7 +85,7 @@ public interface ApiInteractor {
 
     void uploadImageVideo(BaseView mView, String url, ImageFile encodedString, LoadListener<ImageResponse> mEditProfileListener);
 
-    void getUpdateNotification(BaseView mView, String s, LoadListener<EditResponse> mCommentListArticleListener);
+    void getUpdateNotification(BaseView mView, String s, LoadListener<NotificationEditResponse> mCommentListArticleListener);
 
     void updateFCmToken(String url, LoadListener<EditResponse> updateListener);
 

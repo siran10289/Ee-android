@@ -26,6 +26,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.eeyuva.ButterAppCompatActivity;
 import com.eeyuva.R;
@@ -68,7 +69,7 @@ import butterknife.OnClick;
  * Created by hari on 01/10/16.
  */
 
-public class StuffsActivity extends ButterAppCompatActivity implements ProfileContract.View, IFragmentToActivity {
+public class StuffsActivity extends ButterAppCompatActivity implements ProfileContract.View, IFragmentToActivity,MyArticleDeleteListener {
 
 
     @Inject
@@ -122,7 +123,7 @@ public class StuffsActivity extends ButterAppCompatActivity implements ProfileCo
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
-        adapter = new StuffPagerAdapter(getSupportFragmentManager(), tabs);
+        adapter = new StuffPagerAdapter(StuffsActivity.this,getSupportFragmentManager(), tabs);
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
 
@@ -340,8 +341,7 @@ public class StuffsActivity extends ButterAppCompatActivity implements ProfileCo
     public void setCommentAdapter(CommentResponse responseBody) {
         mSwipeRefreshLayout.setRefreshing(false);
 
-        Fragment fragment = adapter.getFragment(tabLayout
-                .getSelectedTabPosition());
+        Fragment fragment = adapter.getFragment(tabLayout.getSelectedTabPosition());
         if (fragment != null)
             ((CommentFrgament) fragment).onRefresh(responseBody);
     }
@@ -382,6 +382,12 @@ public class StuffsActivity extends ButterAppCompatActivity implements ProfileCo
     @Override
     public void updateSaveModules(String notificationModules) {
 
+    }
+
+    @Override
+    public void showArticleDeletedStatus(String message) {
+        Toast.makeText(StuffsActivity.this, message, Toast.LENGTH_SHORT).show();
+        mPresenter.getNews();
     }
 
     @Override
@@ -543,4 +549,9 @@ public class StuffsActivity extends ButterAppCompatActivity implements ProfileCo
 
     }
 
+    @Override
+    public void deleteArticle(String articleID) {
+        mPresenter.deleteMyArticle(articleID);
+
+    }
 }

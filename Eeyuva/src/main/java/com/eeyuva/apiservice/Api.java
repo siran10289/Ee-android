@@ -20,6 +20,7 @@ import com.eeyuva.screens.profile.model.ChangePasswordResponse;
 import com.eeyuva.screens.profile.model.CommentResponse;
 import com.eeyuva.screens.profile.model.EditResponse;
 import com.eeyuva.screens.profile.model.NewsResponse;
+import com.eeyuva.screens.profile.model.NotificationEditResponse;
 import com.eeyuva.screens.profile.model.NotificationResponse;
 import com.eeyuva.screens.profile.model.ProfileResponse;
 import com.eeyuva.screens.registration.RegistrationResponse;
@@ -92,6 +93,9 @@ public interface Api {
     Call<EditResponse> getEditProfile(@Url String url);
 
     @GET
+    Call<NotificationEditResponse> setNotificationModules(@Url String url);
+
+    @GET
     Call<AlertResponse> getUserAlert(@Url String url);
 
     @GET
@@ -99,6 +103,10 @@ public interface Api {
 
     @GET
     Call<NewsResponse> getStuffNews(@Url String url);
+
+    @GET
+    Call<NotificationEditResponse> deleteStuffNews(@Url String url);
+
 
     @POST
     Call<EditResponse> uploadProfileImage(@Url String url, @Query("uid") String uid, @Query("picdata") String bitmapImg);

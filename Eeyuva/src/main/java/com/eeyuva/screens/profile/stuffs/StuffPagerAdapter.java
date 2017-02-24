@@ -1,5 +1,7 @@
 package com.eeyuva.screens.profile.stuffs;
 
+import android.app.Activity;
+import android.content.Context;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -21,10 +23,12 @@ public class StuffPagerAdapter extends FragmentStatePagerAdapter {
 
     private final SparseArray<WeakReference<Fragment>> instantiatedFragments = new SparseArray<>();
     private ArrayList<String> mTabHeader;
+    private MyArticleDeleteListener myArticleDeleteListener;
 
-    public StuffPagerAdapter(FragmentManager fm, ArrayList<String> tabHeader) {
+    public StuffPagerAdapter(MyArticleDeleteListener listener, FragmentManager fm, ArrayList<String> tabHeader) {
         super(fm);
         this.mTabHeader = tabHeader;
+        this.myArticleDeleteListener=listener;
     }
 
     @Override
@@ -35,7 +39,7 @@ public class StuffPagerAdapter extends FragmentStatePagerAdapter {
                 CommentFrgament tab1 = new CommentFrgament();
                 return tab1;
             case 1:
-                NewsFrgament tab2 = new NewsFrgament();
+                NewsFrgament tab2 = new NewsFrgament(myArticleDeleteListener);
                 return tab2;
             case 2:
                 NotificationFrgament tab3 = new NotificationFrgament();

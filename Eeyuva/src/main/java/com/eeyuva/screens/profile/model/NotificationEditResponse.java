@@ -3,13 +3,11 @@ package com.eeyuva.screens.profile.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
-
 /**
- * Created by hari on 08/10/16.
+ * Created by Aximsoft on 2/24/2017.
  */
 
-public class EditResponse {
+public class NotificationEditResponse {
     @SerializedName("STATUS_CODE")
     @Expose
     private Integer sTATUSCODE;
@@ -18,8 +16,7 @@ public class EditResponse {
     private String sTATUSINFO;
     @SerializedName("RESPONSE")
     @Expose
-    private List<List<String>> rESPONSE = null;
-
+    private String rESPONSE;
 
     public Integer getSTATUSCODE() {
         return sTATUSCODE;
@@ -37,11 +34,11 @@ public class EditResponse {
         this.sTATUSINFO = sTATUSINFO;
     }
 
-    public List<List<String>> getRESPONSE() {
+    public String getRESPONSE() {
         return rESPONSE;
     }
 
-    public void setRESPONSE(List<List<String>> rESPONSE) {
+    public void setRESPONSE(String rESPONSE) {
         this.rESPONSE = rESPONSE;
     }
 

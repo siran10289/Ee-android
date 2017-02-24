@@ -37,10 +37,12 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
 
     private List<NewsList> mAlertList;
     private Context mContext;
+    private MyArticleDeleteListener myArticleDeleteListener;
 
-    public NewsAdapter(Context Context, List<NewsList> alertList) {
+    public NewsAdapter(Context Context, List<NewsList> alertList,MyArticleDeleteListener listener) {
         this.mContext = Context;
         this.mAlertList = alertList;
+        this.myArticleDeleteListener=listener;
     }
 
     @Override
@@ -96,7 +98,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
             holder.imgDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    showAlerDialogForDelete("Are you sure?");
+                    showAlerDialogForDelete("Are you sure?",articles.getArticleid());
                 }
             });
 
@@ -132,11 +134,11 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
 
         }
     }
-    public void showAlerDialogForDelete(String errorMsg) {
+    public void showAlerDialogForDelete(String errorMsg, final String articleID) {
         DialogUtils.showDialog(mContext, errorMsg, mContext.getString(R.string.sig__default_dialog_action_confirm), "", new DialogListener() {
             @Override
             public void onConfirm() {
-
+               myArticleDeleteListener.deleteArticle(articleID);
             }
 
             @Override

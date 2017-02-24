@@ -377,6 +377,11 @@ public class ProfileActivity extends ButterAppCompatActivity implements ProfileC
     }
 
     @Override
+    public void showArticleDeletedStatus(String message) {
+
+    }
+
+    @Override
     public void showToast(String msg) {
 
     }

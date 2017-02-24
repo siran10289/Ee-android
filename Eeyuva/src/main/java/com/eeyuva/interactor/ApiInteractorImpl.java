@@ -2,6 +2,7 @@ package com.eeyuva.interactor;
 
 
 import android.util.Log;
+import android.widget.EditText;
 
 import com.eeyuva.apiservice.Api;
 import com.eeyuva.base.BaseView;
@@ -26,6 +27,7 @@ import com.eeyuva.screens.profile.model.ChangePasswordResponse;
 import com.eeyuva.screens.profile.model.CommentResponse;
 import com.eeyuva.screens.profile.model.EditResponse;
 import com.eeyuva.screens.profile.model.NewsResponse;
+import com.eeyuva.screens.profile.model.NotificationEditResponse;
 import com.eeyuva.screens.profile.model.NotificationResponse;
 import com.eeyuva.screens.profile.model.ProfileResponse;
 import com.eeyuva.screens.registration.RegistrationResponse;
@@ -180,13 +182,23 @@ public class ApiInteractorImpl implements ApiInteractor {
 
     @Override
     public void getStuffNews(BaseView mView, String url, LoadListener<NewsResponse> mNewsListener) {
+        Log.e("MyStuffNewsURL:",url);
         UiCallback<NewsResponse> callback = new UiCallback(mView, mNewsListener, true);
         Call<NewsResponse> call = mApi.getStuffNews(url);
         callback.start(call);
     }
 
     @Override
+    public void deleteStuffNews(BaseView mView, String url, LoadListener<NotificationEditResponse> mNewsListener) {
+        Log.e("MyStuffNewsURL:",url);
+        UiCallback<NotificationEditResponse> callback = new UiCallback(mView, mNewsListener, true);
+        Call<NotificationEditResponse> call = mApi.deleteStuffNews(url);
+        callback.start(call);
+    }
+
+    @Override
     public void getNotificationComments(BaseView mView, String url, LoadListener<NotificationResponse> mNotificationListener) {
+        Log.e("GetNotificationURL:",url);
         UiCallback<NotificationResponse> callback = new UiCallback(mView, mNotificationListener, true);
         Call<NotificationResponse> call = mApi.getNotificationComments(url);
         callback.start(call);
@@ -214,9 +226,10 @@ public class ApiInteractorImpl implements ApiInteractor {
     }
 
     @Override
-    public void getUpdateNotification(BaseView mView, String url, LoadListener<EditResponse> mCommentListArticleListener) {
-        UiCallback<EditResponse> callback = new UiCallback(mView, mCommentListArticleListener, true);
-        Call<EditResponse> call = mApi.getEditProfile(url);
+    public void getUpdateNotification(BaseView mView, String url, LoadListener<NotificationEditResponse> mCommentListArticleListener) {
+        Log.e("NotificationSet URL:",url);
+        UiCallback<NotificationEditResponse> callback = new UiCallback(mView, mCommentListArticleListener, true);
+        Call<NotificationEditResponse> call = mApi.setNotificationModules(url);
         callback.start(call);
     }
 

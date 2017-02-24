@@ -1,5 +1,6 @@
 package com.eeyuva.screens.profile.stuffs;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -22,12 +23,14 @@ import com.eeyuva.utils.customdialog.DialogUtils;
  */
 public class NewsFrgament extends Fragment {
     private IFragmentToActivity mCallback;
-
     RecyclerView mRecyclerView;
-
     NewsAdapter mCommentAdapter;
-
     RecyclerView.LayoutManager mLayoutManager;
+    MyArticleDeleteListener myArticleDeleteListener;
+
+    public NewsFrgament(MyArticleDeleteListener myArticleDeleteListener) {
+        this.myArticleDeleteListener = myArticleDeleteListener;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -63,7 +66,7 @@ public class NewsFrgament extends Fragment {
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new GridLayoutManager(getActivity(), 1);
         mRecyclerView.setLayoutManager(mLayoutManager);
-        mCommentAdapter = new NewsAdapter(getActivity(), response.getAlertList());
+        mCommentAdapter = new NewsAdapter(getActivity(), response.getAlertList(),myArticleDeleteListener);
         mRecyclerView.setAdapter(mCommentAdapter);
         mCommentAdapter.notifyDataSetChanged();
     }

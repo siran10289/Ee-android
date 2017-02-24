@@ -20,6 +20,7 @@ import com.eeyuva.screens.profile.model.ChangePasswordResponse;
 import com.eeyuva.screens.profile.model.CommentResponse;
 import com.eeyuva.screens.profile.model.EditResponse;
 import com.eeyuva.screens.profile.model.NewsResponse;
+import com.eeyuva.screens.profile.model.NotificationEditResponse;
 import com.eeyuva.screens.profile.model.NotificationResponse;
 import com.eeyuva.screens.profile.model.ProfileResponse;
 import com.eeyuva.screens.profile.userdetails.interactor.ImageProcessingListener;
@@ -114,6 +115,11 @@ public class ProfilePresenterImpl implements ProfileContract.Presenter {
         mApiInteractor.getStuffNews(mView, Constants.ProfileGetUserNews + "uid=" + mPrefsManager.getUserDetails().getUserid(), mNewsListener);
 
     }
+    @Override
+    public void deleteMyArticle(String articleID) {
+        mApiInteractor.deleteStuffNews(mView,Constants.DeleteUserNews+"arid="+articleID,mDeleteStuffNewsListener);
+
+    }
 
     @Override
     public void getNotification() {
@@ -159,25 +165,7 @@ public class ProfilePresenterImpl implements ProfileContract.Presenter {
         }
     };
 
-    LoadListener<EditResponse> mEditNotiProfileListener = new LoadListener<EditResponse>() {
-        @Override
-        public void onSuccess(EditResponse responseBody) {
-            Log.i("mModuleId", "mModuleId r" + mModuleId);
-            mPrefsManager.setNotificationModules(mModuleId);
-            mView.showErrorDialog(responseBody.getSTATUSINFO());
-            mView.goToLogin();
-        }
 
-        @Override
-        public void onFailure(Throwable t) {
-
-        }
-
-        @Override
-        public void onError(Object error) {
-
-        }
-    };
 
     LoadListener<AlertResponse> mAlertListner = new LoadListener<AlertResponse>() {
         @Override
@@ -214,6 +202,7 @@ public class ProfilePresenterImpl implements ProfileContract.Presenter {
     LoadListener<NotificationResponse> mNotificationListener = new LoadListener<NotificationResponse>() {
         @Override
         public void onSuccess(NotificationResponse responseBody) {
+            Log.e("Response:",new Gson().toJson(responseBody).toString());
             mView.setNotificationAdapter(responseBody);
         }
 
@@ -230,7 +219,25 @@ public class ProfilePresenterImpl implements ProfileContract.Presenter {
     LoadListener<NewsResponse> mNewsListener = new LoadListener<NewsResponse>() {
         @Override
         public void onSuccess(NewsResponse responseBody) {
+            Log.e("NewsResponse:",new Gson().toJson(responseBody).toString());
             mView.setNewsAdapter(responseBody);
+        }
+
+        @Override
+        public void onFailure(Throwable t) {
+
+        }
+
+        @Override
+        public void onError(Object error) {
+
+        }
+    };
+    LoadListener<NotificationEditResponse> mDeleteStuffNewsListener = new LoadListener<NotificationEditResponse>() {
+        @Override
+        public void onSuccess(NotificationEditResponse responseBody) {
+            Log.e("NewsResponse:",new Gson().toJson(responseBody).toString());
+             mView.showArticleDeletedStatus(responseBody.getRESPONSE());
         }
 
         @Override
@@ -450,7 +457,7 @@ public class ProfilePresenterImpl implements ProfileContract.Presenter {
         Log.i("mModuleId", "mModuleId b" + mModuleId);
         mModuleId = moduleId;
         Log.i("mModuleId", "mModuleId a" + mModuleId);
-        mApiInteractor.getUpdateNotification(mView, Constants.ProfileUpdateNotification + "uid=" + moduleId, mEditNotiProfileListener);
+        mApiInteractor.getUpdateNotification(mView, Constants.ProfileUpdateNotification + "&uid=" + mPrefsManager.getUserDetails().getUserid()+"modid=" + moduleId, mEditNotiProfileListener);
 
     }
 
@@ -458,6 +465,8 @@ public class ProfilePresenterImpl implements ProfileContract.Presenter {
     public void getSaveNotification() {
         mView.updateSaveModules(mPrefsManager.getNotificationModules());
     }
+
+
 
     private void closeActivityOnResult(Intent data) {
         mView.setResultAndCloseActivity(data);
@@ -474,6 +483,26 @@ public class ProfilePresenterImpl implements ProfileContract.Presenter {
         public void onProcessingComplete() {
             mView.hideProgress();
             mView.setPhoto(mPackageInfoInteractor.getPhotoFile());
+
+        }
+    };
+    LoadListener<NotificationEditResponse> mEditNotiProfileListener = new LoadListener<NotificationEditResponse>() {
+        @Override
+        public void onSuccess(NotificationEditResponse responseBody) {
+            Log.e("mModuleId", "mModuleId r" + mModuleId);
+            Log.e("Response:",new Gson().toJson(responseBody).toString());
+            mPrefsManager.setNotificationModules(mModuleId);
+            mView.showErrorDialog(responseBody.getSTATUSINFO());
+            mView.goToLogin();
+        }
+
+        @Override
+        public void onFailure(Throwable t) {
+
+        }
+
+        @Override
+        public void onError(Object error) {
 
         }
     };
