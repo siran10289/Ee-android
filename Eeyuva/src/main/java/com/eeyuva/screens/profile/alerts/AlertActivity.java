@@ -20,6 +20,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.eeyuva.ButterAppCompatActivity;
@@ -39,9 +40,11 @@ import com.eeyuva.screens.profile.model.CommentResponse;
 import com.eeyuva.screens.profile.model.NewsResponse;
 import com.eeyuva.screens.profile.model.NotificationResponse;
 import com.eeyuva.screens.profile.model.ProfileResponse;
+import com.eeyuva.screens.profile.stuffs.StuffsActivity;
 import com.eeyuva.screens.profile.userdetails.ProfileActivity;
 import com.eeyuva.screens.searchpage.SearchActivity;
 import com.eeyuva.utils.Constants;
+import com.eeyuva.utils.Utils;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
@@ -92,6 +95,12 @@ public class AlertActivity extends ButterAppCompatActivity implements ProfileCon
 
     RecyclerView.LayoutManager mLayoutManager;
     SwipeRefreshLayout mSwipeRefreshLayout;
+    @Bind(R.id.search_view)
+    LinearLayout ll_searchView;
+    @Bind(R.id.btnOk)
+    Button btnDoSearch;
+    @Bind(R.id.btnSearch)
+    EditText etSearch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -160,7 +169,7 @@ public class AlertActivity extends ButterAppCompatActivity implements ProfileCon
         int id = item.getItemId();
         switch (id) {
             case R.id.action_search:
-                showDialog();
+                Utils.getSearchQuery(AlertActivity.this,etSearch,btnDoSearch,ll_searchView);
                 break;
             case R.id.action_add:
                 showModuleVideoPhoto(null);

@@ -24,6 +24,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -52,6 +53,7 @@ import com.eeyuva.screens.profile.userdetails.ProfileActivity;
 import com.eeyuva.screens.searchpage.SearchActivity;
 import com.eeyuva.screens.splash.SplashActivity;
 import com.eeyuva.utils.Constants;
+import com.eeyuva.utils.Utils;
 import com.eeyuva.utils.customdialog.DialogListener;
 import com.eeyuva.utils.customdialog.DialogUtils;
 import com.squareup.picasso.Picasso;
@@ -97,6 +99,12 @@ public class StuffsActivity extends ButterAppCompatActivity implements ProfileCo
     private int mPrevState = 0;
     SwipeRefreshLayout mSwipeRefreshLayout;
     private int currentItem = 0;
+    @Bind(R.id.search_view)
+    LinearLayout ll_searchView;
+    @Bind(R.id.btnOk)
+    Button btnDoSearch;
+    @Bind(R.id.btnSearch)
+    EditText etSearch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -224,7 +232,7 @@ public class StuffsActivity extends ButterAppCompatActivity implements ProfileCo
         int id = item.getItemId();
         switch (id) {
             case R.id.action_search:
-                showDialog();
+                Utils.getSearchQuery(StuffsActivity.this,etSearch,btnDoSearch,ll_searchView);
                 break;
             case R.id.action_add:
                 showModuleVideoPhoto(null);
