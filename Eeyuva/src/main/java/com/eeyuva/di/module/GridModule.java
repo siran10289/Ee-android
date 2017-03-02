@@ -25,11 +25,9 @@ public class GridModule extends ActivityModule {
     public GridModule(Activity activity) {
         super(activity);
     }
-
     @Provides
     @PerActivity
     public GridContract.Presenter gridpresenter(ApiInteractor driverInteractor, PrefsManager prefsManager, PackageInfoInteractor packageInfoInteractor) {
         return new GridPresenterImpl(driverInteractor, prefsManager, packageInfoInteractor);
     }
-
 }

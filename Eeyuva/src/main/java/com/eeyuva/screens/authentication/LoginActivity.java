@@ -76,6 +76,7 @@ public class LoginActivity extends ButterAppCompatActivity implements LoginContr
                 .loginPresenterModule(new LoginPresenterModule(this))
                 .build();
         mComponent.inject(this);
+
     }
 
     @OnClick(R.id.mBtnLogin)

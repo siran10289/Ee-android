@@ -70,12 +70,9 @@ public class GridHomeActivity extends ButterAppCompatActivity implements GridCon
 
     @Inject
     GridContract.Presenter mPresenter;
-
     GridComponent mComponent;
-
     @Bind(R.id.tool_bar)
     Toolbar mToolbar;
-
     @Bind(R.id.txtHotStories)
     TextView mTxtHotStories;
 
