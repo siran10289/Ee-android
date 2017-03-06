@@ -281,7 +281,7 @@ public class ProfilePresenterImpl implements ProfileContract.Presenter {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Log.i("onActivityResult", "onActivityResult" + data.getData());
+        //Log.i("onActivityResult", "onActivityResult" + data.getData());
         if (resultCode == Activity.RESULT_OK) {
             if (requestCode == Constants.REQUEST_GALLERY_PHOTO) {
                 mPackageInfoInteractor.handleGalleryPhoto(data.getData(), imageProcessingListener);
@@ -420,9 +420,8 @@ public class ProfilePresenterImpl implements ProfileContract.Presenter {
         }
         bytes = output.toByteArray();
         String encodedString = Base64.encodeToString(bytes, Base64.DEFAULT);
-
         ImageFile imagefile = new ImageFile(encodedString);
-        mApiInteractor.uploadImageVideo(mView, Constants.ProfilePostUserNews + "mid=4&catid=Cat_6395ebd0f&title=" + title + "&desc=" + desc + "&uid=" + mPrefsManager.getUserDetails().getUserid(), imagefile, mPhotoUploadListener);
+        mApiInteractor.uploadImageVideo(mView, Constants.ProfilePostUserNews + "mid=4&catid=Cat_6395ebd0f&title=" + title + "&desc=" + desc + "&uid=" + mPrefsManager.getUserDetails().getUserid(), imagefile,photoFile, mPhotoUploadListener);
     }
 
     LoadListener<ImageResponse> mPhotoUploadListener = new LoadListener<ImageResponse>() {

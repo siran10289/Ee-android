@@ -101,6 +101,7 @@ public class AlertActivity extends ButterAppCompatActivity implements ProfileCon
     Button btnDoSearch;
     @Bind(R.id.btnSearch)
     EditText etSearch;
+    public static String imageBase64;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -36,6 +36,8 @@ import com.eeyuva.screens.registration.RegistrationContract;
 import com.eeyuva.screens.registration.RegistrationResponse;
 import com.eeyuva.screens.searchpage.model.SearchResponse;
 
+import java.io.File;
+
 /**
  * Created by hari on 22/6/16.
  */
@@ -83,7 +85,7 @@ public interface ApiInteractor {
 
     void changePassword(BaseView mView, String url, LoadListener<ChangePasswordResponse> mChangePasswordListener);
 
-    void uploadImageVideo(BaseView mView, String url, ImageFile encodedString, LoadListener<ImageResponse> mEditProfileListener);
+    void uploadImageVideo(BaseView mView, String url, ImageFile encodedString, File file, LoadListener<ImageResponse> mEditProfileListener);
 
     void getUpdateNotification(BaseView mView, String s, LoadListener<NotificationEditResponse> mCommentListArticleListener);
 

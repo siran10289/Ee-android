@@ -276,7 +276,7 @@ public class GridPresenterImpl implements GridContract.Presenter {
 
         ImageFile imagefile = new ImageFile(hexString);
 
-        mApiInteractor.uploadImageVideo(mView, Constants.DetailPostUserNews+"mid=4&catid=Cat_6395ebd0f&title=" + title + "&desc=" + desc + "&uid=3939", imagefile, mEditProfileListener);
+        mApiInteractor.uploadImageVideo(mView, Constants.DetailPostUserNews+"mid=4&catid=Cat_6395ebd0f&title=" + title + "&desc=" + desc + "&uid=3939", imagefile,photoFile, mEditProfileListener);
     }
 
 

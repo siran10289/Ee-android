@@ -114,6 +114,10 @@ public interface Api {
     @POST
     Call<ImageResponse> uploadImageVideo(@Url String url, @Body ImageFile encodedString);
 
+ /*   @POST
+    Call<ImageResponse> uploadImageVideo(@Url String url, @Query("postpicdata") String bitmapImg);*/
+
+
     @GET
     Call<NotificationResponse> getNotificationComments(@Url String url);
 

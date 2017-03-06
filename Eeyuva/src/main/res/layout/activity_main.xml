@@ -61,8 +61,8 @@
             android:background="@drawable/rounded_corner_stroke_grey"
             android:drawableRight="@drawable/ic_maps_local_mall"
             android:hint="@string/password"
-            android:imeOptions="actionDone"
-            android:inputType="textPassword"
+
+            android:inputType="textPassword" android:imeOptions="actionDone"
             android:padding="10dp"
             android:singleLine="true"
             android:textSize="@dimen/medium" />

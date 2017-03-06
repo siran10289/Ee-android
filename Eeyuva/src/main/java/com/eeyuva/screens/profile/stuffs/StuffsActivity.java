@@ -506,12 +506,14 @@ public class StuffsActivity extends ButterAppCompatActivity implements ProfileCo
                 @Override
                 public void onClick(View v) {
                     mDialog.dismiss();
-                    if (mBtnTakePhoto.getText().toString().trim().equalsIgnoreCase("Post"))
+                    if (mBtnTakePhoto.getText().toString().trim().equalsIgnoreCase("Post")) {
                         mPresenter.uploadImageOrVideo(photoFile, mEdtModule.getText().toString().trim(),
                                 mEdtTitle.getText().toString().trim(),
                                 mEdtDesc.getText().toString().trim());
-                    else
+                    }
+                    else {
                         mPresenter.snapPhotoClick();
+                    }
 
                 }
             });

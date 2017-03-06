@@ -13,6 +13,7 @@ import android.support.v4.app.ActivityCompat;
 import android.util.Base64;
 import android.util.Log;
 
+import com.eeyuva.screens.profile.alerts.AlertActivity;
 import com.eeyuva.utils.preferences.PrefsManager;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
@@ -131,15 +132,16 @@ public class PackageInfoInteractorImpl implements PackageInfoInteractor {
 
     @Override
     public void handleCapturedPhoto(ImageProcessingListener processingListener) {
+
         imageProcessingListener = processingListener;
         imageProcessingListener.onProcessingStart();
         photoBitmap = resizeCapturedPhoto();
         photoBitmapFile = createFileFromBitmap(photoBitmap);
         imageProcessingListener.onProcessingComplete();
     }
-
     @Override
     public void handleGalleryPhoto(Uri uri, ImageProcessingListener processingListener) {
+
         photoUri = uri;
         handleCapturedPhoto(processingListener);
     }
@@ -207,8 +209,7 @@ public class PackageInfoInteractorImpl implements PackageInfoInteractor {
     @Override
     public String getBitmapImg() {
     // get the base 64 string
-        String imgString = Base64.encodeToString(getBytesFromBitmap(photoBitmap),
-                Base64.NO_WRAP);
+        String imgString = Base64.encodeToString(getBytesFromBitmap(photoBitmap), Base64.NO_WRAP);
         return imgString;
     }
 

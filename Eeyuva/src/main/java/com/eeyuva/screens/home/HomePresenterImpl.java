@@ -164,8 +164,7 @@ public class HomePresenterImpl implements HomeContract.Presenter {
     }
 
     private void capturePhotoFromCamera() {
-        mView.openActivityForResult(mPackageInfoInteractor.getPhotoCaptureIntent(),
-                Constants.REQUEST_CAPTURE_PHOTO);
+        mView.openActivityForResult(mPackageInfoInteractor.getPhotoCaptureIntent(), Constants.REQUEST_CAPTURE_PHOTO);
     }
 
     @Override
@@ -284,7 +283,7 @@ public class HomePresenterImpl implements HomeContract.Presenter {
 
         ImageFile imagefile = new ImageFile(hexString);
 
-        mApiInteractor.uploadImageVideo(mView, Constants.DetailPostUserNews + "mid=4&catid=Cat_6395ebd0f&title=" + title + "&desc=" + desc + "&uid=3939", imagefile, mEditProfileListener);
+        mApiInteractor.uploadImageVideo(mView, Constants.DetailPostUserNews + "mid=4&catid=Cat_6395ebd0f&title=" + title + "&desc=" + desc + "&uid=3939", imagefile,photoFile, mEditProfileListener);
     }
 
 

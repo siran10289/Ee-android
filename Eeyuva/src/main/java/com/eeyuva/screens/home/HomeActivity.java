@@ -24,6 +24,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -58,8 +59,10 @@ import com.eeyuva.screens.home.loadmore.RoundedTransformation;
 import com.eeyuva.screens.navigation.FragmentDrawer;
 import com.eeyuva.screens.searchpage.SearchActivity;
 import com.eeyuva.screens.searchpage.model.SearchResponse;
+import com.eeyuva.utils.AppDialogManager;
 import com.eeyuva.utils.Constants;
 import com.eeyuva.utils.Utils;
+import com.eeyuva.utils.listeners.DialogListener;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
@@ -78,7 +81,7 @@ import me.crosswall.lib.coverflow.core.LinkagePagerContainer;
 /**
  * Created by hari on 05/09/16.
  */
-public class HomeActivity extends ButterAppCompatActivity implements HomeContract.View, HomeContract.AdapterCallBack, InfiniteHotFragment.CommmunicateListener {
+public class HomeActivity extends ButterAppCompatActivity implements HomeContract.View, HomeContract.AdapterCallBack, InfiniteHotFragment.CommmunicateListener,DialogListener {
 
     @Inject
     HomeContract.Presenter mPresenter;
@@ -163,8 +166,7 @@ public class HomeActivity extends ButterAppCompatActivity implements HomeContrac
     Button btnDoSearch;
     @Bind(R.id.btnSearch)
     EditText etSearch;
-
-
+    EditText mEdtModule;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -272,135 +274,6 @@ public class HomeActivity extends ButterAppCompatActivity implements HomeContrac
                 mPresenter.getArticles(mModuleList.get((mScrolledToPosition % mModuleList.size())).getModuleid());
             }
         });
-//        mAdapter = new CoverFlowAdapter(this);
-//        mAdapter.setData(mModuleList);
-//        mCoverFlow = (FeatureCoverFlow) findViewById(R.id.coverflow);
-//        mCoverFlow.setAdapter(mAdapter);
-//
-//        mHotNewsAdapter = new HotNewsCoverFlowAdapter(this);
-//        mHotNewsAdapter.setData(mHotModuleList);
-//        mHotNewscoverflow = (FeatureCoverFlow) findViewById(R.id.hotNewscoverflow);
-//        mHotNewscoverflow.setAdapter(mHotNewsAdapter);
-
-
-//        mCoverFlow.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Toast.makeText(HomeActivity.this, "" + mModuleList.get(position).getTitle(),
-//                        Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//
-//        mCoverFlow.setOnScrollPositionListener(new FeatureCoverFlow.OnScrollPositionListener() {
-//
-//            @Override
-//            public void onScrolledToPosition(int position) {
-//                mScrolledToPosition = position;
-////                label.setText("" + mModuleList.get(position).getTitle());
-//                mPresenter.getArticles(mModuleList.get(position).getModuleid());
-//            }
-//
-//            @Override
-//            public void onScrolling() {
-//
-//            }
-//        });
-
-//        mHotNewscoverflow.setOnScrollPositionListener(new FeatureCoverFlow.OnScrollPositionListener() {
-//            @Override
-//            public void onScrolledToPosition(int position) {
-//            }
-//
-//            @Override
-//            public void onScrolling() {
-//
-//            }
-//        });
-//
-//        parallaxHeight = getResources().getDimensionPixelSize(R.dimen.cover_pager_height) - getResources().getDimensionPixelSize(R.dimen.tab_height);
-//
-//        Log.d("###", "parallaxHeight:" + parallaxHeight);
-
-//        appBarLayout = (AppBarLayout) findViewById(R.id.appbar);
-
-//        appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
-//            @Override
-//            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-//                // Log.d("###","verticalOffset: " + Math.abs(verticalOffset));
-////                if(Math.abs(verticalOffset) >= parallaxHeight){
-////                    tab.setVisibility(View.VISIBLE);
-////                }else{
-////                    tab.setVisibility(View.GONE);
-////                }
-//
-//            }
-//        });
-
-//        customPagerContainer = (LinkagePagerContainer) findViewById(R.id.pager_container);
-//
-////        tab = findViewById(R.id.tab);
-//        final LinkagePager cover = customPagerContainer.getViewPager();
-//
-//        StuffPagerAdapter coverAdapter = new MyPagerAdapter();
-//        cover.setAdapter(coverAdapter);
-//        cover.setOffscreenPageLimit(mModuleList.size());
-//
-//        new CoverFlow.Builder()
-//                .withLinkage(cover)
-//                .pagerMargin(0f)
-//                .scale(0.3f)
-//                .spaceSize(0f)
-//                .build();
-//
-//        cover.addOnPageChangeListener(new LinkagePager.OnPageChangeListener() {
-//            @Override
-//            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-//                Log.i("position", "onPageScrolled" + position);
-//                if (!initialflag) {
-//                    label.setText("" + mModuleList.get(position).getTitle());
-//                    mPresenter.getArticles(mModuleList.get(position).getModuleid());
-//                }
-//
-//            }
-//
-//            @Override
-//            public void onPageSelected(int position) {
-//                Log.i("position", "onPageSelected" + position);
-//                mScrolledToPosition = position;
-//            }
-//
-//            @Override
-//            public void onPageScrollStateChanged(int state) {
-//                Log.i("position", "onPageScrollStateChanged" + state);
-//                if (state == 0) {
-//                    label.setText("" + mModuleList.get(mScrolledToPosition).getTitle());
-//                    mPresenter.getArticles(mModuleList.get(mScrolledToPosition).getModuleid());
-//                }
-//
-//            }
-//        });
-//        pager = (LinkagePager) findViewById(R.id.pager);
-//
-//        MyListPagerAdapter adapter = new MyListPagerAdapter();
-//
-//        pager.setOffscreenPageLimit(5);
-//        pager.setAdapter(adapter);
-//
-//        cover.setLinkagePager(pager);
-//        pager.setLinkagePager(cover);
-
-
-//        PagerContainer container = (PagerContainer) findViewById(R.id.bottom_pager_container);
-//        ViewPager pager = container.getViewPager();
-//        pager.setAdapter(new BottomPagerAdapter());
-//        pager.setClipChildren(false);
-//        pager.setOffscreenPageLimit(15);
-//        new CoverFlow.Builder()
-//                .with(pager)
-//                .scale(0.3f)
-//                .pagerMargin(0)
-//                .spaceSize(0f)
-//                .build();
 
         hotpager = (ViewPager) findViewById(R.id.infinitehotviewpager);
         infinitehotPagerAdapter = new InfiniteHotPagerAdapter(this, this.getSupportFragmentManager());
@@ -640,8 +513,7 @@ public class HomeActivity extends ButterAppCompatActivity implements HomeContrac
     public void showUpdatedDetails(String module_id, String entityid) {
 //        for (ModuleList ml : mHotModuleList) {
 //            if (ml.getModid().equals(module_id)) {
-        Intent intent =
-                new Intent(HomeActivity.this, DetailActivity.class);
+        Intent intent = new Intent(HomeActivity.this, DetailActivity.class);
         intent.putExtra("article_id", entityid);
         intent.putExtra("module_id", module_id);
         intent.putExtra("type", "home");
@@ -649,6 +521,16 @@ public class HomeActivity extends ButterAppCompatActivity implements HomeContrac
         finish();
 //            }
 //        }
+
+    }
+
+    @Override
+    public void onDialogClosedByOkClick(ResponseList moduleObject) {
+        mEdtModule.setText(moduleObject.getTitle());
+    }
+
+    @Override
+    public void onDialogClosedByCancelClick() {
 
     }
 
@@ -831,7 +713,7 @@ public class HomeActivity extends ButterAppCompatActivity implements HomeContrac
             ImageView mImgProfile = (ImageView) dialogView.findViewById(R.id.mImgProfile);
             TextView mBtnGallery = (TextView) dialogView.findViewById(R.id.mBtnGallery);
             TextView mBtnor = (TextView) dialogView.findViewById(R.id.mBtnor);
-            final EditText mEdtModule = (EditText) dialogView.findViewById(R.id.mEdtModule);
+            mEdtModule = (EditText) dialogView.findViewById(R.id.mEdtModule);
             final EditText mEdtTitle = (EditText) dialogView.findViewById(R.id.mEdtTitle);
             final EditText mEdtDesc = (EditText) dialogView.findViewById(R.id.mEdtDesc);
             if (photoFile != null || i == 1) {
@@ -904,9 +786,17 @@ public class HomeActivity extends ButterAppCompatActivity implements HomeContrac
                 }
             });
 
+
             mDialog = builder.create();
             mDialog.setCancelable(true);
             mDialog.show();
+            mEdtModule.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    AppDialogManager.ModuleChooserDialog(HomeActivity.this,HomeActivity.this,mPresenter.getModules());
+                    return false;
+                }
+            });
             mDialog.getWindow().setGravity(Gravity.TOP);
             mDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
             Window window = mDialog.getWindow();

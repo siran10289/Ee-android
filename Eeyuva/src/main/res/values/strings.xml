@@ -80,6 +80,8 @@ The tag line is… “Learn. Share. Grow”… means, a user not only gets enter
     <string name="app_size">APP SIZE</string>
     <string name="app_version">APP VERSION</string>
     <string name="last_update">LAST UPDATE</string>
+    <string name="cancel">Cancel</string>
+    <string name="select_module">Select Module</string>
 
 
 </resources>

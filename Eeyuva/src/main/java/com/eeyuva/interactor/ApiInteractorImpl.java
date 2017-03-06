@@ -34,6 +34,8 @@ import com.eeyuva.screens.registration.RegistrationResponse;
 import com.eeyuva.screens.searchpage.model.SearchResponse;
 import com.eeyuva.utils.preferences.PrefsManager;
 
+import java.io.File;
+
 import retrofit2.Call;
 
 
@@ -219,7 +221,9 @@ public class ApiInteractorImpl implements ApiInteractor {
     }
 
     @Override
-    public void uploadImageVideo(BaseView mView, String url, ImageFile encodedString, LoadListener<ImageResponse> mEditProfileListener) {
+    public void uploadImageVideo(BaseView mView, String url, ImageFile encodedString, File file, LoadListener<ImageResponse> mEditProfileListener) {
+        Log.e("CreatePost:",url);
+        Log.e("EncodedImageFile:",encodedString.getmImageString());
         UiCallback<ImageResponse> callback = new UiCallback(mView, mEditProfileListener, true);
         Call<ImageResponse> call = mApi.uploadImageVideo(url, encodedString);
         callback.start(call);
