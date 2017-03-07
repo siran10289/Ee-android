@@ -24,6 +24,7 @@ import com.eeyuva.screens.DetailPage.DetailActivity;
 import com.eeyuva.screens.DetailPage.model.CommentsList;
 import com.eeyuva.screens.authentication.LoginActivity;
 import com.eeyuva.screens.gridpages.GridHomeActivity;
+import com.eeyuva.screens.home.CatagoryList;
 import com.eeyuva.screens.home.HomeActivity;
 import com.eeyuva.screens.navigation.FragmentDrawer;
 import com.eeyuva.screens.profile.model.AlertList;
@@ -301,6 +302,11 @@ public class ChangePasswordActivity extends ButterAppCompatActivity implements P
 
     @Override
     public void showArticleDeletedStatus(String message) {
+
+    }
+
+    @Override
+    public void setCatagoryList(CatagoryList catagoryListPojo) {
 
     }
 

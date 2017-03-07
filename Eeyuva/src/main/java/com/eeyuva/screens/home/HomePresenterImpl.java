@@ -152,6 +152,27 @@ public class HomePresenterImpl implements HomeContract.Presenter {
 
         }
     };
+    @Override
+    public void getCatagoryDetails(String moduleID) {
+        mApiInteractor.getCatagoryList(mView, Constants.GetCatagoryList + "modid=" + moduleID, mGetCatagoryListListener);
+
+    }
+    LoadListener<CatagoryList> mGetCatagoryListListener = new LoadListener<CatagoryList>() {
+        @Override
+        public void onSuccess(CatagoryList catagoryList) {
+             mView.setCatagoryList(catagoryList);
+        }
+
+        @Override
+        public void onFailure(Throwable t) {
+
+        }
+
+        @Override
+        public void onError(Object error) {
+
+        }
+    };
 
 
     @Override
@@ -205,6 +226,8 @@ public class HomePresenterImpl implements HomeContract.Presenter {
         mPrefsManager.setUserDetail(mLogin);
     }
 
+
+
     private void closeActivityOnResult(Intent data) {
         mView.setResultAndCloseActivity(data);
     }
@@ -252,7 +275,7 @@ public class HomePresenterImpl implements HomeContract.Presenter {
             };
 
     @Override
-    public void uploadImageOrVideo(File photoFile, String modulename, String title, String desc) {
+    public void uploadImageOrVideo(File photoFile, String modulename, String title, String desc,String moduleID,String catID) {
 //
 
         InputStream inputStream = null;//You can get an inputStream using any IO API
@@ -283,7 +306,7 @@ public class HomePresenterImpl implements HomeContract.Presenter {
 
         ImageFile imagefile = new ImageFile(hexString);
 
-        mApiInteractor.uploadImageVideo(mView, Constants.DetailPostUserNews + "mid=4&catid=Cat_6395ebd0f&title=" + title + "&desc=" + desc + "&uid=3939", imagefile,photoFile, mEditProfileListener);
+        mApiInteractor.uploadImageVideo(mView, Constants.DetailPostUserNews + "mid="+moduleID+"&catid="+catID+"&title=" + title + "&desc=" + desc + "&uid="+mPrefsManager.getUserDetails().getUserid(), imagefile,photoFile, mEditProfileListener);
     }
 
 

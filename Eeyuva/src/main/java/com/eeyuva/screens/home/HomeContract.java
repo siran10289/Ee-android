@@ -17,14 +17,11 @@ public interface HomeContract {
     interface View extends BaseView {
 
         void setDataToAdapter(List<ResponseList> response);
-
         void setArticleAdapterNotify(List<ResponseItem> responseItem);
-
         void setLoadMoredata(GetArticleResponse responseBody);
-
         void setLoadMoredata(SearchResponse responseBody);
-
         void setPhoto(File photoFile);
+        void setCatagoryList(CatagoryList catagoryListPojo);
     }
 
     interface Presenter extends BasePresenter {
@@ -43,7 +40,7 @@ public interface HomeContract {
 
         void getSearchResponse(String key);
 
-        void uploadImageOrVideo(File photoFile, String trim, String s, String trim1);
+        void uploadImageOrVideo(File photoFile, String trim, String s, String trim1,String moduleID,String catID);
 
         void pickFromGalleryClick();
 
@@ -54,6 +51,8 @@ public interface HomeContract {
         LoginResponse getUserDetails();
 
         void setClearPrefs();
+
+        void getCatagoryDetails(String moduleID);
     }
 
     interface AdapterCallBack {

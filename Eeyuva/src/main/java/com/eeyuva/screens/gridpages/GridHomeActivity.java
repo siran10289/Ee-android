@@ -42,6 +42,7 @@ import com.eeyuva.screens.gridpages.model.PhotoList;
 import com.eeyuva.screens.gridpages.model.PhotoListResponse;
 import com.eeyuva.screens.gridpages.model.UserNewsList;
 import com.eeyuva.screens.gridpages.model.UserNewsListResponse;
+import com.eeyuva.screens.home.CatagoryList;
 import com.eeyuva.screens.home.HomeActivity;
 import com.eeyuva.screens.home.ImageResponse;
 import com.eeyuva.screens.home.ResponseList;
@@ -49,8 +50,10 @@ import com.eeyuva.screens.home.loadmore.ArticlesActivity;
 import com.eeyuva.screens.home.loadmore.RoundedTransformation;
 import com.eeyuva.screens.navigation.FragmentDrawer;
 import com.eeyuva.screens.searchpage.SearchActivity;
+import com.eeyuva.utils.AppDialogManager;
 import com.eeyuva.utils.Constants;
 import com.eeyuva.utils.Utils;
+import com.eeyuva.utils.listeners.DialogListener;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
@@ -66,7 +69,7 @@ import butterknife.OnClick;
 /**
  * Created by hari on 17/09/16.
  */
-public class GridHomeActivity extends ButterAppCompatActivity implements GridContract.View, GridContract.AdapterCallBack {
+public class GridHomeActivity extends ButterAppCompatActivity implements GridContract.View, GridContract.AdapterCallBack,DialogListener{
 
     @Inject
     GridContract.Presenter mPresenter;
@@ -104,6 +107,8 @@ public class GridHomeActivity extends ButterAppCompatActivity implements GridCon
     Button btnDoSearch;
     @Bind(R.id.btnSearch)
     EditText etSearch;
+    EditText mEdtModule;
+    private String moduleID,categorayID;
 
 
 
@@ -370,7 +375,7 @@ public class GridHomeActivity extends ButterAppCompatActivity implements GridCon
             ImageView mImgProfile = (ImageView) dialogView.findViewById(R.id.mImgProfile);
             TextView mBtnGallery = (TextView) dialogView.findViewById(R.id.mBtnGallery);
             TextView mBtnor = (TextView) dialogView.findViewById(R.id.mBtnor);
-            final EditText mEdtModule = (EditText) dialogView.findViewById(R.id.mEdtModule);
+            mEdtModule = (EditText) dialogView.findViewById(R.id.mEdtModule);
             final EditText mEdtTitle = (EditText) dialogView.findViewById(R.id.mEdtTitle);
             final EditText mEdtDesc = (EditText) dialogView.findViewById(R.id.mEdtDesc);
             if (photoFile != null || i == 1) {
@@ -394,7 +399,7 @@ public class GridHomeActivity extends ButterAppCompatActivity implements GridCon
                         if (mPhoto) {
                             mPresenter.uploadImageOrVideo(photoFile, mEdtModule.getText().toString().trim(),
                                     mEdtTitle.getText().toString().trim(),
-                                    mEdtDesc.getText().toString().trim());
+                                    mEdtDesc.getText().toString().trim(),moduleID,categorayID);
                         } else {
                             uploadVideo();
                         }
@@ -442,6 +447,12 @@ public class GridHomeActivity extends ButterAppCompatActivity implements GridCon
 
                 }
             });
+            mEdtModule.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AppDialogManager.ModuleChooserDialog(GridHomeActivity.this,GridHomeActivity.this,mPresenter.getModules());
+                }
+            });
 
             mDialog = builder.create();
             mDialog.setCancelable(true);
@@ -480,6 +491,8 @@ public class GridHomeActivity extends ButterAppCompatActivity implements GridCon
     public void setPhoto(File photoFile) {
         showModuleVideoPhoto(photoFile, 2);
     }
+
+
 
     private static final int SELECT_VIDEO = 3;
 
@@ -543,6 +556,21 @@ public class GridHomeActivity extends ButterAppCompatActivity implements GridCon
         }
         UploadVideo uv = new UploadVideo();
         uv.execute();
+    }
+    @Override
+    public void setCatagoryList(CatagoryList catagoryListPojo) {
+        AppDialogManager.catagoryChooserDialog(GridHomeActivity.this,GridHomeActivity.this,catagoryListPojo.getCatagoryList());
+    }
+    @Override
+    public void onDialogClosedByModuleClick(ResponseList moduleObject) {
+        mEdtModule.setText(moduleObject.getTitle());
+        moduleID=moduleObject.getModuleid();
+        mPresenter.getCatagoryDetails(moduleObject.getModuleid());
+    }
+
+    @Override
+    public void onDialogClosedByCatagoryClick(CatagoryList.Catagory catagoryObject) {
+        categorayID=catagoryObject.getCategoryid();
     }
 
 }

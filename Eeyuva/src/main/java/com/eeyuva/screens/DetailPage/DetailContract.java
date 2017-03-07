@@ -6,6 +6,7 @@ import com.eeyuva.base.BasePresenter;
 import com.eeyuva.base.BaseView;
 import com.eeyuva.screens.DetailPage.model.CommentsList;
 import com.eeyuva.screens.authentication.LoginResponse;
+import com.eeyuva.screens.home.CatagoryList;
 import com.eeyuva.screens.home.ResponseList;
 
 import java.io.File;
@@ -31,6 +32,8 @@ public interface DetailContract {
 
         void setAdpaterNotComments();
 
+        void setCatagoryList(CatagoryList catagoryListPojo);
+
 
     }
 
@@ -54,7 +57,7 @@ public interface DetailContract {
 
         void getArticlesNewsDetails(String mArticleId);
 
-        void uploadImageOrVideo(File photoFile, String trim, String s, String trim1);
+        void uploadImageOrVideo(File photoFile, String trim, String s, String trim1,String moduleID,String catID);
 
         void pickFromGalleryClick();
 
@@ -67,6 +70,7 @@ public interface DetailContract {
         LoginResponse getUserdetails();
 
         void postShareDetail(String mModuleId, String mEntityId, String trim);
+        void getCatagoryDetails(String moduleID);
     }
 
     public interface AdapterCallBack {

@@ -44,6 +44,7 @@ public class Constants {
     public static final String ProfileUpdateNotification = getDomainName() + "pushsettings.php?";
     public static final String AppUpdate= getDomainName() + "getappid.php?";
     public static final String DeleteUserNews = getDomainName() + "delusernews.php/?";
+    public static final String GetCatagoryList= getDomainName() + "getcategorydetinfo.php?";
 
     public static final int PROFILE = 2000;
     public static final int ALERT = 2001;

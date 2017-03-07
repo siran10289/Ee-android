@@ -12,6 +12,7 @@ import com.eeyuva.base.LoadListener;
 import com.eeyuva.interactor.ApiInteractor;
 import com.eeyuva.screens.DetailPage.model.CommentListResponse;
 import com.eeyuva.screens.authentication.LoginResponse;
+import com.eeyuva.screens.home.CatagoryList;
 import com.eeyuva.screens.home.ImageFile;
 import com.eeyuva.screens.home.ImageResponse;
 import com.eeyuva.screens.home.ResponseList;
@@ -120,6 +121,7 @@ public class ProfilePresenterImpl implements ProfileContract.Presenter {
         mApiInteractor.deleteStuffNews(mView,Constants.DeleteUserNews+"arid="+articleID,mDeleteStuffNewsListener);
 
     }
+
 
     @Override
     public void getNotification() {
@@ -398,7 +400,7 @@ public class ProfilePresenterImpl implements ProfileContract.Presenter {
     }
 
     @Override
-    public void uploadImageOrVideo(File photoFile, String modulename, String title, String desc) {
+    public void uploadImageOrVideo(File photoFile, String modulename, String title, String desc,String moduleID,String catID) {
 //
 
         InputStream inputStream = null;//You can get an inputStream using any IO API
@@ -421,7 +423,8 @@ public class ProfilePresenterImpl implements ProfileContract.Presenter {
         bytes = output.toByteArray();
         String encodedString = Base64.encodeToString(bytes, Base64.DEFAULT);
         ImageFile imagefile = new ImageFile(encodedString);
-        mApiInteractor.uploadImageVideo(mView, Constants.ProfilePostUserNews + "mid=4&catid=Cat_6395ebd0f&title=" + title + "&desc=" + desc + "&uid=" + mPrefsManager.getUserDetails().getUserid(), imagefile,photoFile, mPhotoUploadListener);
+        mApiInteractor.uploadImageVideo(mView, Constants.DetailPostUserNews + "mid=4&catid=Cat_6395ebd0f&title=" + title + "&desc=" + desc + "&uid=" + mPrefsManager.getUserDetails().getUserid(), imagefile,photoFile, mPhotoUploadListener);
+
     }
 
     LoadListener<ImageResponse> mPhotoUploadListener = new LoadListener<ImageResponse>() {
@@ -553,6 +556,27 @@ public class ProfilePresenterImpl implements ProfileContract.Presenter {
         @Override
         public void onSuccess(ChangePasswordResponse responseBody) {
             mView.showListenerDialog(responseBody.getStatusInfo());
+        }
+
+        @Override
+        public void onFailure(Throwable t) {
+
+        }
+
+        @Override
+        public void onError(Object error) {
+
+        }
+    };
+    @Override
+    public void getCatagoryDetails(String moduleID) {
+        mApiInteractor.getCatagoryList(mView, Constants.GetCatagoryList + "modid=" + moduleID, mGetCatagoryListListener);
+
+    }
+    LoadListener<CatagoryList> mGetCatagoryListListener = new LoadListener<CatagoryList>() {
+        @Override
+        public void onSuccess(CatagoryList catagoryList) {
+            mView.setCatagoryList(catagoryList);
         }
 
         @Override

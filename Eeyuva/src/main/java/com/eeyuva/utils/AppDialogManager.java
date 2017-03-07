@@ -24,9 +24,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.eeyuva.R;
+import com.eeyuva.screens.home.CatagoryList;
 import com.eeyuva.screens.home.HomeActivity;
 import com.eeyuva.screens.home.ResponseList;
 import com.eeyuva.screens.home.loadmore.RoundedTransformation;
+import com.eeyuva.utils.commonAdapters.CatagoryListAdapter;
 import com.eeyuva.utils.commonAdapters.MoudleListAdapter;
 import com.eeyuva.utils.listeners.DialogListener;
 import com.squareup.picasso.Picasso;
@@ -63,18 +65,65 @@ public class AppDialogManager {
         llcancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e("Event:","clicked");
-                if(dialogAddModule!=null) {
-                    Log.e("Event:","dialog not null");
-                    dialogAddModule.dismiss();
-                }else{
-                    Log.e("Event:","dialog null");
+                try {
+                    Log.e("Event:", "clicked");
+                    if (dialogAddModule != null) {
+                        Log.e("Event:", "dialog not null");
+                        dialogAddModule.dismiss();
+                    } else {
+                        Log.e("Event:", "dialog null");
+                    }
+                }catch (Exception e){
+                    Log.e("Errir:",e.toString());
                 }
             }
         });
         dialogAddModule.show();
     }
-    public static void ModuleChooserDialog1(final Activity activity, Object object, List<ResponseList> alModules) {
+    public static void catagoryChooserDialog(final Activity context, Object object, List<CatagoryList.Catagory> alCategory) {
+        final DialogListener mCallback;
+        LinearLayoutManager linearLayoutManager;
+        RecyclerView recyclerView;
+        CatagoryListAdapter adapter;
+        LinearLayout llcancel;
+        final Dialog dialogAddModule;
+        try {
+            mCallback = (DialogListener) object;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(object.toString() + " must implement DialogListener");
+        }
+        dialogAddModule = new Dialog(context);
+        dialogAddModule.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialogAddModule.setContentView(R.layout.dialog_select_module);
+        dialogAddModule.setCanceledOnTouchOutside(true);
+        dialogAddModule.setCancelable(true);
+        dialogAddModule.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
+        //dialogAddModule.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        llcancel = (LinearLayout) dialogAddModule.findViewById(R.id.llcancel);
+        recyclerView = (RecyclerView) dialogAddModule.findViewById(R.id.rv_modules);
+        linearLayoutManager = new LinearLayoutManager(context);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        adapter = new CatagoryListAdapter(context, alCategory,dialogAddModule,mCallback);
+        recyclerView.setAdapter(adapter);
+        llcancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    Log.e("Event:", "clicked");
+                    if (dialogAddModule != null) {
+                        Log.e("Event:", "dialog not null");
+                        dialogAddModule.dismiss();
+                    } else {
+                        Log.e("Event:", "dialog null");
+                    }
+                }catch (Exception e){
+                    Log.e("Errir:",e.toString());
+                }
+            }
+        });
+        dialogAddModule.show();
+    }
+    /*public static void ModuleChooserDialog1(final Activity activity, Object object, List<ResponseList> alModules) {
          AlertDialog mDialog = null;
          LinearLayout llcancel;
          RecyclerView recyclerView;
@@ -121,7 +170,7 @@ public class AppDialogManager {
         }
 
     }
-
+*/
 
 
 

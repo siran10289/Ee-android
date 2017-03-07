@@ -34,7 +34,9 @@ import com.eeyuva.R;
 import com.eeyuva.screens.DetailPage.model.CommentsList;
 import com.eeyuva.screens.authentication.LoginActivity;
 import com.eeyuva.screens.gridpages.GridHomeActivity;
+import com.eeyuva.screens.home.CatagoryList;
 import com.eeyuva.screens.home.HomeActivity;
+import com.eeyuva.screens.home.ResponseList;
 import com.eeyuva.screens.home.loadmore.RoundedTransformation;
 import com.eeyuva.screens.navigation.FragmentDrawer;
 import com.eeyuva.screens.profile.DaggerProfileComponent;
@@ -48,8 +50,10 @@ import com.eeyuva.screens.profile.model.NotificationResponse;
 import com.eeyuva.screens.profile.model.ProfileList;
 import com.eeyuva.screens.profile.model.ProfileResponse;
 import com.eeyuva.screens.searchpage.SearchActivity;
+import com.eeyuva.utils.AppDialogManager;
 import com.eeyuva.utils.Constants;
 import com.eeyuva.utils.Utils;
+import com.eeyuva.utils.listeners.DialogListener;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
@@ -66,7 +70,7 @@ import butterknife.OnClick;
  * Created by hari on 01/10/16.
  */
 
-public class ProfileActivity extends ButterAppCompatActivity implements ProfileContract.View, IFragmentToActivity {
+public class ProfileActivity extends ButterAppCompatActivity implements ProfileContract.View, IFragmentToActivity,DialogListener {
 
 
     @Inject
@@ -112,6 +116,8 @@ public class ProfileActivity extends ButterAppCompatActivity implements ProfileC
     CheckBox cbMobilePrivate;
     CheckBox cbDOBPrivate;
     String emailID;
+    EditText mEdtModule;
+    private String moduleID,categorayID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -299,8 +305,7 @@ public class ProfileActivity extends ButterAppCompatActivity implements ProfileC
     }
 
     public void gotoHome(View v) {
-        Intent intent =
-                new Intent(ProfileActivity.this, HomeActivity.class);
+        Intent intent = new Intent(ProfileActivity.this, HomeActivity.class);
         startActivity(intent);
     }
 
@@ -380,6 +385,8 @@ public class ProfileActivity extends ButterAppCompatActivity implements ProfileC
     public void showArticleDeletedStatus(String message) {
 
     }
+
+
 
     @Override
     public void showToast(String msg) {
@@ -577,7 +584,7 @@ public class ProfileActivity extends ButterAppCompatActivity implements ProfileC
             ImageView mImgProfile = (ImageView) dialogView.findViewById(R.id.mImgProfile);
             TextView mBtnGallery = (TextView) dialogView.findViewById(R.id.mBtnGallery);
             TextView mBtnor = (TextView) dialogView.findViewById(R.id.mBtnor);
-            final EditText mEdtModule = (EditText) dialogView.findViewById(R.id.mEdtModule);
+            mEdtModule = (EditText) dialogView.findViewById(R.id.mEdtModule);
             final EditText mEdtTitle = (EditText) dialogView.findViewById(R.id.mEdtTitle);
             final EditText mEdtDesc = (EditText) dialogView.findViewById(R.id.mEdtDesc);
             if (photoFile != null) {
@@ -594,9 +601,9 @@ public class ProfileActivity extends ButterAppCompatActivity implements ProfileC
                 public void onClick(View v) {
                     mDialog.dismiss();
                     if(mBtnTakePhoto.getText().toString().trim().equalsIgnoreCase("Post"))
-                        mPresenter.uploadImageOrVideo(photoFile,mEdtModule.getText().toString().trim(),
+                        mPresenter.uploadImageOrVideo(photoFile, mEdtModule.getText().toString().trim(),
                                 mEdtTitle.getText().toString().trim(),
-                                mEdtDesc.getText().toString().trim());
+                                mEdtDesc.getText().toString().trim(),moduleID,categorayID);
                     else
                     mPresenter.snapPhotoClick();
 
@@ -608,6 +615,12 @@ public class ProfileActivity extends ButterAppCompatActivity implements ProfileC
                 public void onClick(View v) {
                     mDialog.dismiss();
                     mPresenter.pickFromGalleryClick();
+                }
+            });
+            mEdtModule.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AppDialogManager.ModuleChooserDialog(ProfileActivity.this,ProfileActivity.this,mPresenter.getModules());
                 }
             });
 
@@ -627,6 +640,21 @@ public class ProfileActivity extends ButterAppCompatActivity implements ProfileC
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    @Override
+    public void setCatagoryList(CatagoryList catagoryListPojo) {
+        AppDialogManager.catagoryChooserDialog(ProfileActivity.this,ProfileActivity.this,catagoryListPojo.getCatagoryList());
+    }
+    @Override
+    public void onDialogClosedByModuleClick(ResponseList moduleObject) {
+        mEdtModule.setText(moduleObject.getTitle());
+        moduleID=moduleObject.getModuleid();
+        mPresenter.getCatagoryDetails(moduleObject.getModuleid());
+    }
+
+    @Override
+    public void onDialogClosedByCatagoryClick(CatagoryList.Catagory catagoryObject) {
+        categorayID=catagoryObject.getCategoryid();
     }
 
 }

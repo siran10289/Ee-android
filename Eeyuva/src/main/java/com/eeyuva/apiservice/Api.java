@@ -10,6 +10,7 @@ import com.eeyuva.screens.authentication.LoginResponse;
 import com.eeyuva.screens.gridpages.model.PhotoGalleryResponse;
 import com.eeyuva.screens.gridpages.model.PhotoListResponse;
 import com.eeyuva.screens.gridpages.model.UserNewsListResponse;
+import com.eeyuva.screens.home.CatagoryList;
 import com.eeyuva.screens.home.GetArticleResponse;
 import com.eeyuva.screens.home.HotModuleResponse;
 import com.eeyuva.screens.home.ImageFile;
@@ -31,6 +32,7 @@ import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
@@ -111,11 +113,12 @@ public interface Api {
     @POST
     Call<EditResponse> uploadProfileImage(@Url String url, @Query("uid") String uid, @Query("picdata") String bitmapImg);
 
-    @POST
-    Call<ImageResponse> uploadImageVideo(@Url String url, @Body ImageFile encodedString);
-
- /*   @POST
-    Call<ImageResponse> uploadImageVideo(@Url String url, @Query("postpicdata") String bitmapImg);*/
+   /* @POST
+    Call<ImageResponse> uploadImageVideo(@Url String url, @Body ImageFile encodedString);*/
+   @Multipart
+   @FormUrlEncoded
+   @POST
+    Call<ImageResponse> uploadImageVideo(@Url String url, @Part MultipartBody.Part file);
 
 
     @GET
@@ -129,6 +132,10 @@ public interface Api {
 
     @GET
     Call<ChangePasswordResponse> ChangePassword(@Url String url);
+    @GET
+    Call<CatagoryList> getCatagoryList(@Url String url);
+
+
 
 
 //    @POST("driver/deviceid/")

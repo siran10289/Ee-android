@@ -28,7 +28,9 @@ import com.eeyuva.R;
 import com.eeyuva.screens.DetailPage.model.CommentsList;
 import com.eeyuva.screens.authentication.LoginActivity;
 import com.eeyuva.screens.gridpages.GridHomeActivity;
+import com.eeyuva.screens.home.CatagoryList;
 import com.eeyuva.screens.home.HomeActivity;
+import com.eeyuva.screens.home.ResponseList;
 import com.eeyuva.screens.home.loadmore.RoundedTransformation;
 import com.eeyuva.screens.navigation.FragmentDrawer;
 import com.eeyuva.screens.profile.DaggerProfileComponent;
@@ -43,8 +45,10 @@ import com.eeyuva.screens.profile.model.ProfileResponse;
 import com.eeyuva.screens.profile.stuffs.StuffsActivity;
 import com.eeyuva.screens.profile.userdetails.ProfileActivity;
 import com.eeyuva.screens.searchpage.SearchActivity;
+import com.eeyuva.utils.AppDialogManager;
 import com.eeyuva.utils.Constants;
 import com.eeyuva.utils.Utils;
+import com.eeyuva.utils.listeners.DialogListener;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
@@ -59,7 +63,7 @@ import butterknife.OnClick;
  * Created by hari on 01/10/16.
  */
 
-public class AlertActivity extends ButterAppCompatActivity implements ProfileContract.View, ProfileContract.AdapterCallBack {
+public class AlertActivity extends ButterAppCompatActivity implements ProfileContract.View, ProfileContract.AdapterCallBack,DialogListener {
 
     @Inject
     ProfileContract.Presenter mPresenter;
@@ -102,6 +106,8 @@ public class AlertActivity extends ButterAppCompatActivity implements ProfileCon
     @Bind(R.id.btnSearch)
     EditText etSearch;
     public static String imageBase64;
+    EditText mEdtModule;
+    private String moduleID,categorayID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -327,6 +333,8 @@ public class AlertActivity extends ButterAppCompatActivity implements ProfileCon
 
     }
 
+
+
     @Override
     public void getComments(String moduleid, String artid) {
 
@@ -348,7 +356,7 @@ public class AlertActivity extends ButterAppCompatActivity implements ProfileCon
             ImageView mImgProfile = (ImageView) dialogView.findViewById(R.id.mImgProfile);
             TextView mBtnGallery = (TextView) dialogView.findViewById(R.id.mBtnGallery);
             TextView mBtnor = (TextView) dialogView.findViewById(R.id.mBtnor);
-            final EditText mEdtModule = (EditText) dialogView.findViewById(R.id.mEdtModule);
+            mEdtModule = (EditText) dialogView.findViewById(R.id.mEdtModule);
             final EditText mEdtTitle = (EditText) dialogView.findViewById(R.id.mEdtTitle);
             final EditText mEdtDesc = (EditText) dialogView.findViewById(R.id.mEdtDesc);
             if (photoFile != null) {
@@ -365,9 +373,9 @@ public class AlertActivity extends ButterAppCompatActivity implements ProfileCon
                 public void onClick(View v) {
                     mDialog.dismiss();
                     if(mBtnTakePhoto.getText().toString().trim().equalsIgnoreCase("Post"))
-                        mPresenter.uploadImageOrVideo(photoFile,mEdtModule.getText().toString().trim(),
+                        mPresenter.uploadImageOrVideo(photoFile, mEdtModule.getText().toString().trim(),
                                 mEdtTitle.getText().toString().trim(),
-                                mEdtDesc.getText().toString().trim());
+                                mEdtDesc.getText().toString().trim(),moduleID,categorayID);
                     else
                         mPresenter.snapPhotoClick();
 
@@ -381,6 +389,13 @@ public class AlertActivity extends ButterAppCompatActivity implements ProfileCon
                     mPresenter.pickFromGalleryClick();
                 }
             });
+            mEdtModule.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AppDialogManager.ModuleChooserDialog(AlertActivity.this,AlertActivity.this,mPresenter.getModules());
+                }
+            });
+
 
             mDialog = builder.create();
             mDialog.setCancelable(true);
@@ -408,5 +423,20 @@ public class AlertActivity extends ButterAppCompatActivity implements ProfileCon
     @Override
     public void setPhoto(File photoFile) {
         showModuleVideoPhoto(photoFile);
+    }
+    @Override
+    public void setCatagoryList(CatagoryList catagoryListPojo) {
+        AppDialogManager.catagoryChooserDialog(AlertActivity.this,AlertActivity.this,catagoryListPojo.getCatagoryList());
+    }
+    @Override
+    public void onDialogClosedByModuleClick(ResponseList moduleObject) {
+        mEdtModule.setText(moduleObject.getTitle());
+        moduleID=moduleObject.getModuleid();
+        mPresenter.getCatagoryDetails(moduleObject.getModuleid());
+    }
+
+    @Override
+    public void onDialogClosedByCatagoryClick(CatagoryList.Catagory catagoryObject) {
+        categorayID=catagoryObject.getCategoryid();
     }
 }

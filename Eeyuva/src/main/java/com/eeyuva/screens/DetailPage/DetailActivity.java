@@ -53,6 +53,7 @@ import com.eeyuva.screens.Upload;
 import com.eeyuva.screens.authentication.LoginActivity;
 import com.eeyuva.screens.gridpages.GridHomeActivity;
 import com.eeyuva.screens.gridpages.PhotoListAdapter;
+import com.eeyuva.screens.home.CatagoryList;
 import com.eeyuva.screens.home.HomeActivity;
 import com.eeyuva.screens.home.ImageResponse;
 import com.eeyuva.screens.home.ResponseList;
@@ -61,6 +62,7 @@ import com.eeyuva.screens.home.loadmore.RoundedTransformation;
 import com.eeyuva.screens.navigation.FragmentDrawer;
 import com.eeyuva.screens.profile.userdetails.ProfileActivity;
 import com.eeyuva.screens.searchpage.SearchActivity;
+import com.eeyuva.utils.AppDialogManager;
 import com.eeyuva.utils.Constants;
 import com.eeyuva.utils.Utils;
 import com.eeyuva.utils.customdialog.DialogListener;
@@ -83,7 +85,7 @@ import static com.eeyuva.screens.home.HomeActivity.mModuleList;
 /**
  * Created by hari on 14/09/16.
  */
-public class DetailActivity extends ButterAppCompatActivity implements DetailContract.View, InfiniteOtherFragment.CommmunicateListener {
+public class DetailActivity extends ButterAppCompatActivity implements DetailContract.View, InfiniteOtherFragment.CommmunicateListener, com.eeyuva.utils.listeners.DialogListener {
     @Inject
     DetailContract.Presenter mPresenter;
 
@@ -168,6 +170,8 @@ public class DetailActivity extends ButterAppCompatActivity implements DetailCon
     Button btnDoSearch;
     @Bind(R.id.btnSearch)
     EditText etSearch;
+    private String moduleID,categorayID;
+    EditText mEdtModule;
 
 
     @Override
@@ -254,6 +258,8 @@ public class DetailActivity extends ButterAppCompatActivity implements DetailCon
             e.printStackTrace();
         }
     }
+
+
 
     private class MyPagerAdapter extends PagerAdapter {
 
@@ -1015,7 +1021,7 @@ public class DetailActivity extends ButterAppCompatActivity implements DetailCon
             ImageView mImgProfile = (ImageView) dialogView.findViewById(R.id.mImgProfile);
             TextView mBtnGallery = (TextView) dialogView.findViewById(R.id.mBtnGallery);
             TextView mBtnor = (TextView) dialogView.findViewById(R.id.mBtnor);
-            final EditText mEdtModule = (EditText) dialogView.findViewById(R.id.mEdtModule);
+            mEdtModule = (EditText) dialogView.findViewById(R.id.mEdtModule);
             final EditText mEdtTitle = (EditText) dialogView.findViewById(R.id.mEdtTitle);
             final EditText mEdtDesc = (EditText) dialogView.findViewById(R.id.mEdtDesc);
             if (photoFile != null || i == 1) {
@@ -1039,7 +1045,7 @@ public class DetailActivity extends ButterAppCompatActivity implements DetailCon
                         if (mPhoto) {
                             mPresenter.uploadImageOrVideo(photoFile, mEdtModule.getText().toString().trim(),
                                     mEdtTitle.getText().toString().trim(),
-                                    mEdtDesc.getText().toString().trim());
+                                    mEdtDesc.getText().toString().trim(),moduleID,categorayID);
                         } else {
                             uploadVideo();
                         }
@@ -1085,6 +1091,12 @@ public class DetailActivity extends ButterAppCompatActivity implements DetailCon
                     mTxtPhoto.setTextColor(getResources().getColor(R.color.light_gray_line));
 
 
+                }
+            });
+            mEdtModule.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AppDialogManager.ModuleChooserDialog(DetailActivity.this,DetailActivity.this,mPresenter.getModules());
                 }
             });
 
@@ -1199,5 +1211,20 @@ public class DetailActivity extends ButterAppCompatActivity implements DetailCon
         }
         UploadVideo uv = new UploadVideo();
         uv.execute();
+    }
+    @Override
+    public void setCatagoryList(CatagoryList catagoryListPojo) {
+        AppDialogManager.catagoryChooserDialog(DetailActivity.this,DetailActivity.this,catagoryListPojo.getCatagoryList());
+    }
+    @Override
+    public void onDialogClosedByModuleClick(ResponseList moduleObject) {
+        mEdtModule.setText(moduleObject.getTitle());
+        moduleID=moduleObject.getModuleid();
+        mPresenter.getCatagoryDetails(moduleObject.getModuleid());
+    }
+
+    @Override
+    public void onDialogClosedByCatagoryClick(CatagoryList.Catagory catagoryObject) {
+        categorayID=catagoryObject.getCategoryid();
     }
 }

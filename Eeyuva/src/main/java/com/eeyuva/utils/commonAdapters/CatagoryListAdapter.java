@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.eeyuva.R;
+import com.eeyuva.screens.home.CatagoryList;
 import com.eeyuva.screens.home.ResponseList;
 import com.eeyuva.utils.listeners.DialogListener;
 
@@ -19,19 +20,19 @@ import java.util.List;
  * Created by Aximsoft on 12/15/2016.
  */
 
-public class MoudleListAdapter extends RecyclerView.Adapter<MoudleListAdapter.DataObjectHolder> {
-    private List<ResponseList> alModules;
+public class CatagoryListAdapter extends RecyclerView.Adapter<CatagoryListAdapter.DataObjectHolder> {
+    private List<CatagoryList.Catagory> alCatagory;
     private Context mContext;
-    private ResponseList modulePojo;
+    private CatagoryList.Catagory catagoryPojo;
     private DialogListener dialogListener;
-    private Dialog dialogModuleList;
+    private Dialog dialogCatagoryList;
 
 
-    public MoudleListAdapter(Context context, List<ResponseList> alModules, Dialog dialogModuleList, DialogListener dialogListener) {
+    public CatagoryListAdapter(Context context, List<CatagoryList.Catagory> alCatagory, Dialog dialogCatagoryList, DialogListener dialogListener) {
         this.mContext=context;
-        this.alModules=alModules;
+        this.alCatagory=alCatagory;
         this.dialogListener=dialogListener;
-        this.dialogModuleList=dialogModuleList;
+        this.dialogCatagoryList=dialogCatagoryList;
 
     }
 
@@ -55,13 +56,13 @@ public class MoudleListAdapter extends RecyclerView.Adapter<MoudleListAdapter.Da
     //Binding the data
     @Override
     public void onBindViewHolder(final DataObjectHolder holder, final int position) {
-        modulePojo = alModules.get(position);
-        holder.tv_moduleName.setText(modulePojo.getTitle());
+        catagoryPojo = alCatagory.get(position);
+        holder.tv_moduleName.setText(catagoryPojo.getCategoryname());
         holder.ll_modulename.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dialogModuleList.dismiss();
-                dialogListener.onDialogClosedByModuleClick(alModules.get(position));
+                dialogCatagoryList.dismiss();
+                dialogListener.onDialogClosedByCatagoryClick(alCatagory.get(position));
             }
         });
 
@@ -69,7 +70,7 @@ public class MoudleListAdapter extends RecyclerView.Adapter<MoudleListAdapter.Da
 
     @Override
     public int getItemCount() {
-        return alModules.size();
+        return alCatagory.size();
     }
 
 }

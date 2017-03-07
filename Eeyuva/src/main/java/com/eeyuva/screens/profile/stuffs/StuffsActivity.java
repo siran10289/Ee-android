@@ -35,7 +35,9 @@ import com.eeyuva.screens.DetailPage.CommentsLoadAdapter;
 import com.eeyuva.screens.DetailPage.model.CommentsList;
 import com.eeyuva.screens.authentication.LoginActivity;
 import com.eeyuva.screens.gridpages.GridHomeActivity;
+import com.eeyuva.screens.home.CatagoryList;
 import com.eeyuva.screens.home.HomeActivity;
+import com.eeyuva.screens.home.ResponseList;
 import com.eeyuva.screens.home.loadmore.RoundedTransformation;
 import com.eeyuva.screens.navigation.FragmentDrawer;
 import com.eeyuva.screens.profile.DaggerProfileComponent;
@@ -52,6 +54,7 @@ import com.eeyuva.screens.profile.userdetails.IFragmentToActivity;
 import com.eeyuva.screens.profile.userdetails.ProfileActivity;
 import com.eeyuva.screens.searchpage.SearchActivity;
 import com.eeyuva.screens.splash.SplashActivity;
+import com.eeyuva.utils.AppDialogManager;
 import com.eeyuva.utils.Constants;
 import com.eeyuva.utils.Utils;
 import com.eeyuva.utils.customdialog.DialogListener;
@@ -71,7 +74,7 @@ import butterknife.OnClick;
  * Created by hari on 01/10/16.
  */
 
-public class StuffsActivity extends ButterAppCompatActivity implements ProfileContract.View, IFragmentToActivity,MyArticleDeleteListener {
+public class StuffsActivity extends ButterAppCompatActivity implements ProfileContract.View, IFragmentToActivity,MyArticleDeleteListener, com.eeyuva.utils.listeners.DialogListener {
 
 
     @Inject
@@ -105,6 +108,8 @@ public class StuffsActivity extends ButterAppCompatActivity implements ProfileCo
     Button btnDoSearch;
     @Bind(R.id.btnSearch)
     EditText etSearch;
+    EditText mEdtModule;
+    private String moduleID,categorayID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -398,6 +403,8 @@ public class StuffsActivity extends ButterAppCompatActivity implements ProfileCo
         mPresenter.getNews();
     }
 
+
+
     @Override
     public void showToast(String msg) {
 
@@ -490,7 +497,7 @@ public class StuffsActivity extends ButterAppCompatActivity implements ProfileCo
             ImageView mImgProfile = (ImageView) dialogView.findViewById(R.id.mImgProfile);
             TextView mBtnGallery = (TextView) dialogView.findViewById(R.id.mBtnGallery);
             TextView mBtnor = (TextView) dialogView.findViewById(R.id.mBtnor);
-            final EditText mEdtModule = (EditText) dialogView.findViewById(R.id.mEdtModule);
+            mEdtModule = (EditText) dialogView.findViewById(R.id.mEdtModule);
             final EditText mEdtTitle = (EditText) dialogView.findViewById(R.id.mEdtTitle);
             final EditText mEdtDesc = (EditText) dialogView.findViewById(R.id.mEdtDesc);
             if (photoFile != null) {
@@ -509,7 +516,7 @@ public class StuffsActivity extends ButterAppCompatActivity implements ProfileCo
                     if (mBtnTakePhoto.getText().toString().trim().equalsIgnoreCase("Post")) {
                         mPresenter.uploadImageOrVideo(photoFile, mEdtModule.getText().toString().trim(),
                                 mEdtTitle.getText().toString().trim(),
-                                mEdtDesc.getText().toString().trim());
+                                mEdtDesc.getText().toString().trim(),moduleID,categorayID);
                     }
                     else {
                         mPresenter.snapPhotoClick();
@@ -523,6 +530,12 @@ public class StuffsActivity extends ButterAppCompatActivity implements ProfileCo
                 public void onClick(View v) {
                     mDialog.dismiss();
                     mPresenter.pickFromGalleryClick();
+                }
+            });
+            mEdtModule.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AppDialogManager.ModuleChooserDialog(StuffsActivity.this,StuffsActivity.this,mPresenter.getModules());
                 }
             });
 
@@ -564,4 +577,20 @@ public class StuffsActivity extends ButterAppCompatActivity implements ProfileCo
         mPresenter.deleteMyArticle(articleID);
 
     }
+    @Override
+    public void setCatagoryList(CatagoryList catagoryListPojo) {
+        AppDialogManager.catagoryChooserDialog(StuffsActivity.this,StuffsActivity.this,catagoryListPojo.getCatagoryList());
+    }
+    @Override
+    public void onDialogClosedByModuleClick(ResponseList moduleObject) {
+        mEdtModule.setText(moduleObject.getTitle());
+        moduleID=moduleObject.getModuleid();
+        mPresenter.getCatagoryDetails(moduleObject.getModuleid());
+    }
+
+    @Override
+    public void onDialogClosedByCatagoryClick(CatagoryList.Catagory catagoryObject) {
+        categorayID=catagoryObject.getCategoryid();
+    }
+
 }

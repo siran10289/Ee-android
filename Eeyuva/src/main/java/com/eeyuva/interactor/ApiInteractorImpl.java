@@ -17,6 +17,7 @@ import com.eeyuva.screens.authentication.LoginResponse;
 import com.eeyuva.screens.gridpages.model.PhotoGalleryResponse;
 import com.eeyuva.screens.gridpages.model.PhotoListResponse;
 import com.eeyuva.screens.gridpages.model.UserNewsListResponse;
+import com.eeyuva.screens.home.CatagoryList;
 import com.eeyuva.screens.home.GetArticleResponse;
 import com.eeyuva.screens.home.HotModuleResponse;
 import com.eeyuva.screens.home.ImageFile;
@@ -36,6 +37,9 @@ import com.eeyuva.utils.preferences.PrefsManager;
 
 import java.io.File;
 
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 
 
@@ -225,7 +229,9 @@ public class ApiInteractorImpl implements ApiInteractor {
         Log.e("CreatePost:",url);
         Log.e("EncodedImageFile:",encodedString.getmImageString());
         UiCallback<ImageResponse> callback = new UiCallback(mView, mEditProfileListener, true);
-        Call<ImageResponse> call = mApi.uploadImageVideo(url, encodedString);
+        RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+        MultipartBody.Part body = MultipartBody.Part.createFormData("postpicdata", file.getName(), requestFile);
+        Call<ImageResponse> call = mApi.uploadImageVideo(url, body);
         callback.start(call);
     }
 
@@ -255,6 +261,13 @@ public class ApiInteractorImpl implements ApiInteractor {
     public void postShareDetail(BaseView mView, String url, LoadListener<SmallServerResponse> mEditProfileListener) {
         UiCallback<SmallServerResponse> callback = new UiCallback(null, mEditProfileListener, true);
         Call<SmallServerResponse> call = mApi.postShare(url);
+        callback.start(call);
+    }
+
+    @Override
+    public void getCatagoryList(BaseView mView, String url, LoadListener<CatagoryList> mCatagoryListListener) {
+        UiCallback<CatagoryList> callback = new UiCallback(null, mCatagoryListListener, true);
+        Call<CatagoryList> call = mApi.getCatagoryList(url);
         callback.start(call);
     }
 

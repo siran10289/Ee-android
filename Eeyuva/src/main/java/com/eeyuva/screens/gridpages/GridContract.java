@@ -11,6 +11,7 @@ import com.eeyuva.screens.gridpages.model.PhotoList;
 import com.eeyuva.screens.gridpages.model.PhotoListResponse;
 import com.eeyuva.screens.gridpages.model.UserNewsList;
 import com.eeyuva.screens.gridpages.model.UserNewsListResponse;
+import com.eeyuva.screens.home.CatagoryList;
 import com.eeyuva.screens.home.ResponseList;
 
 import java.io.File;
@@ -32,6 +33,7 @@ public interface GridContract {
         void setAdapter(UserNewsListResponse responseBody);
 
         void setPhoto(File photoFile);
+        void setCatagoryList(CatagoryList catagoryListPojo);
 
     }
 
@@ -48,7 +50,7 @@ public interface GridContract {
 
         void getUserList(String s, String mModuleId);
 
-        void uploadImageOrVideo(File photoFile, String trim, String s, String trim1);
+        void uploadImageOrVideo(File photoFile, String trim, String s, String trim1,String moduleID,String catID);
 
         void pickFromGalleryClick();
 
@@ -57,6 +59,7 @@ public interface GridContract {
         void onActivityResult(int requestCode, int resultCode, Intent data);
 
         LoginResponse getUserDetails();
+        void getCatagoryDetails(String moduleID);
 
 
     }

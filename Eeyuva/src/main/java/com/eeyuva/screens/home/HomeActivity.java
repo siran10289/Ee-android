@@ -85,11 +85,8 @@ public class HomeActivity extends ButterAppCompatActivity implements HomeContrac
 
     @Inject
     HomeContract.Presenter mPresenter;
-
     HomeComponent mComponent;
-
     private FragmentDrawer drawerFragment;
-
     @Bind(R.id.tool_bar)
     Toolbar mToolbar;
 
@@ -131,7 +128,6 @@ public class HomeActivity extends ButterAppCompatActivity implements HomeContrac
     RecyclerView.LayoutManager mLayoutManager;
     public int mScrolledToPosition;
 
-
     private LinkagePagerContainer customPagerContainer;
     //    private LinkagePager pager;
     private AppBarLayout appBarLayout;
@@ -167,6 +163,7 @@ public class HomeActivity extends ButterAppCompatActivity implements HomeContrac
     @Bind(R.id.btnSearch)
     EditText etSearch;
     EditText mEdtModule;
+    private String moduleID,categorayID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -524,15 +521,8 @@ public class HomeActivity extends ButterAppCompatActivity implements HomeContrac
 
     }
 
-    @Override
-    public void onDialogClosedByOkClick(ResponseList moduleObject) {
-        mEdtModule.setText(moduleObject.getTitle());
-    }
 
-    @Override
-    public void onDialogClosedByCancelClick() {
 
-    }
 
     class MyListPagerAdapter extends PagerAdapter {
 
@@ -666,8 +656,7 @@ public class HomeActivity extends ButterAppCompatActivity implements HomeContrac
                     sKeyword = mEdtSearch.getText().toString().trim();
                     if (sKeyword != null && sKeyword.length() != 0) {
                         mDialog.dismiss();
-                        Intent intent =
-                                new Intent(HomeActivity.this, SearchActivity.class);
+                        Intent intent = new Intent(HomeActivity.this, SearchActivity.class);
                         intent.putExtra("keyword", sKeyword);
                         startActivity(intent);
                         return;
@@ -701,8 +690,6 @@ public class HomeActivity extends ButterAppCompatActivity implements HomeContrac
             if (mDialog != null && mDialog.isShowing()) {
                 mDialog.dismiss();
             }
-
-
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             View dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_module_photo, null);
             builder.setView(dialogView);
@@ -737,7 +724,7 @@ public class HomeActivity extends ButterAppCompatActivity implements HomeContrac
                         if (mPhoto) {
                             mPresenter.uploadImageOrVideo(photoFile, mEdtModule.getText().toString().trim(),
                                     mEdtTitle.getText().toString().trim(),
-                                    mEdtDesc.getText().toString().trim());
+                                    mEdtDesc.getText().toString().trim(),moduleID,categorayID);
                         } else {
                             uploadVideo();
                         }
@@ -785,18 +772,23 @@ public class HomeActivity extends ButterAppCompatActivity implements HomeContrac
 
                 }
             });
-
+            mEdtModule.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AppDialogManager.ModuleChooserDialog(HomeActivity.this,HomeActivity.this,mPresenter.getModules());
+                }
+            });
 
             mDialog = builder.create();
             mDialog.setCancelable(true);
             mDialog.show();
-            mEdtModule.setOnTouchListener(new View.OnTouchListener() {
+           /* mEdtModule.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
                     AppDialogManager.ModuleChooserDialog(HomeActivity.this,HomeActivity.this,mPresenter.getModules());
-                    return false;
+                    return true;
                 }
-            });
+            });*/
             mDialog.getWindow().setGravity(Gravity.TOP);
             mDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
             Window window = mDialog.getWindow();
@@ -831,6 +823,8 @@ public class HomeActivity extends ButterAppCompatActivity implements HomeContrac
     public void setPhoto(File photoFile) {
         showModuleVideoPhoto(photoFile, 2);
     }
+
+
 
     private static final int SELECT_VIDEO = 3;
 
@@ -894,6 +888,21 @@ public class HomeActivity extends ButterAppCompatActivity implements HomeContrac
         }
         UploadVideo uv = new UploadVideo();
         uv.execute();
+    }
+    @Override
+    public void setCatagoryList(CatagoryList catagoryListPojo) {
+       AppDialogManager.catagoryChooserDialog(HomeActivity.this,HomeActivity.this,catagoryListPojo.getCatagoryList());
+    }
+    @Override
+    public void onDialogClosedByModuleClick(ResponseList moduleObject) {
+        mEdtModule.setText(moduleObject.getTitle());
+        moduleID=moduleObject.getModuleid();
+        mPresenter.getCatagoryDetails(moduleObject.getModuleid());
+    }
+
+    @Override
+    public void onDialogClosedByCatagoryClick(CatagoryList.Catagory catagoryObject) {
+         categorayID=catagoryObject.getCategoryid();
     }
 
 }

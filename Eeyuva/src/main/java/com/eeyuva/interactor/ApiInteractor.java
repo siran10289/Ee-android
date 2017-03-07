@@ -17,6 +17,7 @@ import com.eeyuva.screens.gridpages.GridContract;
 import com.eeyuva.screens.gridpages.model.PhotoGalleryResponse;
 import com.eeyuva.screens.gridpages.model.PhotoListResponse;
 import com.eeyuva.screens.gridpages.model.UserNewsListResponse;
+import com.eeyuva.screens.home.CatagoryList;
 import com.eeyuva.screens.home.GetArticleResponse;
 import com.eeyuva.screens.home.HomeContract;
 import com.eeyuva.screens.home.HotModuleResponse;
@@ -94,5 +95,8 @@ public interface ApiInteractor {
     void setforgetpassword(BaseView mView, String s, LoadListener<EditResponse> mEditProfileListener);
 
     void postShareDetail(BaseView mView, String s, LoadListener<SmallServerResponse> mEditProfileListener);
+
+    void getCatagoryList(BaseView mView, String url, LoadListener<CatagoryList> mCatagoryListListener);
+
 }
 
