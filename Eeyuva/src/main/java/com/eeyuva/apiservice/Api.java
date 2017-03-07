@@ -116,7 +116,6 @@ public interface Api {
    /* @POST
     Call<ImageResponse> uploadImageVideo(@Url String url, @Body ImageFile encodedString);*/
    @Multipart
-   @FormUrlEncoded
    @POST
     Call<ImageResponse> uploadImageVideo(@Url String url, @Part MultipartBody.Part file);
 
