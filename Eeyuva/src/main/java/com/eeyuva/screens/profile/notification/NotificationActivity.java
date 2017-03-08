@@ -245,8 +245,7 @@ public class NotificationActivity extends ButterAppCompatActivity implements Pro
                     sKeyword = mEdtSearch.getText().toString().trim();
                     if (sKeyword != null && sKeyword.length() != 0) {
                         mDialog.dismiss();
-                        Intent intent =
-                                new Intent(NotificationActivity.this, SearchActivity.class);
+                        Intent intent =  new Intent(NotificationActivity.this, SearchActivity.class);
                         intent.putExtra("keyword", sKeyword);
                         startActivity(intent);
                         return;

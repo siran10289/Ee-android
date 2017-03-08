@@ -116,13 +116,11 @@ public class FragmentDrawer extends Fragment implements View.OnClickListener {
             @Override
             public void onClick(View v) {
                 if (getUserDetails() != null) {
-                    Intent intent =
-                            new Intent(getActivity(), StuffsActivity.class);
+                    Intent intent =  new Intent(getActivity(), StuffsActivity.class);
                     intent.putExtra("mode", "normal");
                     startActivity(intent);
                 } else {
-                    Intent intent =
-                            new Intent(getActivity(), LoginActivity.class);
+                    Intent intent =new Intent(getActivity(), LoginActivity.class);
                     startActivity(intent);
                 }
 
@@ -242,17 +240,14 @@ public class FragmentDrawer extends Fragment implements View.OnClickListener {
                             showListenerDialog("User logged out succesfully");
                         } else if (mDrawerItems.get(position).getTitle().equalsIgnoreCase("Change Password")) {
                             if (getUserDetails() != null) {
-                                Intent intent =
-                                        new Intent(getActivity(), ChangePasswordActivity.class);
+                                Intent intent = new Intent(getActivity(), ChangePasswordActivity.class);
                                 startActivity(intent);
                             } else {
-                                Intent intent =
-                                        new Intent(getActivity(), LoginActivity.class);
+                                Intent intent = new Intent(getActivity(), LoginActivity.class);
                                 startActivity(intent);
                             }
-                            Intent intent =
-                                    new Intent(getActivity(), ChangePasswordActivity.class);
-                            startActivity(intent);
+                           /* Intent intent = new Intent(getActivity(), ChangePasswordActivity.class);
+                            startActivity(intent);*/
                         } else if (mDrawerItems.get(position).getTitle().equalsIgnoreCase("login")) {
                             mDrawerLayout.closeDrawer(containerView);
                             Intent intent =

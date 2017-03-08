@@ -259,6 +259,7 @@ public class ApiInteractorImpl implements ApiInteractor {
 
     @Override
     public void postShareDetail(BaseView mView, String url, LoadListener<SmallServerResponse> mEditProfileListener) {
+        Log.e("RecommentURL:",url);
         UiCallback<SmallServerResponse> callback = new UiCallback(null, mEditProfileListener, true);
         Call<SmallServerResponse> call = mApi.postShare(url);
         callback.start(call);
@@ -270,6 +271,5 @@ public class ApiInteractorImpl implements ApiInteractor {
         Call<CatagoryList> call = mApi.getCatagoryList(url);
         callback.start(call);
     }
-
 
 }

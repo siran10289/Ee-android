@@ -3,6 +3,7 @@ package com.eeyuva.screens.gridpages;
 import android.app.Activity;
 import android.content.Intent;
 import android.util.Base64;
+import android.util.Log;
 
 import com.eeyuva.base.BaseView;
 import com.eeyuva.base.LoadListener;
@@ -70,6 +71,7 @@ public class GridPresenterImpl implements GridContract.Presenter {
 
     @Override
     public void getVideoGalleryList(String url, String trid) {
+        Log.e("Url:",url+"galid=" + trid);
         mApiInteractor.getPhotoGalleryList(mView, url+"galid=" + trid, mVideoGalleryListListener);
     }
 

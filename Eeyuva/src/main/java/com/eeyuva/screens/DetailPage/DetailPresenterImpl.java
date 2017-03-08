@@ -269,7 +269,7 @@ public class DetailPresenterImpl implements DetailContract.Presenter {
     public void postShareDetail(String mModuleId, String mEntityId, String mail) {
 
         if (isValidEmail(mail))
-            mApiInteractor.postShareDetail(mView, Constants.DetailPostShareDetail + "module_id=" + mModuleId + "&entity_id=" + mEntityId + "&uid=" + mPrefsManager.getUserDetails().getUserid() + "&email=" + mail, mServerListener);
+            mApiInteractor.postShareDetail(mView, Constants.DetailPostShareDetail + "module_id=" + mModuleId + "&entity_id=" + mEntityId + "&uid_id=" + mPrefsManager.getUserDetails().getUserid() + "&email=" + mail, mServerListener);
         else
             mView.showErrorDialog("Please enter valid e-mail address.");
 
@@ -392,6 +392,7 @@ public class DetailPresenterImpl implements DetailContract.Presenter {
     LoadListener<SmallServerResponse> mServerListener = new LoadListener<SmallServerResponse>() {
         @Override
         public void onSuccess(SmallServerResponse responseBody) {
+            Log.e("Status:",new Gson().toJson(responseBody).toString());
             mView.showErrorDialog(responseBody.getStatusInfo());
         }
 

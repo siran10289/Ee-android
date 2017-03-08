@@ -459,7 +459,7 @@ public class ProfilePresenterImpl implements ProfileContract.Presenter {
         Log.i("mModuleId", "mModuleId b" + mModuleId);
         mModuleId = moduleId;
         Log.i("mModuleId", "mModuleId a" + mModuleId);
-        mApiInteractor.getUpdateNotification(mView, Constants.ProfileUpdateNotification + "&uid=" + mPrefsManager.getUserDetails().getUserid()+"modid=" + moduleId, mEditNotiProfileListener);
+        mApiInteractor.getUpdateNotification(mView, Constants.ProfileUpdateNotification + "&uid=" + mPrefsManager.getUserDetails().getUserid()+"&modid=" + moduleId, mEditNotiProfileListener);
 
     }
 

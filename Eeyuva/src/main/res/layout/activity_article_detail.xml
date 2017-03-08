@@ -168,8 +168,8 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
                             android:layout_marginTop="10dp"
                             android:orientation="horizontal">
 
@@ -242,7 +242,6 @@
                                 android:paddingLeft="2dp"
                                 android:paddingRight="2dp"
                                 android:paddingTop="5dp"
-
                                 android:text="View comment"
                                 android:textColor="@color/white"
                                 android:textSize="11sp" />
@@ -252,14 +251,12 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_toRightOf="@+id/mBtnViewComment"
-                                android:layout_weight="1"
+                                android:layout_weight="0.9"
                                 android:background="@drawable/rounded_corner_app_blue"
-
                                 android:gravity="center"
                                 android:lines="1"
                                 android:paddingBottom="5dp"
                                 android:paddingLeft="2dp"
-
                                 android:paddingRight="2dp"
                                 android:paddingTop="5dp"
                                 android:text="Recommend"

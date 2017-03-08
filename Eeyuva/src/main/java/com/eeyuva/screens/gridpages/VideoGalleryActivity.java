@@ -155,8 +155,7 @@ public class VideoGalleryActivity extends ButterAppCompatActivity implements Gri
 
     @Override
     public void moveToGalleryView() {
-        Intent intent =
-                new Intent(VideoGalleryActivity.this, PhotoGalleryActivity.class);
+        Intent intent = new Intent(VideoGalleryActivity.this, PhotoGalleryActivity.class);
         startActivity(intent);
     }
 

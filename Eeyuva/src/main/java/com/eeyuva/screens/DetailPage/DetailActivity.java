@@ -689,7 +689,7 @@ public class DetailActivity extends ButterAppCompatActivity implements DetailCon
                 @Override
                 public void onClick(View v) {
                     mDialog.dismiss();
-                    mPresenter.postShareDetail(mModuleId, mEntityId, mail.getText().toString().trim());
+                    mPresenter.postShareDetail(mModuleId, mArticleId, mail.getText().toString().trim());
 
                 }
             });

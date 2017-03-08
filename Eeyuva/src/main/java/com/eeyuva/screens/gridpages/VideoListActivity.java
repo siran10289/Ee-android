@@ -171,8 +171,7 @@ public class VideoListActivity extends ButterAppCompatActivity implements GridCo
     @Override
     public void moveToGalleryView() {
 //        if (mIndexx == 1) {
-            Intent intent =
-                    new Intent(VideoListActivity.this, VideoGalleryActivity.class);
+            Intent intent = new Intent(VideoListActivity.this, VideoGalleryActivity.class);
             startActivity(intent);
 //        }
     }
@@ -252,8 +251,7 @@ public class VideoListActivity extends ButterAppCompatActivity implements GridCo
 
     @OnClick(R.id.imgHome)
     public void onHomeClick() {
-        Intent intent =
-                new Intent(VideoListActivity.this, HomeActivity.class);
+        Intent intent = new Intent(VideoListActivity.this, HomeActivity.class);
         startActivity(intent);
     }
 
@@ -277,8 +275,7 @@ public class VideoListActivity extends ButterAppCompatActivity implements GridCo
     }
 
     public void moveNext(int i) {
-        Intent intent =
-                new Intent(VideoListActivity.this, GridHomeActivity.class);
+        Intent intent = new Intent(VideoListActivity.this, GridHomeActivity.class);
         intent.putExtra("index", i);
         startActivity(intent);
         finish();
@@ -338,8 +335,7 @@ public class VideoListActivity extends ButterAppCompatActivity implements GridCo
 
     @Override
     public void setSelectItem(PhotoList rl) {
-        Intent intent =
-                new Intent(VideoListActivity.this, VideoGalleryActivity.class);
+        Intent intent =new Intent(VideoListActivity.this, VideoGalleryActivity.class);
         intent.putExtra("trid", rl.getTrid());
         intent.putExtra("title", mTitle);
         startActivity(intent);     }

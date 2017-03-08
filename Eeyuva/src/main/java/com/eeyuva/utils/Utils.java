@@ -134,11 +134,10 @@ public class Utils {
 
     public static String getISOTime(String date) {
         try {
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss",
-                    Locale.ENGLISH);
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH);
             Date parsedDate = sdf.parse(date);
 //            Sept. 18, 2016, 9:09 a.m
-            SimpleDateFormat print = new SimpleDateFormat("MMM. d, yyyy, HH:mm a");
+            SimpleDateFormat print = new SimpleDateFormat("MMM. d, yyyy");
             System.out.println(print.format(parsedDate));
             Log.i("mArticleImgList", "date" + print.format(parsedDate));
             return print.format(parsedDate);

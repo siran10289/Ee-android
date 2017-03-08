@@ -342,8 +342,7 @@ public class HomeActivity extends ButterAppCompatActivity implements HomeContrac
             Log.i("Noti", "Noti" + getIntent().getExtras().getString(Constants.TAG_Article_ID));
             Log.i("Noti", "Noti" + getIntent().getExtras().getString(Constants.TAG_Module_ID));
             if (!getIntent().getExtras().getString(Constants.TAG_Module_ID).equalsIgnoreCase(null) && getIntent().getExtras().getString(Constants.TAG_Module_ID).length() != 0) {
-                Intent intent =
-                        new Intent(this, DetailActivity.class);
+                Intent intent = new Intent(this, DetailActivity.class);
                 intent.putExtra("article_id", getIntent().getExtras().getString(Constants.TAG_Article_ID));
                 intent.putExtra("module_id", getIntent().getExtras().getString(Constants.TAG_Module_ID));
                 intent.putExtra("type", "home");
