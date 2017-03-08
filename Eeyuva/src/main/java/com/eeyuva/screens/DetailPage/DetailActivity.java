@@ -212,7 +212,7 @@ public class DetailActivity extends ButterAppCompatActivity implements DetailCon
                 mModuleId = getIntent().getExtras().getString("module_id");
                 mArticleId = getIntent().getExtras().getString("article_id");
                 mEntityId = getIntent().getExtras().getString("entity_id");
-                mPresenter.getArticlesNewsDetails(mArticleId);
+                mPresenter.getArticlesDetails(mArticleId);
                 mPresenter.getOtherArticlesDetails(mModuleId, mArticleId, mEntityId);
             } else if (mType.equals("notification")) {
                 mModuleId = getIntent().getExtras().getString("module_id");
@@ -253,6 +253,7 @@ public class DetailActivity extends ButterAppCompatActivity implements DetailCon
             mImgModuleImg.setImageResource(getItem(Integer.parseInt(mOrderId)));
 
             container = (PagerContainer) findViewById(R.id.pager_container);
+
             pager = container.getViewPager();
         } catch (Exception e) {
             e.printStackTrace();

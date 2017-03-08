@@ -44,7 +44,7 @@ public class PackageInfoInteractorImpl implements PackageInfoInteractor {
     private static final MediaType IMAGE_MEDIA_TYPE = MediaType.parse("image/*");
 
     private static final String IMAGE_FILE_NAME = "photo%d.jpg";
-    private static final int IN_SAMPLE_SIZE = 8;
+    private static final int IN_SAMPLE_SIZE = 5;
 
     public static final String[] CAMERA_GALLERY_PERMISSIONS = new String[]{
             Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE,

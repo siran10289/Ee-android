@@ -410,7 +410,7 @@ public class ProfilePresenterImpl implements ProfileContract.Presenter {
             e.printStackTrace();
         }
         byte[] bytes;
-        byte[] buffer = new byte[8192];
+        byte[] buffer = new byte[20000];
         int bytesRead;
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         try {

@@ -112,6 +112,7 @@ public class ApiInteractorImpl implements ApiInteractor {
     public void getSearchResponse(BaseView mView, String url, LoadListener<SearchResponse> mArticlesListener, boolean b) {
         UiCallback<SearchResponse> callback = new UiCallback(mView, mArticlesListener, true);
         Call<SearchResponse> call = mApi.getSearchResponse(url);
+        Log.e("URL:",url.toString());
         callback.start(call);
     }
 

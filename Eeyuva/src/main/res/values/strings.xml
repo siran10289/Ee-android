@@ -28,6 +28,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="timeout_error">Request timed out. Please retry</string>
     <string name="generic_error">Something went wrong</string>
+    <string name="no_network_connection_error">No Internet connection. Make sure that Wi-Fi or celluar mobile data is turned on, then try again</string>
     <string name="delivery_name_empty_error">Please enter the name</string>
     <string name="delivery_sign_empty_error">Please enter the Signature</string>
     <string name="server_error">Server Error</string>
