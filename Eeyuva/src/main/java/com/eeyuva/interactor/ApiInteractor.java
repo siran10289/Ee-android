@@ -28,6 +28,7 @@ import com.eeyuva.screens.profile.ProfileContract;
 import com.eeyuva.screens.profile.model.AlertResponse;
 import com.eeyuva.screens.profile.model.ChangePasswordResponse;
 import com.eeyuva.screens.profile.model.CommentResponse;
+import com.eeyuva.screens.profile.model.EditProfileImageResponse;
 import com.eeyuva.screens.profile.model.EditResponse;
 import com.eeyuva.screens.profile.model.NewsResponse;
 import com.eeyuva.screens.profile.model.NotificationEditResponse;
@@ -82,7 +83,7 @@ public interface ApiInteractor {
     void deleteStuffNews(BaseView mView,String url,LoadListener<NotificationEditResponse> mNewsListener);
     void getNotificationComments(BaseView mView, String s, LoadListener<NotificationResponse> mNotificationListener);
 
-    void uploadImage(BaseView mView, String url, String uid, String bitmapImg, LoadListener<EditResponse> mEditProfileListener);
+    void uploadImage(BaseView mView, String url, String uid, String bitmapImg, File file,LoadListener<EditProfileImageResponse> mEditProfileListener);
 
     void changePassword(BaseView mView, String url, LoadListener<ChangePasswordResponse> mChangePasswordListener);
 

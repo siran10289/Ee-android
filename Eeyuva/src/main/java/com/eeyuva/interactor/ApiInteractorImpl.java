@@ -26,6 +26,7 @@ import com.eeyuva.screens.home.ModuleOrderResponse;
 import com.eeyuva.screens.profile.model.AlertResponse;
 import com.eeyuva.screens.profile.model.ChangePasswordResponse;
 import com.eeyuva.screens.profile.model.CommentResponse;
+import com.eeyuva.screens.profile.model.EditProfileImageResponse;
 import com.eeyuva.screens.profile.model.EditResponse;
 import com.eeyuva.screens.profile.model.NewsResponse;
 import com.eeyuva.screens.profile.model.NotificationEditResponse;
@@ -211,17 +212,22 @@ public class ApiInteractorImpl implements ApiInteractor {
         callback.start(call);
     }
 
-    @Override
-    public void uploadImage(BaseView mView, String url, String uid, String bitmapImg, LoadListener<EditResponse> mEditProfileListener) {
-        UiCallback<EditResponse> callback = new UiCallback(mView, mEditProfileListener, true);
-        Call<EditResponse> call = mApi.uploadProfileImage(url, uid, bitmapImg);
-        callback.start(call);
-    }
+
 
     @Override
     public void changePassword(BaseView mView, String url, LoadListener<ChangePasswordResponse> mChangePasswordListener) {
         UiCallback<ChangePasswordResponse> callback = new UiCallback(mView, mChangePasswordListener, true);
         Call<ChangePasswordResponse> call = mApi.ChangePassword(url);
+        callback.start(call);
+    }
+    @Override
+    public void uploadImage(BaseView mView, String url, String uid, String bitmapImg, File file,LoadListener<EditProfileImageResponse> mEditProfileListener) {
+        Log.e("UploadImageURL:",url);
+        UiCallback<EditProfileImageResponse> callback = new UiCallback(mView, mEditProfileListener, true);
+        RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+        MultipartBody.Part body = MultipartBody.Part.createFormData("picdata", file.getName(), requestFile);
+        RequestBody id = RequestBody.create(MediaType.parse("text/plain"), uid);
+        Call<EditProfileImageResponse> call = mApi.uploadProfileImage(url,id, body);
         callback.start(call);
     }
 

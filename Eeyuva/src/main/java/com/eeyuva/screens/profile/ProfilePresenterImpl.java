@@ -19,6 +19,7 @@ import com.eeyuva.screens.home.ResponseList;
 import com.eeyuva.screens.profile.model.AlertResponse;
 import com.eeyuva.screens.profile.model.ChangePasswordResponse;
 import com.eeyuva.screens.profile.model.CommentResponse;
+import com.eeyuva.screens.profile.model.EditProfileImageResponse;
 import com.eeyuva.screens.profile.model.EditResponse;
 import com.eeyuva.screens.profile.model.NewsResponse;
 import com.eeyuva.screens.profile.model.NotificationEditResponse;
@@ -151,6 +152,24 @@ public class ProfilePresenterImpl implements ProfileContract.Presenter {
     LoadListener<EditResponse> mEditProfileListener = new LoadListener<EditResponse>() {
         @Override
         public void onSuccess(EditResponse responseBody) {
+            Log.e("EditStatus:",new Gson().toJson(responseBody).toString());
+            mView.showErrorDialog(responseBody.getSTATUSINFO());
+
+        }
+
+        @Override
+        public void onFailure(Throwable t) {
+
+        }
+
+        @Override
+        public void onError(Object error) {
+
+        }
+    };
+    LoadListener<EditProfileImageResponse> mEditProfileImageListener = new LoadListener<EditProfileImageResponse>() {
+        @Override
+        public void onSuccess(EditProfileImageResponse responseBody) {
             Log.e("EditStatus:",new Gson().toJson(responseBody).toString());
             mView.showErrorDialog(responseBody.getSTATUSINFO());
 
@@ -318,7 +337,7 @@ public class ProfilePresenterImpl implements ProfileContract.Presenter {
             e.printStackTrace();
         }
         byte[] bytes;
-        byte[] buffer = new byte[8192];
+        byte[] buffer = new byte[20000];
         int bytesRead;
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         try {
@@ -331,7 +350,7 @@ public class ProfilePresenterImpl implements ProfileContract.Presenter {
         bytes = output.toByteArray();
         String encodedString = Base64.encodeToString(bytes, Base64.DEFAULT);
 
-        mApiInteractor.uploadImage(mView, Constants.ProfileUpdatePhoto, "" + mPrefsManager.getUserDetails().getUserid(), encodedString, mEditProfileListener);
+        mApiInteractor.uploadImage(mView, Constants.ProfileUpdatePhoto, "" + mPrefsManager.getUserDetails().getUserid(), encodedString,photoFile, mEditProfileImageListener);
     }
 
     @Override

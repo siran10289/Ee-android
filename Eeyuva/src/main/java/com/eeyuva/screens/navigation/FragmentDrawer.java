@@ -225,7 +225,9 @@ public class FragmentDrawer extends Fragment implements View.OnClickListener {
         mDrawerItems.add(new AppSetting("Book mark", R.drawable.m_bookmark, false));
         mDrawerItems.add(new AppSetting("News room", R.drawable.newroom, false));
         mDrawerItems.add(new AppSetting("Account Settings", R.drawable.account_settings, true));
-        mDrawerItems.add(new AppSetting("Change Password", 0, false));
+        if (getUserDetails() != null) {
+            mDrawerItems.add(new AppSetting("Change Password", 0, false));
+        }
         mDrawerItems.add(new AppSetting(mLoginOut, 0, false));
         mDrawerItems.add(new AppSetting("Notification", 0, false));
         mDrawerItems.add(new AppSetting("About App", 0, false));

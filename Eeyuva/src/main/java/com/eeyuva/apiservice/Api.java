@@ -19,6 +19,7 @@ import com.eeyuva.screens.home.ModuleOrderResponse;
 import com.eeyuva.screens.profile.model.AlertResponse;
 import com.eeyuva.screens.profile.model.ChangePasswordResponse;
 import com.eeyuva.screens.profile.model.CommentResponse;
+import com.eeyuva.screens.profile.model.EditProfileImageResponse;
 import com.eeyuva.screens.profile.model.EditResponse;
 import com.eeyuva.screens.profile.model.NewsResponse;
 import com.eeyuva.screens.profile.model.NotificationEditResponse;
@@ -109,9 +110,9 @@ public interface Api {
     @GET
     Call<NotificationEditResponse> deleteStuffNews(@Url String url);
 
-
+    @Multipart
     @POST
-    Call<EditResponse> uploadProfileImage(@Url String url, @Query("uid") String uid, @Query("picdata") String bitmapImg);
+    Call<EditProfileImageResponse> uploadProfileImage(@Url String url, @Part("uid") RequestBody id, @Part MultipartBody.Part file);
 
    /* @POST
     Call<ImageResponse> uploadImageVideo(@Url String url, @Body ImageFile encodedString);*/

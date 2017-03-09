@@ -26,6 +26,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -118,6 +119,8 @@ public class ProfileActivity extends ButterAppCompatActivity implements ProfileC
     String emailID;
     EditText mEdtModule;
     private String moduleID,categorayID;
+    private  LinearLayout ll_upload_image;
+    private File profilePhotoFile=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -355,8 +358,8 @@ public class ProfileActivity extends ButterAppCompatActivity implements ProfileC
     @Override
     public void setPhoto(File photoFile) {
         if (mProfile) {
+            profilePhotoFile=photoFile;
             showUpdatePhoto(photoFile);
-            mPresenter.uploadImage(photoFile);
         } else if (mPhotoVideo)
         {
             showModuleVideoPhoto(photoFile);
@@ -370,8 +373,7 @@ public class ProfileActivity extends ButterAppCompatActivity implements ProfileC
 
     @Override
     public void goToLogin() {
-        Intent intent =
-                new Intent(ProfileActivity.this, LoginActivity.class);
+        Intent intent = new Intent(ProfileActivity.this, LoginActivity.class);
         intent.putExtra("from", Constants.PROFILE);
         startActivity(intent);
     }
@@ -527,7 +529,9 @@ public class ProfileActivity extends ButterAppCompatActivity implements ProfileC
             TextView mBtnTakePhoto = (TextView) dialogView.findViewById(R.id.mBtnTakePhoto);
             ImageView mImgProfile = (ImageView) dialogView.findViewById(R.id.mImgProfile);
             TextView mBtnGallery = (TextView) dialogView.findViewById(R.id.mBtnGallery);
-
+            ll_upload_image=(LinearLayout)dialogView.findViewById(R.id.ll_upload_image);
+            TextView tvCancel=(TextView)dialogView.findViewById(R.id.mBtnCancel);
+            TextView tvUse=(TextView)dialogView.findViewById(R.id.mBtnUse);
 
             mBtnTakePhoto.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -542,6 +546,20 @@ public class ProfileActivity extends ButterAppCompatActivity implements ProfileC
                 public void onClick(View v) {
                     mDialog.dismiss();
                     mPresenter.pickFromGalleryClick();
+                }
+            });
+            tvCancel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mDialog.dismiss();
+                }
+            });
+            tvUse.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(profilePhotoFile!=null) {
+                        mPresenter.uploadImage(profilePhotoFile);
+                    }
                 }
             });
 
