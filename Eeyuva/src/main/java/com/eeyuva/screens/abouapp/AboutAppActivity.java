@@ -140,7 +140,7 @@ public class AboutAppActivity  extends ButterAppCompatActivity implements HomeCo
         tvAppVersion.setText(info.versionName);
         /*long fileSizeInKB = file.length() / 1024;
         long fileSizeInMB = fileSizeInKB / 1024;*/
-        tvAppSize.setText("6.8 MB");
+        tvAppSize.setText("7.5 MB");
 
     }
     @Override

@@ -166,7 +166,7 @@
                                 android:id="@+id/tvLastUpdate"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="20 Feb 2017"
+                                android:text="9 March 2017"
                                 android:textStyle="normal"
                                 android:layout_marginTop="@dimen/five_dp"
                                 android:textSize="13dp" />
