@@ -103,7 +103,7 @@ public class UiCallback<T> implements Callback<T> {
                 if (t instanceof TimeoutException || t instanceof SocketTimeoutException)
                     baseView.showErrorDialog(R.string.timeout_error);
                 else if (t instanceof UnknownHostException)
-                    baseView.showErrorDialog(R.string.network_error);
+                    baseView.showErrorDialog(R.string.no_network_connection_error);
                 else if(t instanceof NoRouteToHostException || t instanceof UnknownHostException)
                     baseView.showErrorDialog(R.string.server_error);
                 else

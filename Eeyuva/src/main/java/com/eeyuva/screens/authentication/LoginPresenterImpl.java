@@ -38,6 +38,7 @@ public class LoginPresenterImpl implements LoginContract.Presenter {
             Log.e("Login Response:",new Gson().toJson(responseBody));
             try {
                 if (responseBody.getStatusCode() != null) {
+                    mPrefsManager.setNotificationModules(responseBody.getNotification());
                     mPrefsManager.setUserDetail(responseBody);
                     mView.movetoHome();
                 } else

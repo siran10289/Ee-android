@@ -86,8 +86,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
             holder.card_row_list_order.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent =
-                            new Intent(mContext, DetailActivity.class);
+                    Intent intent = new Intent(mContext, DetailActivity.class);
                     intent.putExtra("article_id", articles.getArticleid());
                     intent.putExtra("module_id", articles.getModuleid());
                     intent.putExtra("entity_id", articles.getEntityid());

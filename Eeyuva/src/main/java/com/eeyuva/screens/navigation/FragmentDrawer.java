@@ -68,6 +68,7 @@ public class FragmentDrawer extends Fragment implements View.OnClickListener {
     private String mLoginOut = "";
     private Gson gson;
 
+
     public FragmentDrawer() {
         // Required empty public constructor
     }
@@ -100,18 +101,16 @@ public class FragmentDrawer extends Fragment implements View.OnClickListener {
         LayProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (getUserDetails() != null) {
-                    Intent intent =
-                            new Intent(getActivity(), ProfileActivity.class);
-                    intent.putExtra("mode", "normal");
-                    startActivity(intent);
-                } else {
-                    Intent intent =
-                            new Intent(getActivity(), LoginActivity.class);
-                    startActivity(intent);
-                }
+               viewProfileInfo();
             }
         });
+        imgProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewProfileInfo();
+            }
+        });
+
         mBtnStuff.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -143,6 +142,17 @@ public class FragmentDrawer extends Fragment implements View.OnClickListener {
             }
         });
         return view;
+    }
+    private void viewProfileInfo(){
+        if (getUserDetails() != null) {
+            Intent intent = new Intent(getActivity(), ProfileActivity.class);
+            intent.putExtra("mode", "normal");
+            startActivity(intent);
+        } else {
+            Intent intent =
+                    new Intent(getActivity(), LoginActivity.class);
+            startActivity(intent);
+        }
     }
 
     public void setUserDetail() {
@@ -195,7 +205,7 @@ public class FragmentDrawer extends Fragment implements View.OnClickListener {
         mDrawerItems.add(new AppSetting("Entertainment", R.drawable.m_smile, true));
         mDrawerItems.add(new AppSetting("Box office", R.drawable.boxoffice, false));
         mDrawerItems.add(new AppSetting("Elements of music", R.drawable.music, false));
-        mDrawerItems.add(new AppSetting("Jokes and sms", R.drawable.jokes, false));
+        mDrawerItems.add(new AppSetting("Humour Unlimited", R.drawable.jokes, false));
         mDrawerItems.add(new AppSetting("Events and action", R.drawable.events, false));
 //        mDrawerItems.add(new AppSetting("Puzzles and games", R.drawable.ic_content_add, false));
         mDrawerItems.add(new AppSetting("Tech trends", R.drawable.m_tech_trends, true));
