@@ -3,6 +3,7 @@ package com.eeyuva.screens.profile;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
 
@@ -135,6 +136,16 @@ public class ProfilePresenterImpl implements ProfileContract.Presenter {
         public void onSuccess(ProfileResponse responseBody) {
             mView.setImage(responseBody.getmProfileList().get(0).getProfilePic());
             responseBody.setEmailID(mPrefsManager.getUserDetails().getUseremail());
+            if(responseBody.getmProfileList().get(0).getProfilePic()!=null&& !TextUtils.isEmpty(responseBody.getmProfileList().get(0).getProfilePic())) {
+                Log.e("updated url:","http://eeyuva.com/static/userpics/"+responseBody.getmProfileList().get(0).getProfilePic());
+
+                LoginResponse loginResponse=mPrefsManager.getUserDetails();
+                loginResponse.setFirstname(responseBody.getmProfileList().get(0).getFname());
+                loginResponse.setLastname(responseBody.getmProfileList().get(0).getLname());
+                loginResponse.setPicpath("http://eeyuva.com/static/userpics/"+responseBody.getmProfileList().get(0).getProfilePic());
+                mPrefsManager.setUserDetail(loginResponse);
+
+            }
             mView.setUserDetails(responseBody);
         }
 
@@ -172,6 +183,7 @@ public class ProfilePresenterImpl implements ProfileContract.Presenter {
         public void onSuccess(EditProfileImageResponse responseBody) {
 
             Log.e("EditStatus:",new Gson().toJson(responseBody).toString());
+
             mView.showProfileImageUpdateAlert(responseBody.getSTATUSINFO());
 
 

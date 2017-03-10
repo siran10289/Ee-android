@@ -317,6 +317,8 @@ public class ProfileActivity extends ButterAppCompatActivity implements ProfileC
     public void setImage(String url) {
         Picasso.with(this).load("http://eeyuva.com/static/userpics/" + url).transform(new RoundedTransformation(100, 0)).placeholder(getResources().getDrawable(R.drawable.ic_profile_default)).resize(80, 80).into(imgProfile);
         drawerFragment.setUpdatedProfileImage("http://eeyuva.com/static/userpics/" + url);
+
+
     }
 
     @Override
