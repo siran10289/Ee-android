@@ -428,6 +428,12 @@ public class AlertActivity extends ButterAppCompatActivity implements ProfileCon
     public void setCatagoryList(CatagoryList catagoryListPojo) {
         AppDialogManager.catagoryChooserDialog(AlertActivity.this,AlertActivity.this,catagoryListPojo.getCatagoryList());
     }
+
+    @Override
+    public void showProfileImageUpdateAlert(String message) {
+
+    }
+
     @Override
     public void onDialogClosedByModuleClick(ResponseList moduleObject) {
         mEdtModule.setText(moduleObject.getTitle());

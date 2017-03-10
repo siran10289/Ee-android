@@ -80,8 +80,7 @@ public class FragmentDrawer extends Fragment implements View.OnClickListener {
     String PREFS_USER_DETAILS = "UserName_Detail";
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_drawer, container, false);
         gson = new Gson();
@@ -93,8 +92,6 @@ public class FragmentDrawer extends Fragment implements View.OnClickListener {
         mBtnAlert = (Button) view.findViewById(R.id.mBtnAlerts);
 
         LayProfile = (RelativeLayout) view.findViewById(R.id.LayProfile);
-
-
         remotePrefs = getActivity().getSharedPreferences(SHARED_PREFERENCES_REMOTE_KEY, Context.MODE_PRIVATE);
         remoteEditor = remotePrefs.edit();
 
@@ -198,6 +195,14 @@ public class FragmentDrawer extends Fragment implements View.OnClickListener {
             mLoginOut = "Login";
             e.printStackTrace();
         }
+    }
+    public void setUpdatedProfileImage(String path){
+        Picasso.with(getActivity()).load(path)
+                .transform(new RoundedTransformation(80, 0))
+                .resize(80, 80)
+                .centerCrop()
+                .into(imgProfile);
+
     }
 
     private void setListDrawer() {

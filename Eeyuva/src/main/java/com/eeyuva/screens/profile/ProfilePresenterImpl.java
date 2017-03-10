@@ -170,8 +170,10 @@ public class ProfilePresenterImpl implements ProfileContract.Presenter {
     LoadListener<EditProfileImageResponse> mEditProfileImageListener = new LoadListener<EditProfileImageResponse>() {
         @Override
         public void onSuccess(EditProfileImageResponse responseBody) {
+
             Log.e("EditStatus:",new Gson().toJson(responseBody).toString());
-            mView.showErrorDialog(responseBody.getSTATUSINFO());
+            mView.showProfileImageUpdateAlert(responseBody.getSTATUSINFO());
+
 
         }
 

@@ -581,6 +581,12 @@ public class StuffsActivity extends ButterAppCompatActivity implements ProfileCo
     public void setCatagoryList(CatagoryList catagoryListPojo) {
         AppDialogManager.catagoryChooserDialog(StuffsActivity.this,StuffsActivity.this,catagoryListPojo.getCatagoryList());
     }
+
+    @Override
+    public void showProfileImageUpdateAlert(String message) {
+
+    }
+
     @Override
     public void onDialogClosedByModuleClick(ResponseList moduleObject) {
         mEdtModule.setText(moduleObject.getTitle());

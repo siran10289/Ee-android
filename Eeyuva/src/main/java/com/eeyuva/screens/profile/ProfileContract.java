@@ -34,17 +34,13 @@ public interface ProfileContract {
         void setNewsAdapter(NewsResponse responseBody);
 
         void setNotificationAdapter(NotificationResponse responseBody);
-
         void setPhoto(File photoFile);
-
         void setCommentsListToAdapter(List<CommentsList> response);
-
         void goToLogin();
-
         void updateSaveModules(String notificationModules);
-
         void showArticleDeletedStatus(String message);
         void setCatagoryList(CatagoryList catagoryListPojo);
+        void showProfileImageUpdateAlert(String message);
 
     }
 

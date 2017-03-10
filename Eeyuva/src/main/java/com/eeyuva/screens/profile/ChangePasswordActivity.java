@@ -310,6 +310,11 @@ public class ChangePasswordActivity extends ButterAppCompatActivity implements P
 
     }
 
+    @Override
+    public void showProfileImageUpdateAlert(String message) {
+
+    }
+
     public void showListenerDialog(String msg) {
         DialogUtils.showDialog(this, msg, getString(R.string.sig__default_dialog_action_confirm), "", new DialogListener() {
             @Override

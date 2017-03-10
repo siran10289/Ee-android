@@ -428,6 +428,12 @@ public class NotificationActivity extends ButterAppCompatActivity implements Pro
     public void setCatagoryList(CatagoryList catagoryListPojo) {
         AppDialogManager.catagoryChooserDialog(NotificationActivity.this,NotificationActivity.this,catagoryListPojo.getCatagoryList());
     }
+
+    @Override
+    public void showProfileImageUpdateAlert(String message) {
+
+    }
+
     @Override
     public void onDialogClosedByModuleClick(ResponseList moduleObject) {
         mEdtModule.setText(moduleObject.getTitle());

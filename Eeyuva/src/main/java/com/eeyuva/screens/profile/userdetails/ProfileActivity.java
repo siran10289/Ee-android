@@ -29,6 +29,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.eeyuva.ButterAppCompatActivity;
 import com.eeyuva.R;
@@ -315,6 +316,7 @@ public class ProfileActivity extends ButterAppCompatActivity implements ProfileC
     @Override
     public void setImage(String url) {
         Picasso.with(this).load("http://eeyuva.com/static/userpics/" + url).transform(new RoundedTransformation(100, 0)).placeholder(getResources().getDrawable(R.drawable.ic_profile_default)).resize(80, 80).into(imgProfile);
+        drawerFragment.setUpdatedProfileImage("http://eeyuva.com/static/userpics/" + url);
     }
 
     @Override
@@ -558,6 +560,7 @@ public class ProfileActivity extends ButterAppCompatActivity implements ProfileC
                 @Override
                 public void onClick(View v) {
                     if(profilePhotoFile!=null) {
+                        mDialog.dismiss();
                         mPresenter.uploadImage(profilePhotoFile);
                     }
                 }
@@ -579,6 +582,11 @@ public class ProfileActivity extends ButterAppCompatActivity implements ProfileC
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    @Override
+    public void showProfileImageUpdateAlert(String message) {
+        Toast.makeText(ProfileActivity.this,message, Toast.LENGTH_SHORT).show();
+        onResume();
     }
 
     @Override
@@ -663,6 +671,9 @@ public class ProfileActivity extends ButterAppCompatActivity implements ProfileC
     public void setCatagoryList(CatagoryList catagoryListPojo) {
         AppDialogManager.catagoryChooserDialog(ProfileActivity.this,ProfileActivity.this,catagoryListPojo.getCatagoryList());
     }
+
+
+
     @Override
     public void onDialogClosedByModuleClick(ResponseList moduleObject) {
         mEdtModule.setText(moduleObject.getTitle());
