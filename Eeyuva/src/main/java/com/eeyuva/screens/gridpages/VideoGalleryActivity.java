@@ -167,6 +167,12 @@ public class VideoGalleryActivity extends ButterAppCompatActivity implements Gri
         mGridLoadAdapter = new VideoGalleryAdapter(this, this, responseBody.getResponse());
         mRecyclerView.setAdapter(mGridLoadAdapter);
         mGridLoadAdapter.notifyDataSetChanged();
+        if(responseBody.getResponse().size()==1){
+            Intent intent = new Intent(VideoGalleryActivity.this, VideoPlayActivity.class);
+            intent.putExtra("url", responseBody.getResponse().get(0).getPicpath());
+            startActivity(intent);
+            finish();
+        }
     }
 
     @Override
@@ -331,8 +337,7 @@ public class VideoGalleryActivity extends ButterAppCompatActivity implements Gri
 
     @Override
     public void setSelectItem(PhotoGalleryList rl) {
-        Intent intent =
-                new Intent(VideoGalleryActivity.this, VideoPlayActivity.class);
+        Intent intent = new Intent(VideoGalleryActivity.this, VideoPlayActivity.class);
         intent.putExtra("url", rl.getPicpath());
         startActivity(intent);
     }

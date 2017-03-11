@@ -12,7 +12,7 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 3
-        versionName "EeYuva 1.2.2"
+        versionName "EeYuva 1.2.3"
 
         multiDexEnabled true
         buildConfigField "String", "BASE_URL", "\"http://www.eeyuva.com/\""
@@ -39,6 +39,7 @@ android {
         exclude 'META-INF/NOTICE'
         exclude 'META-INF/LICENSE'
     }
+    buildToolsVersion '25.0.0'
 }
 
 def getDate() {

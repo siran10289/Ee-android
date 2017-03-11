@@ -16,6 +16,7 @@ import com.eeyuva.screens.profile.userdetails.interactor.PermissionGrantedListen
 import com.eeyuva.screens.searchpage.model.SearchResponse;
 import com.eeyuva.utils.Constants;
 import com.eeyuva.utils.preferences.PrefsManager;
+import com.google.gson.Gson;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -105,6 +106,7 @@ public class HomePresenterImpl implements HomeContract.Presenter {
     LoadListener<GetArticleResponse> mArticlesListener = new LoadListener<GetArticleResponse>() {
         @Override
         public void onSuccess(GetArticleResponse responseBody) {
+            Log.e("Response:",new Gson().toJson(responseBody).toString());
             mView.setArticleAdapterNotify(responseBody.getResponseItem());
         }
 
