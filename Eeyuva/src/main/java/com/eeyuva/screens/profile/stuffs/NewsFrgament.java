@@ -27,6 +27,10 @@ public class NewsFrgament extends Fragment {
     NewsAdapter mCommentAdapter;
     RecyclerView.LayoutManager mLayoutManager;
     MyArticleDeleteListener myArticleDeleteListener;
+    public NewsFrgament(){
+
+    }
+
 
     public NewsFrgament(MyArticleDeleteListener myArticleDeleteListener) {
         this.myArticleDeleteListener = myArticleDeleteListener;
