@@ -30,6 +30,11 @@
                 <include
                     android:id="@+id/tool_bar"
                     layout="@layout/toolbar"></include>
+                <include
+                    android:id="@+id/search_view"
+                    android:visibility="gone"
+                    layout="@layout/search_dialog"></include>
+
 
 
                 <android.support.v4.widget.SwipeRefreshLayout

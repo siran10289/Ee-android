@@ -588,6 +588,11 @@ public class StuffsActivity extends ButterAppCompatActivity implements ProfileCo
     }
 
     @Override
+    public void showAlertForNoficationSettings(String message) {
+
+    }
+
+    @Override
     public void onDialogClosedByModuleClick(ResponseList moduleObject) {
         mEdtModule.setText(moduleObject.getTitle());
         moduleID=moduleObject.getModuleid();

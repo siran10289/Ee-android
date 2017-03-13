@@ -110,7 +110,7 @@
 
         <meta-data
             android:name="io.fabric.ApiKey"
-            android:value="12d109fa8edc59786a36eb0e9be2ab4ac80e0e41" />
+            android:value="ff8fe034332919203291c52a05432f82f6ba5be4" />
         <meta-data
             android:name="android.app.searchable"
             android:resource="@xml/searchable" />
@@ -127,6 +127,8 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
         </provider>
+
+
 
         <activity android:name=".screens.abouapp.AboutAppActivity"></activity>
     </application>

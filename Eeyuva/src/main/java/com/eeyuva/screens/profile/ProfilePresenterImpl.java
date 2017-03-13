@@ -527,8 +527,8 @@ public class ProfilePresenterImpl implements ProfileContract.Presenter {
             Log.e("mModuleId", "mModuleId r" + mModuleId);
             Log.e("Response:",new Gson().toJson(responseBody).toString());
             mPrefsManager.setNotificationModules(mModuleId);
-            mView.showErrorDialog(responseBody.getSTATUSINFO());
-            mView.goToLogin();
+            mView.showAlertForNoficationSettings(responseBody.getSTATUSINFO());
+
         }
 
         @Override

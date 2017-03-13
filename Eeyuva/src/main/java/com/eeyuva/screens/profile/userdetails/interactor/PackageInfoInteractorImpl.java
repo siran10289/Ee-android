@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.FileProvider;
 import android.util.Base64;
 import android.util.Log;
 
@@ -103,7 +104,8 @@ public class PackageInfoInteractorImpl implements PackageInfoInteractor {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         File imageFile = createImageFile();
         if (imageFile != null) {
-            photoUri = Uri.fromFile(imageFile);
+           // photoUri = Uri.fromFile(imageFile);
+            photoUri= FileProvider.getUriForFile(context, context.getApplicationContext().getPackageName() + ".provider", createImageFile());
         }
 
         if (photoUri != null) {

@@ -435,6 +435,11 @@ public class AlertActivity extends ButterAppCompatActivity implements ProfileCon
     }
 
     @Override
+    public void showAlertForNoficationSettings(String message) {
+
+    }
+
+    @Override
     public void onDialogClosedByModuleClick(ResponseList moduleObject) {
         mEdtModule.setText(moduleObject.getTitle());
         moduleID=moduleObject.getModuleid();

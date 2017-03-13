@@ -51,6 +51,7 @@ import com.eeyuva.screens.profile.model.NewsResponse;
 import com.eeyuva.screens.profile.model.NotificationResponse;
 import com.eeyuva.screens.profile.model.ProfileList;
 import com.eeyuva.screens.profile.model.ProfileResponse;
+import com.eeyuva.screens.profile.notification.NotificationActivity;
 import com.eeyuva.screens.searchpage.SearchActivity;
 import com.eeyuva.utils.AppDialogManager;
 import com.eeyuva.utils.Constants;
@@ -122,6 +123,13 @@ public class ProfileActivity extends ButterAppCompatActivity implements ProfileC
     private String moduleID,categorayID;
     private  LinearLayout ll_upload_image;
     private File profilePhotoFile=null;
+
+    @Bind(R.id.search_view)
+    LinearLayout ll_searchView;
+    @Bind(R.id.btnOk)
+    Button btnDoSearch;
+    @Bind(R.id.btnSearch)
+    EditText etSearch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -221,7 +229,7 @@ public class ProfileActivity extends ButterAppCompatActivity implements ProfileC
         int id = item.getItemId();
         switch (id) {
             case R.id.action_search:
-                showDialog();
+                Utils.getSearchQuery(ProfileActivity.this,etSearch,btnDoSearch,ll_searchView);
                 break;
             case R.id.action_add:
                 showModuleVideoPhoto(null);
@@ -592,6 +600,11 @@ public class ProfileActivity extends ButterAppCompatActivity implements ProfileC
     }
 
     @Override
+    public void showAlertForNoficationSettings(String message) {
+
+    }
+
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         mPresenter.onActivityResult(requestCode, resultCode, data);
     }
@@ -628,12 +641,14 @@ public class ProfileActivity extends ButterAppCompatActivity implements ProfileC
                 @Override
                 public void onClick(View v) {
                     mDialog.dismiss();
-                    if(mBtnTakePhoto.getText().toString().trim().equalsIgnoreCase("Post"))
+                    if(mBtnTakePhoto.getText().toString().trim().equalsIgnoreCase("Post")) {
                         mPresenter.uploadImageOrVideo(photoFile, mEdtModule.getText().toString().trim(),
                                 mEdtTitle.getText().toString().trim(),
-                                mEdtDesc.getText().toString().trim(),moduleID,categorayID);
-                    else
-                    mPresenter.snapPhotoClick();
+                                mEdtDesc.getText().toString().trim(), moduleID, categorayID);
+                    }
+                    else {
+                        mPresenter.snapPhotoClick();
+                    }
 
                 }
             });

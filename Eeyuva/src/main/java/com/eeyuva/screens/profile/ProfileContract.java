@@ -41,6 +41,7 @@ public interface ProfileContract {
         void showArticleDeletedStatus(String message);
         void setCatagoryList(CatagoryList catagoryListPojo);
         void showProfileImageUpdateAlert(String message);
+        void showAlertForNoficationSettings(String message);
 
     }
 
