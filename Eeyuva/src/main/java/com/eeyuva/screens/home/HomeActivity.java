@@ -192,6 +192,7 @@ public class HomeActivity extends ButterAppCompatActivity implements HomeContrac
         FIRST_PAGE = PAGES * LOOPS / 2;
 
 
+
         HotPAGES = mHotModuleList.size();
         HotFIRST_PAGE = HotPAGES * HotLOOPS / 2;
 
@@ -203,6 +204,8 @@ public class HomeActivity extends ButterAppCompatActivity implements HomeContrac
 
         // Set current item to the middle page so we can fling to both
         // directions left and right
+
+        Log.e("FirstPage:",FIRST_PAGE+"");
         pager.setCurrentItem(FIRST_PAGE);
 
         // Necessary or the pager will only have one extra page to show
@@ -306,7 +309,9 @@ public class HomeActivity extends ButterAppCompatActivity implements HomeContrac
 
         pager.setPageTransformer(false, new LinkageCoverTransformer(0.3f, 0f, 0f, 0f));
         mScrolledToPosition = mFinalModuleList.size() / 2;
-        pager.setCurrentItem(mScrolledToPosition++);
+        Log.e("Position:",""+mScrolledToPosition++);
+       // pager.setCurrentItem(mScrolledToPosition++);
+        pager.setCurrentItem(FIRST_PAGE);
 //        label.setText(mFinalModuleList.get((mScrolledToPosition % mFinalModuleList.size())).getTitle());
 //        mPresenter.getArticles(mFinalModuleList.get((mScrolledToPosition % mFinalModuleList.size())).getModuleid());
         pager.addOnPageChangeListener(new LinkagePager.OnPageChangeListener() {
@@ -904,4 +909,9 @@ public class HomeActivity extends ButterAppCompatActivity implements HomeContrac
          categorayID=catagoryObject.getCategoryid();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        FIRST_PAGE=0;
+    }
 }

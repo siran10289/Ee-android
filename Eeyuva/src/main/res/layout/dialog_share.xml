@@ -48,6 +48,7 @@
                 android:layout_gravity="center"
                 android:background="@null"
                 android:gravity="center"
+                android:singleLine="true"
                 android:hint="Enter the mail id here"
                 android:padding="10dp"
                 android:textColor="@color/black"

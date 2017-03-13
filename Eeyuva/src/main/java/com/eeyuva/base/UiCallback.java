@@ -93,6 +93,7 @@ public class UiCallback<T> implements Callback<T> {
     public void onFailure(Call<T> call, Throwable t) {
         Log.i("onFailure", "onFailure: " + requestCall.request().url().toString());
         Log.i("onFailure", "onFailure: " + " " + t.getLocalizedMessage());
+        Log.e("Error:", t.getLocalizedMessage());
         t.printStackTrace();
 
         if (loadListener != null) {
