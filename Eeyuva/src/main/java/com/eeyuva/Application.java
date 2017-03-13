@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.ContextWrapper;
 import android.support.multidex.MultiDexApplication;
 
+import com.crashlytics.android.Crashlytics;
 import com.eeyuva.di.component.DaggerAppComponent;
 import com.eeyuva.utils.preferences.PrefsManager;
 import com.eeyuva.di.component.AppComponent;
@@ -11,6 +12,7 @@ import com.eeyuva.di.module.AppModules;
 import com.karumi.dexter.Dexter;
 import com.pixplicity.easyprefs.library.Prefs;
 
+import io.fabric.sdk.android.Fabric;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 
@@ -21,6 +23,7 @@ public class Application extends MultiDexApplication {
     @Override
     public void onCreate() {
         super.onCreate();
+        Fabric.with(this, new Crashlytics());
         instance = this;
         initAppComponents();
         initPreferences();

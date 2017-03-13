@@ -1,5 +1,7 @@
 package com.eeyuva.screens.profile.notification;
 
+import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -8,6 +10,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -46,6 +49,7 @@ import com.eeyuva.screens.searchpage.SearchActivity;
 import com.eeyuva.utils.AppDialogManager;
 import com.eeyuva.utils.Constants;
 import com.eeyuva.utils.Utils;
+import com.eeyuva.utils.customdialog.DialogUtils;
 import com.eeyuva.utils.listeners.DialogListener;
 import com.squareup.picasso.Picasso;
 
@@ -64,8 +68,9 @@ import static com.eeyuva.screens.home.HomeActivity.mModuleList;
  * Created by hari on 01/10/16.
  */
 
-public class NotificationActivity extends ButterAppCompatActivity implements ProfileContract.View, ProfileContract.AdapterCallBack,DialogListener{
+public class NotificationActivity extends ButterAppCompatActivity implements ProfileContract.View, ProfileContract.AdapterCallBack,DialogListener {
 
+    private static Dialog dialog;
     @Inject
     ProfileContract.Presenter mPresenter;
 
@@ -435,6 +440,13 @@ public class NotificationActivity extends ButterAppCompatActivity implements Pro
     }
 
     @Override
+    public void showAlertForNoficationSettings(String message) {
+
+       showDialog(this,null, message, getString(R.string.txt_ok),null);
+    }
+
+
+    @Override
     public void onDialogClosedByModuleClick(ResponseList moduleObject) {
         mEdtModule.setText(moduleObject.getTitle());
         moduleID=moduleObject.getModuleid();
@@ -444,5 +456,64 @@ public class NotificationActivity extends ButterAppCompatActivity implements Pro
     @Override
     public void onDialogClosedByCatagoryClick(CatagoryList.Catagory catagoryObject) {
         categorayID=catagoryObject.getCategoryid();
+    }
+
+    public void showDialog(Context context, String title, String message, String txtPositive, String txtNegative) {
+
+        try {
+            if (dialog != null && dialog.isShowing()) {
+                dialog.dismiss();
+                //return;
+            }
+            android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(context);
+            View dialogView = LayoutInflater.from(context).inflate(R.layout.view_custom_dialog, null);
+            builder.setView(dialogView);
+            TextView mTxtTitle = (TextView) dialogView.findViewById(R.id.mTxtTitle);
+            TextView mTxtMessage = (TextView) dialogView.findViewById(R.id.mTxtMessage);
+            TextView mTxtPositive = (TextView) dialogView.findViewById(R.id.mTxtPositive);
+            TextView mTxtNegative = (TextView) dialogView.findViewById(R.id.mTxtNegative);
+
+            if (title != null && title.length() != 0) {
+                mTxtTitle.setText(title);
+                mTxtTitle.setVisibility(View.VISIBLE);
+            }
+            if (txtPositive != null && txtPositive.length() != 0) {
+                mTxtPositive.setText(txtPositive);
+                mTxtPositive.setVisibility(View.VISIBLE);
+            }
+            if (message != null && message.length() != 0) {
+                mTxtMessage.setText(Html.fromHtml(message));
+                mTxtMessage.setVisibility(View.VISIBLE);
+            }
+            mTxtPositive.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.dismiss();
+                    Intent intent =  new Intent(NotificationActivity.this, HomeActivity.class);
+                    startActivity(intent);
+
+                    return;
+                }
+            });
+
+            if (txtNegative != null) {
+                mTxtNegative.setVisibility(View.VISIBLE);
+                mTxtNegative.setText(txtNegative);
+                mTxtNegative.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        dialog.dismiss();
+                        return;
+                    }
+                });
+            }
+            dialog = builder.create();
+            dialog.setCancelable(false);
+            dialog.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

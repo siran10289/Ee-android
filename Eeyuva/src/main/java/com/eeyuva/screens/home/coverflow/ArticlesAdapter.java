@@ -47,7 +47,11 @@ public class ArticlesAdapter extends RecyclerView.Adapter<ArticlesAdapter.ViewHo
         try {
             holder.txtTitle.setText(articles.getTitle());
             holder.txtSubDesc.setText(Html.fromHtml(getSubString(articles.getSummary())));
-            Picasso.with(mContext).load(articles.getPicpath()).placeholder(mContext.getResources().getDrawable(R.drawable.ic_big_y_logo)).transform(new RoundedTransformation(8, 0)).resize(80, 80).into(holder.imgArticle);
+            Picasso.with(mContext)
+                    .load(articles.getThumbimg())
+                    .placeholder(mContext.getResources()
+                            .getDrawable(R.drawable.ic_big_y_logo))
+                    .transform(new RoundedTransformation(8, 0)).resize(80, 80).into(holder.imgArticle);
             holder.mLayArticle.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

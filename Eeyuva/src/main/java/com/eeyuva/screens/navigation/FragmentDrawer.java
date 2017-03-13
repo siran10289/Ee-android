@@ -179,6 +179,7 @@ public class FragmentDrawer extends Fragment implements View.OnClickListener {
                 @Override
                 public void run() {
                     if (prefsDetails.getPicpath() != null && prefsDetails.getPicpath().trim().length() != 0) {
+                        Log.e("path:",prefsDetails.getPicpath());
                         Picasso.with(getActivity()).load(prefsDetails.getPicpath())
                                 .transform(new RoundedTransformation(80, 0))
                                 .resize(80, 80)
@@ -202,6 +203,7 @@ public class FragmentDrawer extends Fragment implements View.OnClickListener {
                 .resize(80, 80)
                 .centerCrop()
                 .into(imgProfile);
+
 
     }
 
