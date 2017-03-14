@@ -49,20 +49,22 @@ public class NetworkModule {
     }
 
     private void setTimeouts(OkHttpClient.Builder clientBuilder) {
-        clientBuilder.connectTimeout(60 * 1000, TimeUnit.MILLISECONDS);
-        clientBuilder.readTimeout(60 * 1000, TimeUnit.MILLISECONDS);
+        clientBuilder.connectTimeout(60 * 2000, TimeUnit.MILLISECONDS);
+        clientBuilder.readTimeout(60 * 2000, TimeUnit.MILLISECONDS);
     }
 
     private void setLoggingInterceptor(OkHttpClient.Builder clientBuilder) {
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
         logging.setLevel(HttpLoggingInterceptor.Level.BODY);
-        clientBuilder.addInterceptor(logging);
+        clientBuilder.interceptors().add(logging);
+       // clientBuilder.addInterceptor(logging);
     }
+
 
     @NonNull
     private Cache getHttpCache(Context context) {
         final File httpCacheDir = new File(context.getCacheDir(), "http");
-        final long httpCacheSize = 10 * 1024 * 1024; // 10 MiB
+        final long httpCacheSize = 20 * 1024 * 1024; // 10 MiB
         return new Cache(httpCacheDir, httpCacheSize);
     }
 

@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.eeyuva.BuildConfig;
 import com.eeyuva.R;
+import com.google.gson.Gson;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -59,9 +60,10 @@ public class UiCallback<T> implements Callback<T> {
 
     @Override
     public void onResponse(Call<T> call, Response<T> response) {
-        Log.i("onResponse: ", "" + requestCall.request().url().toString() + " " +
-                response.message() + " code " + response.code());
+
         try {
+            Log.i("onResponse: ", "" + requestCall.request().url().toString() + " " + response.message() + " code " + response.code());
+            Log.e("Image Response:",response.message().toString()+"--"+new Gson().toJson(response.body()));
         if (loadListener != null) {
             if (response.isSuccessful()) {
                 this.response = response;
@@ -86,6 +88,7 @@ public class UiCallback<T> implements Callback<T> {
         }
         } catch (IOException e) {
             e.printStackTrace();
+            Log.e("Exception:",e.toString());
         }
     }
 

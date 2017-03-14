@@ -280,7 +280,7 @@ public class HomePresenterImpl implements HomeContract.Presenter {
     public void uploadImageOrVideo(File photoFile, String modulename, String title, String desc,String moduleID,String catID) {
 //
 
-        InputStream inputStream = null;//You can get an inputStream using any IO API
+       /* InputStream inputStream = null;//You can get an inputStream using any IO API
         try {
             inputStream = new FileInputStream(photoFile);
         } catch (FileNotFoundException e) {
@@ -305,8 +305,8 @@ public class HomePresenterImpl implements HomeContract.Presenter {
         String hexString = bigInt.toString(16);
 
         System.out.println(hexString);
-
-        ImageFile imagefile = new ImageFile(hexString);
+*/
+        ImageFile imagefile = new ImageFile("base 64 string");
 
         mApiInteractor.uploadImageVideo(mView, Constants.DetailPostUserNews + "mid="+moduleID+"&catid="+catID+"&title=" + title + "&desc=" + desc + "&uid="+mPrefsManager.getUserDetails().getUserid(), imagefile,photoFile, mEditProfileListener);
     }

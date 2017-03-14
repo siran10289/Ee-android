@@ -116,6 +116,8 @@ dependencies {
     compile "com.squareup.okhttp3:okhttp:$rootProject.okhttpVersion"
     compile "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttpVersion"
 
+
+
     // socket dependencies
     compile("io.socket:socket.io-client:$rootProject.ioClientVersion") {
         // excluding org.json which is provided by Android
