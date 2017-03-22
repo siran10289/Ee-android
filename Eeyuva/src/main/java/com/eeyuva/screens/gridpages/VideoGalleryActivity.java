@@ -3,11 +3,13 @@ package com.eeyuva.screens.gridpages;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.GridLayoutManager;
@@ -65,6 +67,8 @@ import javax.inject.Inject;
 import butterknife.Bind;
 import butterknife.OnClick;
 
+import static com.eeyuva.R.color.white;
+
 /**
  * Created by hari on 17/09/16.
  */
@@ -114,6 +118,8 @@ public class VideoGalleryActivity extends ButterAppCompatActivity implements Gri
     EditText etSearch;
     EditText mEdtModule;
     private String moduleID,categorayID;
+    @Bind(R.id.ll)
+    LinearLayout ll;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -123,7 +129,7 @@ public class VideoGalleryActivity extends ButterAppCompatActivity implements Gri
         mPresenter.setView(this);
 
         setSupportActionBar(mToolbar);
-        mToolbar.setTitleTextColor(getResources().getColor(R.color.white));
+        mToolbar.setTitleTextColor(getResources().getColor(white));
 
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -162,6 +168,8 @@ public class VideoGalleryActivity extends ButterAppCompatActivity implements Gri
     @Override
     public void setAdapter(PhotoGalleryResponse responseBody) {
         mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setBackgroundColor(Color.WHITE);
+        ll.setVisibility(View.GONE);
         mLayoutManager = new GridLayoutManager(this, 2);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mGridLoadAdapter = new VideoGalleryAdapter(this, this, responseBody.getResponse());
@@ -427,7 +435,7 @@ public class VideoGalleryActivity extends ButterAppCompatActivity implements Gri
                     mPhoto = true;
                     mVideo = false;
                     mBtnTakePhoto.setText("Take a Photo");
-                    mTxtPhoto.setTextColor(getResources().getColor(R.color.white));
+                    mTxtPhoto.setTextColor(getResources().getColor(white));
                     mTxtVideo.setTextColor(getResources().getColor(R.color.light_gray_line));
 
                 }
@@ -439,7 +447,7 @@ public class VideoGalleryActivity extends ButterAppCompatActivity implements Gri
                     mPhoto = false;
                     mVideo = true;
                     mBtnTakePhoto.setText("Take a Video");
-                    mTxtVideo.setTextColor(getResources().getColor(R.color.white));
+                    mTxtVideo.setTextColor(getResources().getColor(white));
                     mTxtPhoto.setTextColor(getResources().getColor(R.color.light_gray_line));
 
 

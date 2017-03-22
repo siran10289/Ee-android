@@ -355,7 +355,7 @@ public class DetailActivity extends ButterAppCompatActivity implements DetailCon
             String mOn = " on ";
             String complete = "Posted by: " + articleDetail.getCreatedby() + " on " + Utils.getISOTime(articleDetail.getCreateddate());
 
-            SpannableString styledString = new SpannableString("Posted by: " + articleDetail.getCreatedby() + " on " + Utils.getISOTime(articleDetail.getCreateddate()));
+            SpannableString styledString = new SpannableString("Posted by: " + articleDetail.getCreatedby() + " on " + Utils.getISOTime(articleDetail.getLivedate()));
             styledString.setSpan(new ForegroundColorSpan(Color.RED), 0, posted.length(), 0);
             styledString.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.colorAccent)), posted.length(), posted.length() + articleDetail.getCreatedby().length(), 0);
             styledString.setSpan(new ForegroundColorSpan(Color.RED), posted.length() + articleDetail.getCreatedby().length(), complete.length(), 0);
