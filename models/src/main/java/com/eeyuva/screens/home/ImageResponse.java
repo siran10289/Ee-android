@@ -3,6 +3,8 @@ package com.eeyuva.screens.home;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 /**
  * Created by Hari on 10/30/16.
  */
@@ -42,5 +44,35 @@ public class ImageResponse {
     @SerializedName("RESPONSE")
     @Expose
     private String statusResponse;
+    /*@SerializedName("RESPONSE")
+    @Expose
+    private List<RESPONSE> rESPONSE = null;
+
+    public class RESPONSE {
+
+        @SerializedName("categoryid")
+        @Expose
+        private String categoryid;
+        @SerializedName("categoryname")
+        @Expose
+        private String categoryname;
+
+        public String getCategoryid() {
+            return categoryid;
+        }
+
+        public void setCategoryid(String categoryid) {
+            this.categoryid = categoryid;
+        }
+
+        public String getCategoryname() {
+            return categoryname;
+        }
+
+        public void setCategoryname(String categoryname) {
+            this.categoryname = categoryname;
+        }
+
+    }*/
 
 }

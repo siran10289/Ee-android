@@ -1,11 +1,14 @@
 package com.eeyuva.utils;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.util.Log;
@@ -58,16 +61,17 @@ public class Utils {
     }
 
     public static void hideSoftKeyBoard(Activity activity) {
-        try{
+        try {
             View view = activity.getCurrentFocus();
             if (view != null) {
-                InputMethodManager imm = (InputMethodManager)activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+                InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
 
         }
     }
+
     public static void closeInput(final View caller) {
         caller.postDelayed(new Runnable() {
             @Override
@@ -83,6 +87,16 @@ public class Utils {
             phoneNo = "+" + formatPhoneNo(phoneNo);
             Intent callIntent = new Intent(Intent.ACTION_CALL);
             callIntent.setData(Uri.parse("tel:" + phoneNo));
+            if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
+                return;
+            }
             activity.startActivity(callIntent);
         } catch (Exception ex) {
             Log.i("log", "log" + ex.toString());
@@ -227,6 +241,10 @@ public class Utils {
         ConnectivityManager connectivityManager  = (ConnectivityManager)context. getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
+    public static void openBrowserWithURL(Activity activity,String url){
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+        activity.startActivity(browserIntent);
     }
 
 

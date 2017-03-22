@@ -79,5 +79,8 @@ public class Constants {
     public static String MESSAGE_DATA = "message";
     public static String MESSAGE_TAG = "tag";
     public static final String DISPLAY_MESSAGE_ACTION = "com.fetchr.delivrEx.fcm.DISPLAY_MESSAGE";
+    public static final String URL_PRIVACY_POLICY="http://www.eeyuva.com/privacy_policy";
+    public static final String URL_TERMS_CONDITIONS="http://www.eeyuva.com/privacy_policy";
+
 
 }

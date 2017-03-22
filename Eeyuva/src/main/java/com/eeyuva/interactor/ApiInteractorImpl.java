@@ -234,7 +234,7 @@ public class ApiInteractorImpl implements ApiInteractor {
     @Override
     public void uploadImageVideo(BaseView mView, String url, ImageFile encodedString, File file, LoadListener<ImageResponse> mEditProfileListener) {
         Log.e("CreatePost:",url);
-        Log.e("EncodedImageFile:",encodedString.getmImageString());
+        //Log.e("EncodedImageFile:",encodedString.getmImageString());
         UiCallback<ImageResponse> callback = new UiCallback(mView, mEditProfileListener, true);
         RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
         MultipartBody.Part body = MultipartBody.Part.createFormData("postpicdata", file.getName(), requestFile);

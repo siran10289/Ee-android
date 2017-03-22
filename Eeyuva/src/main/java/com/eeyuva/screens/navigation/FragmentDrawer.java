@@ -34,6 +34,7 @@ import com.eeyuva.screens.profile.notification.NotificationActivity;
 import com.eeyuva.screens.profile.stuffs.StuffsActivity;
 import com.eeyuva.screens.profile.userdetails.ProfileActivity;
 import com.eeyuva.screens.splash.SplashActivity;
+import com.eeyuva.utils.Utils;
 import com.eeyuva.utils.customdialog.DialogListener;
 import com.eeyuva.utils.customdialog.DialogUtils;
 import com.google.gson.Gson;
@@ -41,6 +42,11 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import okhttp3.internal.Util;
+
+import static com.eeyuva.utils.Constants.URL_PRIVACY_POLICY;
+import static com.eeyuva.utils.Constants.URL_TERMS_CONDITIONS;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -288,14 +294,17 @@ public class FragmentDrawer extends Fragment implements View.OnClickListener {
                         }else {
                             mDrawerLayout.closeDrawer(containerView);
                             ResponseList rl = getPosition(position);
-                            Intent intent =
-                                    new Intent(getActivity(), ArticlesActivity.class);
+                            Intent intent = new Intent(getActivity(), ArticlesActivity.class);
                             intent.putExtra("index", 0);
                             intent.putExtra("module_id", rl.getModuleid());
                             intent.putExtra("order_id", rl.getOrderid());
                             intent.putExtra("module_name", rl.getTitle());
                             startActivity(intent);
                         }
+                    }else if( mDrawerItems.get(position).getTitle().equalsIgnoreCase("Privacy")){
+                        Utils.openBrowserWithURL(getActivity(),URL_PRIVACY_POLICY);
+                    }else if( mDrawerItems.get(position).getTitle().equalsIgnoreCase("Terms of use")){
+                        Utils.openBrowserWithURL(getActivity(),URL_TERMS_CONDITIONS);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();

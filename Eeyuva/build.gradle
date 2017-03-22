@@ -26,7 +26,7 @@ android {
         applicationId "com.eeyuva"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 4
+        versionCode 5
         versionName "EeYuva 1.2.5"
 
         multiDexEnabled true
@@ -115,6 +115,8 @@ dependencies {
     // okHttp dependencies
     compile "com.squareup.okhttp3:okhttp:$rootProject.okhttpVersion"
     compile "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttpVersion"
+
+
 
     // socket dependencies
     compile("io.socket:socket.io-client:$rootProject.ioClientVersion") {
