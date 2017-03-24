@@ -116,7 +116,7 @@ public class DetailPresenterImpl implements DetailContract.Presenter {
         @Override
         public void onSuccess(ArticleDetailResponse responseBody) {
             if (responseBody.getResponse().size() != 0)
-                Log.e("ArticalDetail:",new Gson().toJson(responseBody).toString());
+                //Log.e("ArticalDetail:",new Gson().toJson(responseBody).toString());
                 mView.setArticleDetails(responseBody.getResponse().get(0));
         }
 

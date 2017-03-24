@@ -71,6 +71,9 @@ public class ArticleDetail {
     @SerializedName("share_link")
     @Expose
     private String shareLink;
+    @SerializedName("videopath")
+    @Expose
+    private String videopath;
 
 
     public String getDislikecount() {
@@ -333,6 +336,13 @@ public class ArticleDetail {
 
     public void setShareLink(String shareLink) {
         this.shareLink = shareLink;
+    }
+    public String getVideopath() {
+        return videopath;
+    }
+
+    public void setVideopath(String videopath) {
+        this.videopath = videopath;
     }
 
 

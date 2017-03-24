@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -53,6 +54,8 @@ import com.eeyuva.screens.Upload;
 import com.eeyuva.screens.authentication.LoginActivity;
 import com.eeyuva.screens.gridpages.GridHomeActivity;
 import com.eeyuva.screens.gridpages.PhotoListAdapter;
+import com.eeyuva.screens.gridpages.VideoGalleryActivity;
+import com.eeyuva.screens.gridpages.VideoPlayActivity;
 import com.eeyuva.screens.home.CatagoryList;
 import com.eeyuva.screens.home.HomeActivity;
 import com.eeyuva.screens.home.ImageResponse;
@@ -72,6 +75,7 @@ import com.squareup.picasso.Picasso;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -159,7 +163,7 @@ public class DetailActivity extends ButterAppCompatActivity implements DetailCon
     @Bind(R.id.scrollView)
     ScrollView mScrollView;
     public String mType;
-    private String[] mArticleImgList;
+    private List<String> mArticleImgList=new ArrayList<>();
     PagerContainer container;
     ViewPager pager;
     SwipeRefreshLayout mSwipeRefreshLayout;
@@ -259,19 +263,42 @@ public class DetailActivity extends ButterAppCompatActivity implements DetailCon
             e.printStackTrace();
         }
     }
-
-
-
     private class MyPagerAdapter extends PagerAdapter {
+        Drawable placeHolderDrawable;
+        String url;
 
         @Override
-        public Object instantiateItem(ViewGroup container, int position) {
+        public Object instantiateItem(ViewGroup container, final int position) {
 
             View view = LayoutInflater.from(DetailActivity.this).inflate(R.layout.item_detail_cover, null);
             ImageView imageView = (ImageView) view.findViewById(R.id.image_cover);
 //            imageView.setImageDrawable(getResources().getDrawable(mArticleImgList.covers[position]));
-            Log.i("mArticleImgList", "mArticleImgList" + mArticleImgList[position]);
-            Picasso.with(DetailActivity.this).load(mArticleImgList[position]).placeholder(getResources().getDrawable(R.drawable.ic_big_y_logo)).into(imageView);
+            Log.e("IsVideoFound:","CameInside");
+            url=mArticleImgList.get(position);
+
+            if(url.contains("mp4")){
+                Log.e("IsVideoFound",true+"");
+                placeHolderDrawable=getResources().getDrawable(R.drawable.video_play_background);
+                imageView.setImageDrawable(placeHolderDrawable);
+            }else {
+                Log.e("IsVideoFound",false+"");
+                placeHolderDrawable=getResources().getDrawable(R.drawable.ic_big_y_logo);
+                Picasso.with(DetailActivity.this)
+                        .load(url)
+                        .placeholder(placeHolderDrawable)
+                        .into(imageView);
+            }
+            imageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(url.contains("mp4")){
+                        Intent intent = new Intent(DetailActivity.this, VideoPlayActivity.class);
+                        intent.putExtra("url", url);
+                        startActivity(intent);
+                    }
+                }
+            });
+
             imageView.setScaleType(ImageView.ScaleType.FIT_XY);
             container.addView(view);
             return view;
@@ -284,7 +311,7 @@ public class DetailActivity extends ButterAppCompatActivity implements DetailCon
 
         @Override
         public int getCount() {
-            return mArticleImgList.length;
+            return mArticleImgList.size();
         }
 
         @Override
@@ -339,18 +366,38 @@ public class DetailActivity extends ButterAppCompatActivity implements DetailCon
     @Override
     public void setArticleDetails(ArticleDetail articleDetail) {
         try {
-            mSwipeRefreshLayout.setRefreshing(false);
-
-            mArticleDetail = articleDetail;
-            mTxtArticleTitle.setText(articleDetail.getTitle());
-            mArticleImgList = articleDetail.getGalleryimg().split(",");
-            Log.i("mArticleImgList", "mArticleImgList" + mArticleImgList.length);
-
             container = (PagerContainer) findViewById(R.id.pager_container);
             pager = container.getViewPager();
-            pager.setAdapter(new MyPagerAdapter());
-            pager.setClipChildren(false);
-            pager.setOffscreenPageLimit(15);
+            mSwipeRefreshLayout.setRefreshing(false);
+            mArticleDetail = articleDetail;
+            mTxtArticleTitle.setText(articleDetail.getTitle());
+            if(mArticleImgList.size()>0){
+                mArticleImgList.clear();
+            }
+            if(articleDetail.getGalleryimg()!=null&&!articleDetail.getGalleryimg().isEmpty()&&!articleDetail.getGalleryimg().equalsIgnoreCase("No images")) {
+                mArticleImgList= Arrays.asList(articleDetail.getGalleryimg().split(","));
+                //mArticleImgList = articleDetail.getGalleryimg().split(",");
+
+                if(!articleDetail.getVideopath().equalsIgnoreCase("No video")&&articleDetail.getVideopath()!=null&&!articleDetail.getVideopath().isEmpty()){
+                    mArticleImgList.add(articleDetail.getVideopath());
+                    Log.e("IsVideoFound:",articleDetail.getVideopath());
+                }
+                Log.e("mArticleImgList", mArticleImgList.size()+"");
+                if(mArticleImgList.size()>0) {
+                    pager.setAdapter(new MyPagerAdapter());
+                    pager.setClipChildren(false);
+                    pager.setOffscreenPageLimit(15);
+                }
+            }else if(!articleDetail.getVideopath().equalsIgnoreCase("No video")&&articleDetail.getVideopath()!=null&&!articleDetail.getVideopath().isEmpty()){
+
+                mArticleImgList.add(articleDetail.getVideopath());
+                if(mArticleImgList.size()>0) {
+                    Log.e("IsVideoFound:",articleDetail.getVideopath());
+                    pager.setAdapter(new MyPagerAdapter());
+                    pager.setClipChildren(false);
+                    pager.setOffscreenPageLimit(15);
+                }
+            }
             String posted = "Posted by: ";
             String mOn = " on ";
             String complete = "Posted by: " + articleDetail.getCreatedby() + " on " + Utils.getISOTime(articleDetail.getCreateddate());
@@ -483,8 +530,7 @@ public class DetailActivity extends ButterAppCompatActivity implements DetailCon
     }
 
     public void moveNext(int i) {
-        Intent intent =
-                new Intent(DetailActivity.this, GridHomeActivity.class);
+        Intent intent = new Intent(DetailActivity.this, GridHomeActivity.class);
         intent.putExtra("index", i);
         startActivity(intent);
     }
