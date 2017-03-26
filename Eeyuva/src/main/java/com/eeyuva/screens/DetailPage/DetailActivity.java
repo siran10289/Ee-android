@@ -41,6 +41,7 @@ import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.eeyuva.ButterAppCompatActivity;
 import com.eeyuva.R;
@@ -76,6 +77,7 @@ import com.squareup.picasso.Picasso;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -366,6 +368,7 @@ public class DetailActivity extends ButterAppCompatActivity implements DetailCon
     @Override
     public void setArticleDetails(ArticleDetail articleDetail) {
         try {
+
             container = (PagerContainer) findViewById(R.id.pager_container);
             pager = container.getViewPager();
             mSwipeRefreshLayout.setRefreshing(false);
@@ -373,9 +376,10 @@ public class DetailActivity extends ButterAppCompatActivity implements DetailCon
             mTxtArticleTitle.setText(articleDetail.getTitle());
             if(mArticleImgList.size()>0){
                 mArticleImgList.clear();
+
             }
             if(articleDetail.getGalleryimg()!=null&&!articleDetail.getGalleryimg().isEmpty()&&!articleDetail.getGalleryimg().equalsIgnoreCase("No images")) {
-                mArticleImgList= Arrays.asList(articleDetail.getGalleryimg().split(","));
+                mArticleImgList= getImageList(articleDetail.getGalleryimg());
                 //mArticleImgList = articleDetail.getGalleryimg().split(",");
 
                 if(!articleDetail.getVideopath().equalsIgnoreCase("No video")&&articleDetail.getVideopath()!=null&&!articleDetail.getVideopath().isEmpty()){
@@ -419,15 +423,19 @@ public class DetailActivity extends ButterAppCompatActivity implements DetailCon
             else
                 mBtnDislike.setText("Dislike");
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.e("Exception:",e.toString());
         }
+    }
+    private List<String> getImageList(String galleryImages){
+        List<String> list = new LinkedList<String>(Arrays.asList(galleryImages.split(",")));
+        return list;
     }
 
     @Override
     public void setOtherArticleDetails(List<ArticleDetail> response) {
         try {
-            mSwipeRefreshLayout.setRefreshing(false);
 
+            mSwipeRefreshLayout.setRefreshing(false);
             mHotModuleList = response;
             HotPAGES = mHotModuleList.size();
             HotFIRST_PAGE = HotPAGES * HotLOOPS / 2;

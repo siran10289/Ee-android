@@ -133,7 +133,7 @@ public class DetailPresenterImpl implements DetailContract.Presenter {
     LoadListener<ArticleDetailResponse> mOtherArticleListener = new LoadListener<ArticleDetailResponse>() {
         @Override
         public void onSuccess(ArticleDetailResponse responseBody) {
-            Log.e("Response:",new Gson().toJson(responseBody).toString());
+            //Log.e("Response:",new Gson().toJson(responseBody).toString());
             mView.setOtherArticleDetails(responseBody.getResponse());
         }
 
