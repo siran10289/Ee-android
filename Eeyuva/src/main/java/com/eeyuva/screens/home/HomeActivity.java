@@ -192,7 +192,6 @@ public class HomeActivity extends ButterAppCompatActivity implements HomeContrac
         FIRST_PAGE = PAGES * LOOPS / 2;
 
 
-
         HotPAGES = mHotModuleList.size();
         HotFIRST_PAGE = HotPAGES * HotLOOPS / 2;
 
