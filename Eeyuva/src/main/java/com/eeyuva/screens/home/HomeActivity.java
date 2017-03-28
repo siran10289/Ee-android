@@ -36,6 +36,7 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextSwitcher;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.eeyuva.ButterAppCompatActivity;
 import com.eeyuva.R;
@@ -195,7 +196,7 @@ public class HomeActivity extends ButterAppCompatActivity implements HomeContrac
         HotPAGES = mHotModuleList.size();
         HotFIRST_PAGE = HotPAGES * HotLOOPS / 2;
 
-        pager = (ViewPager) findViewById(R.id.infiniteviewpager);
+        /*pager = (ViewPager) findViewById(R.id.infiniteviewpager);
 
         infinitePagerAdapter = new InfinitePagerAdapter(this, this.getSupportFragmentManager());
         pager.setAdapter(infinitePagerAdapter);
@@ -204,23 +205,16 @@ public class HomeActivity extends ButterAppCompatActivity implements HomeContrac
         // Set current item to the middle page so we can fling to both
         // directions left and right
 
-        Log.e("FirstPage:",FIRST_PAGE+"");
+        Log.e("FirstPage:",FIRST_PAGE+""+mModuleList.get(0).getTitle());
+        label.setText("Box Office");
         pager.setCurrentItem(FIRST_PAGE);
+
 
         // Necessary or the pager will only have one extra page to show
         // make this at least however many pages you can see
         pager.setOffscreenPageLimit(3);
 
-        // Set margin for pages as a negative number, so a part of next and
-        // previous pages will be showed
-//        int currentapiVersion = android.os.Build.VERSION.SDK_INT;
-//        if (currentapiVersion >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-//            // Do something for lollipop and above versions
-//            pager.setPageMargin(-700);
-//        } else {
-////         do something for phones running an SDK before lollipop
-//            pager.setPageMargin(-400);
-//        }
+
         if (getResources().getString(R.string.size).equals("mdpi"))
             pager.setPageMargin(-600);
         else if (getResources().getString(R.string.size).equals("hdpi"))
@@ -265,7 +259,7 @@ public class HomeActivity extends ButterAppCompatActivity implements HomeContrac
                     mPresenter.getArticles(mModuleList.get((mScrolledToPosition % mModuleList.size())).getModuleid());
                 }
             }
-        });
+        });*/
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -311,16 +305,22 @@ public class HomeActivity extends ButterAppCompatActivity implements HomeContrac
         Log.e("Position:",""+mScrolledToPosition++);
        // pager.setCurrentItem(mScrolledToPosition++);
         pager.setCurrentItem(FIRST_PAGE);
-//        label.setText(mFinalModuleList.get((mScrolledToPosition % mFinalModuleList.size())).getTitle());
-//        mPresenter.getArticles(mFinalModuleList.get((mScrolledToPosition % mFinalModuleList.size())).getModuleid());
+
         pager.addOnPageChangeListener(new LinkagePager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 Log.i("position", "onPageScrolled" + position);
                 if (!initialflag) {
-                    label.setText(mFinalModuleList.get((position + 1 % mFinalModuleList.size())).getTitle());
-                    mPresenter.getArticles(mFinalModuleList.get((position + 1 % mFinalModuleList.size())).getModuleid());
-                    mScrolledToPosition = position + 1;
+                    if(position==85){
+                        label.setText(mModuleList.get(0).getTitle());
+                        mPresenter.getArticles(mModuleList.get(0).getModuleid());
+                        mScrolledToPosition = position + 1;
+                    }else {
+                        label.setText(mFinalModuleList.get((position + 1 % mFinalModuleList.size())).getTitle());
+                        mPresenter.getArticles(mFinalModuleList.get((position + 1 % mFinalModuleList.size())).getModuleid());
+                        mScrolledToPosition = position + 1;
+                    }
+
                 }
             }
 
@@ -334,6 +334,7 @@ public class HomeActivity extends ButterAppCompatActivity implements HomeContrac
             public void onPageScrollStateChanged(int state) {
                 Log.i("position", "onPageScrollStateChanged" + state);
                 Log.i("position", "mScrolledToPosition" + mScrolledToPosition);
+
 
                 if (state == 0) {
                     label.setText(mFinalModuleList.get((mScrolledToPosition % mFinalModuleList.size())).getTitle());

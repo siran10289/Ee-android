@@ -24,4 +24,6 @@ public interface BaseView {
 
     void showListenerDialog(String errorMsg);
 
+    void showErrorMessage(String message);
+
 }

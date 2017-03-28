@@ -241,6 +241,18 @@ public class ApiInteractorImpl implements ApiInteractor {
         Call<ImageResponse> call = mApi.uploadImageVideo(url, body);
         callback.start(call);
     }
+    private boolean validate(String moduleName,String title,String des){
+        if(moduleName.isEmpty()&&moduleName==null){
+            return false;
+        }
+        if(title.isEmpty()&&title==null){
+            return false;
+        }
+        if(des.isEmpty()&&des==null){
+            return false;
+        }
+        return true;
+    }
 
     @Override
     public void getUpdateNotification(BaseView mView, String url, LoadListener<NotificationEditResponse> mCommentListArticleListener) {
