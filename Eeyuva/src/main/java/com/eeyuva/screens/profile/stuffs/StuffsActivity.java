@@ -50,6 +50,7 @@ import com.eeyuva.screens.profile.model.NewsResponse;
 import com.eeyuva.screens.profile.model.NotificationResponse;
 import com.eeyuva.screens.profile.model.ProfileList;
 import com.eeyuva.screens.profile.model.ProfileResponse;
+import com.eeyuva.screens.profile.notification.NotificationActivity;
 import com.eeyuva.screens.profile.userdetails.IFragmentToActivity;
 import com.eeyuva.screens.profile.userdetails.ProfileActivity;
 import com.eeyuva.screens.searchpage.SearchActivity;
@@ -513,10 +514,17 @@ public class StuffsActivity extends ButterAppCompatActivity implements ProfileCo
                 @Override
                 public void onClick(View v) {
                     mDialog.dismiss();
-                    if (mBtnTakePhoto.getText().toString().trim().equalsIgnoreCase("Post")) {
-                        mPresenter.uploadImageOrVideo(photoFile, mEdtModule.getText().toString().trim(),
+                    if(mBtnTakePhoto.getText().toString().trim().equalsIgnoreCase("Post")) {
+                        if(Utils.validateUserPost(StuffsActivity.this,mEdtModule.getText().toString().trim(),
                                 mEdtTitle.getText().toString().trim(),
-                                mEdtDesc.getText().toString().trim(),moduleID,categorayID);
+                                mEdtDesc.getText().toString().trim())) {
+                            mDialog.dismiss();
+                            mPresenter.uploadImageOrVideo(photoFile, mEdtModule.getText().toString().trim(),
+                                    mEdtTitle.getText().toString().trim(),
+                                    mEdtDesc.getText().toString().trim(), moduleID, categorayID);
+                        }else{
+                            Utils.makeToast(StuffsActivity.this,"Please enter all the details");
+                        }
                     }
                     else {
                         mPresenter.snapPhotoClick();

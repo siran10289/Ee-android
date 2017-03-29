@@ -432,11 +432,17 @@ public class SearchActivity extends ButterAppCompatActivity implements HomeContr
                 @Override
                 public void onClick(View v) {
                     if (mBtnTakePhoto.getText().toString().trim().equalsIgnoreCase("Post")) {
-                        mDialog.dismiss();
                         if (mPhoto) {
-                            mPresenter.uploadImageOrVideo(photoFile, mEdtModule.getText().toString().trim(),
+                            if(Utils.validateUserPost(SearchActivity.this,mEdtModule.getText().toString().trim(),
                                     mEdtTitle.getText().toString().trim(),
-                                    mEdtDesc.getText().toString().trim(),moduleID,categorayID);
+                                    mEdtDesc.getText().toString().trim())) {
+                                mDialog.dismiss();
+                                mPresenter.uploadImageOrVideo(photoFile, mEdtModule.getText().toString().trim(),
+                                        mEdtTitle.getText().toString().trim(),
+                                        mEdtDesc.getText().toString().trim(), moduleID, categorayID);
+                            }else{
+                                Utils.makeToast(SearchActivity.this,"Please enter all the details");
+                            }
                         } else {
                             uploadVideo();
                         }

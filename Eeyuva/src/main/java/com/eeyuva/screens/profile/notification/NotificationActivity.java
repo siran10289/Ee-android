@@ -39,6 +39,7 @@ import com.eeyuva.screens.profile.DaggerProfileComponent;
 import com.eeyuva.screens.profile.ProfileComponent;
 import com.eeyuva.screens.profile.ProfileContract;
 import com.eeyuva.screens.profile.ProfileModule;
+import com.eeyuva.screens.profile.alerts.AlertActivity;
 import com.eeyuva.screens.profile.alerts.AlertAdapter;
 import com.eeyuva.screens.profile.model.AlertList;
 import com.eeyuva.screens.profile.model.CommentResponse;
@@ -211,18 +212,21 @@ public class NotificationActivity extends ButterAppCompatActivity implements Pro
 
     private String getModuleId() {
         String modid = "";
-        if (mAlertAdapter.getAlertList().size() != 0)
+        if (mAlertAdapter.getAlertList().size() != 0) {
             for (ResponseList rs : mAlertAdapter.getAlertList()) {
-                if (rs.isSelected())
+                if (rs.isSelected()) {
                     modid = modid + "," + rs.getModuleid();
+                }
             }
-        modid = modid.substring(1, modid.length());
+            if(!modid.isEmpty()&&modid!=null) {
+                modid = modid.substring(1, modid.length());
+            }
+        }
         return modid;
     }
 
     public void moveNext(int i) {
-        Intent intent =
-                new Intent(NotificationActivity.this, GridHomeActivity.class);
+        Intent intent = new Intent(NotificationActivity.this, GridHomeActivity.class);
         intent.putExtra("index", i);
         startActivity(intent);
     }
@@ -377,12 +381,21 @@ public class NotificationActivity extends ButterAppCompatActivity implements Pro
                 @Override
                 public void onClick(View v) {
                     mDialog.dismiss();
-                    if (mBtnTakePhoto.getText().toString().trim().equalsIgnoreCase("Post"))
-                        mPresenter.uploadImageOrVideo(photoFile, mEdtModule.getText().toString().trim(),
+                    if(mBtnTakePhoto.getText().toString().trim().equalsIgnoreCase("Post")) {
+                        if(Utils.validateUserPost(NotificationActivity.this,mEdtModule.getText().toString().trim(),
                                 mEdtTitle.getText().toString().trim(),
-                                mEdtDesc.getText().toString().trim(),moduleID,categorayID);
-                    else
+                                mEdtDesc.getText().toString().trim())) {
+                            mDialog.dismiss();
+                            mPresenter.uploadImageOrVideo(photoFile, mEdtModule.getText().toString().trim(),
+                                    mEdtTitle.getText().toString().trim(),
+                                    mEdtDesc.getText().toString().trim(), moduleID, categorayID);
+                        }else{
+                            Utils.makeToast(NotificationActivity.this,"Please enter all the details");
+                        }
+                    }
+                    else {
                         mPresenter.snapPhotoClick();
+                    }
 
                 }
             });
