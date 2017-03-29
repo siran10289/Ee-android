@@ -24,7 +24,7 @@
                 android:layout_height="match_parent"
                 android:layout_centerVertical="true"
                 android:layout_gravity="center"
-                android:src="@color/green"
+                android:src="@color/white"
                 android:scaleType="fitXY" />
 
             <LinearLayout

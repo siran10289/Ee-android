@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.util.Base64;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.eeyuva.base.BaseView;
 import com.eeyuva.base.LoadListener;
@@ -133,7 +134,7 @@ public class DetailPresenterImpl implements DetailContract.Presenter {
     LoadListener<ArticleDetailResponse> mOtherArticleListener = new LoadListener<ArticleDetailResponse>() {
         @Override
         public void onSuccess(ArticleDetailResponse responseBody) {
-            Log.e("Response:",new Gson().toJson(responseBody).toString());
+            //Log.e("Response:",new Gson().toJson(responseBody).toString());
             mView.setOtherArticleDetails(responseBody.getResponse());
         }
 
@@ -367,9 +368,24 @@ public class DetailPresenterImpl implements DetailContract.Presenter {
         System.out.println(hexString);
 
         ImageFile imagefile = new ImageFile(hexString);
+        if(validate(modulename,title,desc)) {
+            mApiInteractor.uploadImageVideo(mView, Constants.DetailPostUserNews + "mid=4&catid=Cat_6395ebd0f&title=" + title + "&desc=" + desc + "&uid=" + mPrefsManager.getUserDetails().getUserid(), imagefile, photoFile, mEditProfileListener);
+        }else{
+            mView.showErrorMessage("Please fill all the details");
+        }
 
-        mApiInteractor.uploadImageVideo(mView, Constants.DetailPostUserNews + "mid=4&catid=Cat_6395ebd0f&title=" + title + "&desc=" + desc + "&uid=" + mPrefsManager.getUserDetails().getUserid(), imagefile,photoFile, mEditProfileListener);
-
+    }
+    private boolean validate(String moduleName,String title,String des){
+        if(moduleName.isEmpty()&&moduleName==null){
+            return false;
+        }
+        if(title.isEmpty()&&title==null){
+            return false;
+        }
+        if(des.isEmpty()&&des==null){
+            return false;
+        }
+        return true;
     }
 
 

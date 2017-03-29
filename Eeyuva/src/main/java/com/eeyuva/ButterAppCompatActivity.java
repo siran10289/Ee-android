@@ -12,6 +12,7 @@ import android.support.multidex.MultiDex;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.eeyuva.base.BaseView;
 import com.eeyuva.screens.DetailPage.DetailActivity;
@@ -142,6 +143,12 @@ public class ButterAppCompatActivity extends AppCompatActivity implements BaseVi
 
     @Override
     public void showListenerDialog(String errorMsg) {
+
+    }
+
+    @Override
+    public void showErrorMessage(String message) {
+        Toast.makeText(ButterAppCompatActivity.this, message, Toast.LENGTH_SHORT).show();
 
     }
 
