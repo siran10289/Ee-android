@@ -188,6 +188,7 @@ public class HomeActivity extends ButterAppCompatActivity implements HomeContrac
             mFinalModuleList.addAll(mModuleList);
         }
 
+
         PAGES = mModuleList.size();
         FIRST_PAGE = PAGES * LOOPS / 2;
 
@@ -230,7 +231,6 @@ public class HomeActivity extends ButterAppCompatActivity implements HomeContrac
             pager.setPageMargin(-650);
         else if (getResources().getString(R.string.size).equals("xxhdpi"))
             pager.setPageMargin(-650);
-
         Log.i("screen size", "screen" + getResources().getString(R.string.dimens));
         try {
             if (getIntent().getExtras().getString("status").equalsIgnoreCase("clear"))
