@@ -3,6 +3,7 @@ package com.eeyuva.screens.DetailPage;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,15 +48,16 @@ public class CommentsLoadAdapter extends RecyclerView.Adapter<CommentsLoadAdapte
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         final CommentsList comments = mCommentList.get(position);
+        Log.e("Status:",comments.getStatus());
         try {
             holder.txtTitle.setText(comments.getCommentby());
             holder.txtSubDesc.setText(comments.getCommentDescription());
             holder.txtDate.setText(Utils.getISOTime(comments.getCommentDate()));
 //            holder.txtStatus.setText(comments.getCommentDate());
-            if (comments.getStatus().equalsIgnoreCase("delete")) {
+            if (comments.getStatus().equalsIgnoreCase("inactive")) {
                 holder.txtStatus.setText("UnPublished");
                 holder.txtStatus.setBackground(mContext.getResources().getDrawable(R.drawable.publish_btn));
-            } else {
+            } else if(comments.getStatus().equalsIgnoreCase("active")){
                 holder.txtStatus.setText("Published");
                 holder.txtStatus.setBackground(mContext.getResources().getDrawable(R.drawable.dialog_green_btn));
             }

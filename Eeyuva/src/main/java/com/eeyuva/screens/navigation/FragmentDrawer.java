@@ -216,27 +216,27 @@ public class FragmentDrawer extends Fragment implements View.OnClickListener {
     private void setListDrawer() {
         mDrawerItems = new ArrayList<AppSetting>();
         mDrawerItems.add(new AppSetting("Entertainment", R.drawable.m_smile, true));
-        mDrawerItems.add(new AppSetting("Box office", R.drawable.boxoffice, false));
-        mDrawerItems.add(new AppSetting("Elements of music", R.drawable.music, false));
+        mDrawerItems.add(new AppSetting("Box Office", R.drawable.boxoffice, false));
+        mDrawerItems.add(new AppSetting("Elements of Music", R.drawable.music, false));
         mDrawerItems.add(new AppSetting("Humour Unlimited", R.drawable.jokes, false));
-        mDrawerItems.add(new AppSetting("Events and action", R.drawable.events, false));
+        mDrawerItems.add(new AppSetting("Events & Actions", R.drawable.events, false));
 //        mDrawerItems.add(new AppSetting("Puzzles and games", R.drawable.ic_content_add, false));
-        mDrawerItems.add(new AppSetting("Tech trends", R.drawable.m_tech_trends, true));
-        mDrawerItems.add(new AppSetting("Youth trends", R.drawable.youth, false));
+        mDrawerItems.add(new AppSetting("Tech Trends", R.drawable.m_tech_trends, true));
+        mDrawerItems.add(new AppSetting("Youth Trends", R.drawable.youth, false));
         mDrawerItems.add(new AppSetting("Cars & Bikes", R.drawable.car, false));
         mDrawerItems.add(new AppSetting("Gadgets", R.drawable.gadgets, false));
-        mDrawerItems.add(new AppSetting("It's my Life", R.drawable.m_its_my_life, true));
-        mDrawerItems.add(new AppSetting("Health & fitness", R.drawable.fitness, false));
-        mDrawerItems.add(new AppSetting("Beauty & glamour", R.drawable.beauty_glamor, false));
-        mDrawerItems.add(new AppSetting("Fashion & styles", R.drawable.fashion, false));
-        mDrawerItems.add(new AppSetting("Just food", R.drawable.m_food, false));
+        mDrawerItems.add(new AppSetting("It's My Life", R.drawable.m_its_my_life, true));
+        mDrawerItems.add(new AppSetting("Health & Fitness", R.drawable.fitness, false));
+        mDrawerItems.add(new AppSetting("Beauty & Glamour", R.drawable.beauty_glamor, false));
+        mDrawerItems.add(new AppSetting("Fashion & Style", R.drawable.fashion, false));
+        mDrawerItems.add(new AppSetting("Just Food", R.drawable.m_food, false));
         mDrawerItems.add(new AppSetting("Travel & Tourism", R.drawable.travel, false));
-        mDrawerItems.add(new AppSetting("Info Box", R.drawable.m_info_box, true));
+        mDrawerItems.add(new AppSetting("Infobox", R.drawable.m_info_box, true));
         mDrawerItems.add(new AppSetting("Career & Jobs", R.drawable.m_caree_job, false));
         mDrawerItems.add(new AppSetting("Money & Business", R.drawable.money_business, false));
         mDrawerItems.add(new AppSetting("Sports & Games", R.drawable.sports_games, false));
-        mDrawerItems.add(new AppSetting("Book mark", R.drawable.m_bookmark, false));
-        mDrawerItems.add(new AppSetting("News room", R.drawable.newroom, false));
+        mDrawerItems.add(new AppSetting("Bookmarks", R.drawable.m_bookmark, false));
+        mDrawerItems.add(new AppSetting("News Room", R.drawable.newroom, false));
         mDrawerItems.add(new AppSetting("Account Settings", R.drawable.account_settings, true));
         if (getUserDetails() != null) {
             mDrawerItems.add(new AppSetting("Change Password", 0, false));
@@ -245,7 +245,7 @@ public class FragmentDrawer extends Fragment implements View.OnClickListener {
         mDrawerItems.add(new AppSetting("Notification", 0, false));
         mDrawerItems.add(new AppSetting("About App", 0, false));
         mDrawerItems.add(new AppSetting("Privacy", R.drawable.m_privacy, true));
-        mDrawerItems.add(new AppSetting("Terms of use", 0, true));
+        mDrawerItems.add(new AppSetting("Terms of Use", 0, true));
 
         // setting the nav drawer list adapter
         mAdapter = new NavDrawerListAdapter(getActivity(), mDrawerItems);
@@ -303,7 +303,7 @@ public class FragmentDrawer extends Fragment implements View.OnClickListener {
                         }
                     }else if( mDrawerItems.get(position).getTitle().equalsIgnoreCase("Privacy")){
                         Utils.openBrowserWithURL(getActivity(),URL_PRIVACY_POLICY);
-                    }else if( mDrawerItems.get(position).getTitle().equalsIgnoreCase("Terms of use")){
+                    }else if( mDrawerItems.get(position).getTitle().equalsIgnoreCase("Terms of Use")){
                         Utils.openBrowserWithURL(getActivity(),URL_TERMS_CONDITIONS);
                     }
                 } catch (Exception e) {

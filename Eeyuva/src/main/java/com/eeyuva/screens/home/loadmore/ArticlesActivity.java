@@ -9,6 +9,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -118,6 +119,7 @@ public class ArticlesActivity extends ButterAppCompatActivity implements HomeCon
     EditText etSearch;
     EditText mEdtModule;
     private String moduleID,categorayID;
+    SwipeRefreshLayout mSwipeRefreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -134,6 +136,13 @@ public class ArticlesActivity extends ButterAppCompatActivity implements HomeCon
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         drawerFragment = (FragmentDrawer) getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
+        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.activity_main_swipe_refresh_layout);
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                mPresenter.getArticles(mModuleId);
+            }
+        });
 
         mPrevIndex = getIntent().getExtras().getInt("index");
         mModuleId = getIntent().getExtras().getString("module_id");
@@ -254,14 +263,14 @@ public class ArticlesActivity extends ButterAppCompatActivity implements HomeCon
 
     @Override
     public void setArticleAdapterNotify(List<ResponseItem> responseItem) {
+        mSwipeRefreshLayout.setRefreshing(false);
         initAdapter(responseItem);
     }
 
 
     @Override
     public void onItemClick(String articleid, String modid) {
-        Intent intent =
-                new Intent(ArticlesActivity.this, DetailActivity.class);
+        Intent intent = new Intent(ArticlesActivity.this, DetailActivity.class);
         intent.putExtra("module_id", mModuleId);
         intent.putExtra("article_id", articleid);
 //        intent.putExtra("order_id", mOrderId);
