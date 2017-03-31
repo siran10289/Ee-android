@@ -21,49 +21,63 @@
                 android:id="@+id/LayToolbar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_alignParentTop="true"
                 android:layout_above="@+id/LayBottom"
+                android:layout_alignParentTop="true"
                 android:orientation="vertical">
 
                 <include
                     android:id="@+id/tool_bar"
                     layout="@layout/toolbar"></include>
+
                 <include
                     android:id="@+id/search_view"
                     layout="@layout/search_dialog"
                     android:visibility="gone"></include>
 
-                <TextView
-                    android:id="@+id/txtHotStories"
+                <android.support.v4.widget.SwipeRefreshLayout
+                    android:id="@+id/activity_main_swipe_refresh_layout"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="left"
-                    android:padding="10dp"
-                    android:text="Hot Stories"
-                    android:textAllCaps="true"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="@color/black"
-                    android:textStyle="bold" />
+                    android:layout_height="wrap_content">
 
-                <View
-                    android:id="@+id/txtView"
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:layout_below="@+id/txtHotStories"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:background="@color/colorAccent" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
 
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/orderlist"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:padding="8dp"
-                    android:scrollbarSize="3dp"
-                    android:scrollbarThumbVertical="@color/colorPrimary"
-                    android:scrollbars="vertical" />
+                        <TextView
+                            android:id="@+id/txtHotStories"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="left"
+                            android:padding="10dp"
+                            android:text="Hot Stories"
+                            android:textAllCaps="true"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="@color/black"
+                            android:textStyle="bold" />
+
+                        <View
+                            android:id="@+id/txtView"
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_below="@+id/txtHotStories"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:background="@color/colorAccent" />
+
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/orderlist"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:padding="8dp"
+                            android:scrollbarSize="3dp"
+                            android:scrollbarThumbVertical="@color/colorPrimary"
+                            android:scrollbars="vertical" />
+                    </LinearLayout>
+                </android.support.v4.widget.SwipeRefreshLayout>
 
 
             </LinearLayout>

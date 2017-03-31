@@ -48,6 +48,18 @@ public class ResponseItem {
     @Expose
     private String innerpic;
 
+    public String getModuleID() {
+        return moduleID;
+    }
+
+    public void setModuleID(String moduleID) {
+        this.moduleID = moduleID;
+    }
+
+    @SerializedName("moduleid")
+    @Expose
+    private String moduleID;
+
     public boolean getLoadtype() {
         return loadtype;
     }

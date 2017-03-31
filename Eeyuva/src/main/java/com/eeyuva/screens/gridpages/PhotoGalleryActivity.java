@@ -365,11 +365,17 @@ public class PhotoGalleryActivity extends ButterAppCompatActivity implements Gri
                 @Override
                 public void onClick(View v) {
                     if (mBtnTakePhoto.getText().toString().trim().equalsIgnoreCase("Post")) {
-                        mDialog.dismiss();
                         if (mPhoto) {
-                            mPresenter.uploadImageOrVideo(photoFile, mEdtModule.getText().toString().trim(),
+                            if(Utils.validateUserPost(PhotoGalleryActivity.this,mEdtModule.getText().toString().trim(),
                                     mEdtTitle.getText().toString().trim(),
-                                    mEdtDesc.getText().toString().trim(),moduleID,categorayID);
+                                    mEdtDesc.getText().toString().trim())) {
+                                mDialog.dismiss();
+                                mPresenter.uploadImageOrVideo(photoFile, mEdtModule.getText().toString().trim(),
+                                        mEdtTitle.getText().toString().trim(),
+                                        mEdtDesc.getText().toString().trim(), moduleID, categorayID);
+                            }else{
+                                Utils.makeToast(PhotoGalleryActivity.this,"Please enter all the details");
+                            }
                         } else {
                             uploadVideo();
                         }

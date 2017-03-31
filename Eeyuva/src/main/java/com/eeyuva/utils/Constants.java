@@ -17,7 +17,7 @@ public class Constants {
     public static final String DetailGetArticleInfo = getDomainName() + "getarticleinfo.php?";
     public static final String DetailGetRelatedArticles = getDomainName() + "getrelatedarticles.php?";
     public static final String DetailLikeDislike = getDevDomainName() + "mlike_dislike/?";
-    public static final String DetailfetchUserCommments = getDomainName() + "fetchusercomments.php?";
+    public static final String DetailfetchUserCommments = getDomainName() + "fetchmodusercomments.php?";
     public static final String DetailPostComments = getDomainName() + "postcomments.php?";
     public static final String DetailModuleWiseUserDetails = getDomainName() + "getmodulewiseusernewsdetails.php?";
     public static final String DetailGetUserDetail = getDomainName() + "getusernewsdetails.php?";

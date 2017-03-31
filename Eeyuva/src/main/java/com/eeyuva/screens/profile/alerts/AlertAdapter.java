@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,12 +51,26 @@ public class AlertAdapter extends RecyclerView.Adapter<AlertAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         final AlertList articles = mAlertList.get(position);
+        Log.e("Status:",articles.getStatus());
         try {
+           if(articles.getMsgtype().equalsIgnoreCase("Comment")) {
+               if (articles.getStatus().equals("inactive")) {
+                   holder.txtTitle.setText("Your comment on "+articles.getTitle()+" has been unpublished");
+               } else if (articles.getStatus().equals("active")) {
+                   holder.txtTitle.setText("Your comment on "+articles.getTitle()+" has been published");
+               }else {
+                   holder.txtTitle.setText("Your comment on "+articles.getTitle()+" has been rejected");
+               }
+           }else if(articles.getMsgtype().equalsIgnoreCase("Usernews")){
+               if (articles.getStatus().equals("inactive")) {
+                   holder.txtTitle.setText("Your article "+articles.getTitle()+ " has been unpublished");
+               } else if (articles.getStatus().equals("active")) {
+                   holder.txtTitle.setText("Your article "+articles.getTitle()+ " has been published");
+               }else {
+                   holder.txtTitle.setText("Your article "+articles.getTitle()+ " has been rejected");
+               }
 
-            if (articles.getStatus().equals("inactive"))
-                holder.txtTitle.setText(getRejectExactString(articles));
-            else if (articles.getStatus().equals("active"))
-                holder.txtTitle.setText(getApproveExactString(articles));
+           }
 
             holder.txtType.setText(articles.getModuleName());
             holder.txtDate.setText(Utils.getISOTime(articles.getDate()));
@@ -67,9 +82,9 @@ public class AlertAdapter extends RecyclerView.Adapter<AlertAdapter.ViewHolder> 
         }
     }
 
-    private SpannableString getApproveExactString(AlertList articles) {
+   /* private SpannableString getApproveExactString(AlertList articles) {
         String admin = "Admin ";
-        String approved = "approved ";
+        String approved = "active";
         String your = "your ";
         String on = " on ";
         String complete = admin + approved + your + articles.getMsgtype() + on + '"' + articles.getTitle() + '"';
@@ -82,7 +97,7 @@ public class AlertAdapter extends RecyclerView.Adapter<AlertAdapter.ViewHolder> 
 
     private SpannableString getRejectExactString(AlertList articles) {
         String admin = "Admin ";
-        String approved = "rejected ";
+        String approved = "inactive";
         String your = "your ";
         String on = " on ";
         String complete = admin + approved + your + articles.getMsgtype() + on + '"' + articles.getTitle() + '"';
@@ -92,7 +107,7 @@ public class AlertAdapter extends RecyclerView.Adapter<AlertAdapter.ViewHolder> 
         styledString.setSpan(new ForegroundColorSpan(mContext.getResources().getColor(R.color.colorAccent)), (admin + approved + your + articles.getMsgtype() + on).length(), complete.length(), 0);
 
         return styledString;
-    }
+    }*/
 
 
     private String getSubString(String summary) {

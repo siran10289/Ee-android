@@ -82,6 +82,7 @@ public class ApiInteractorImpl implements ApiInteractor {
 
     @Override
     public void getArticlesResponse(BaseView mView, String url, LoadListener<GetArticleResponse> mArticlesListener, boolean state) {
+        Log.e("URL:",url);
         UiCallback<GetArticleResponse> callback = new UiCallback(mView, mArticlesListener, state);
         Call<GetArticleResponse> call = mApi.getArticles(url);
         callback.start(call);

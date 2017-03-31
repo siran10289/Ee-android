@@ -165,6 +165,11 @@ public class HomeActivity extends ButterAppCompatActivity implements HomeContrac
     EditText etSearch;
     EditText mEdtModule;
     private String moduleID,categorayID;
+    private int homePosition;
+    private String modID,orderID,title;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -188,6 +193,7 @@ public class HomeActivity extends ButterAppCompatActivity implements HomeContrac
         for (int i = 0; i <= 1000; i++) {
             mFinalModuleList.addAll(mModuleList);
         }
+
 
         PAGES = mModuleList.size();
         FIRST_PAGE = PAGES * LOOPS / 2;
@@ -223,7 +229,6 @@ public class HomeActivity extends ButterAppCompatActivity implements HomeContrac
             pager.setPageMargin(-650);
         else if (getResources().getString(R.string.size).equals("xxhdpi"))
             pager.setPageMargin(-650);
-
         Log.i("screen size", "screen" + getResources().getString(R.string.dimens));
         try {
             if (getIntent().getExtras().getString("status").equalsIgnoreCase("clear"))
@@ -312,10 +317,12 @@ public class HomeActivity extends ButterAppCompatActivity implements HomeContrac
                 Log.i("position", "onPageScrolled" + position);
                 if (!initialflag) {
                     if(position==85){
+                        homePosition=position;
                         label.setText(mModuleList.get(0).getTitle());
                         mPresenter.getArticles(mModuleList.get(0).getModuleid());
                         mScrolledToPosition = position + 1;
                     }else {
+                        homePosition=-1;
                         label.setText(mFinalModuleList.get((position + 1 % mFinalModuleList.size())).getTitle());
                         mPresenter.getArticles(mFinalModuleList.get((position + 1 % mFinalModuleList.size())).getModuleid());
                         mScrolledToPosition = position + 1;
@@ -360,13 +367,24 @@ public class HomeActivity extends ButterAppCompatActivity implements HomeContrac
 
     @OnClick(R.id.imgLoadMore)
     public void onLoadMoreClick() {
-        Intent intent =
-                new Intent(HomeActivity.this, ArticlesActivity.class);
-        intent.putExtra("index", mFinalModuleList.size());
-        intent.putExtra("module_id", mFinalModuleList.get(mScrolledToPosition % mFinalModuleList.size()).getModuleid());
-        intent.putExtra("order_id", mFinalModuleList.get(mScrolledToPosition % mFinalModuleList.size()).getOrderid());
-        intent.putExtra("module_name", mFinalModuleList.get(mScrolledToPosition % mFinalModuleList.size()).getTitle());
-        startActivity(intent);
+        if(homePosition==85){
+
+            Intent intent = new Intent(HomeActivity.this, ArticlesActivity.class);
+            intent.putExtra("index", mFinalModuleList.size());
+            intent.putExtra("module_id", mModuleList.get(0).getModuleid());
+            intent.putExtra("order_id", mModuleList.get(0).getOrderid());
+            intent.putExtra("module_name", mModuleList.get(0).getTitle());
+            startActivity(intent);
+
+        }else{
+            Intent intent = new Intent(HomeActivity.this, ArticlesActivity.class);
+            intent.putExtra("index", mFinalModuleList.size());
+            intent.putExtra("module_id", mFinalModuleList.get(mScrolledToPosition % mFinalModuleList.size()).getModuleid());
+            intent.putExtra("order_id", mFinalModuleList.get(mScrolledToPosition % mFinalModuleList.size()).getOrderid());
+            intent.putExtra("module_name", mFinalModuleList.get(mScrolledToPosition % mFinalModuleList.size()).getTitle());
+            startActivity(intent);
+        }
+
     }
 
     @OnClick(R.id.imgHome)
@@ -504,7 +522,8 @@ public class HomeActivity extends ButterAppCompatActivity implements HomeContrac
     public void onItemClick(String articleid, String modid) {
         Intent intent = new Intent(HomeActivity.this, DetailActivity.class);
         intent.putExtra("article_id", articleid);
-        intent.putExtra("module_id", mFinalModuleList.get(mScrolledToPosition % mFinalModuleList.size()).getModuleid());
+        intent.putExtra("module_id", modid);
+        //intent.putExtra("module_id", mFinalModuleList.get(mScrolledToPosition % mFinalModuleList.size()).getModuleid());
 //        intent.putExtra("order_id", mFinalModuleList.get(mScrolledToPosition % mFinalModuleList.size()).getOrderid());
         intent.putExtra("type", "home");
         startActivity(intent);
@@ -724,11 +743,17 @@ public class HomeActivity extends ButterAppCompatActivity implements HomeContrac
                 @Override
                 public void onClick(View v) {
                     if (mBtnTakePhoto.getText().toString().trim().equalsIgnoreCase("Post")) {
-                        mDialog.dismiss();
                         if (mPhoto) {
-                            mPresenter.uploadImageOrVideo(photoFile, mEdtModule.getText().toString().trim(),
+                            if(Utils.validateUserPost(HomeActivity.this,mEdtModule.getText().toString().trim(),
                                     mEdtTitle.getText().toString().trim(),
-                                    mEdtDesc.getText().toString().trim(),moduleID,categorayID);
+                                    mEdtDesc.getText().toString().trim())) {
+                                mDialog.dismiss();
+                                mPresenter.uploadImageOrVideo(photoFile, mEdtModule.getText().toString().trim(),
+                                        mEdtTitle.getText().toString().trim(),
+                                        mEdtDesc.getText().toString().trim(), moduleID, categorayID);
+                            }else{
+                                Utils.makeToast(HomeActivity.this,"Please enter all the details");
+                            }
                         } else {
                             uploadVideo();
                         }

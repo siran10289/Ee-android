@@ -19,6 +19,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.eeyuva.screens.searchpage.SearchActivity;
 import com.google.gson.Gson;
@@ -245,6 +246,21 @@ public class Utils {
     public static void openBrowserWithURL(Activity activity,String url){
         Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
         activity.startActivity(browserIntent);
+    }
+    public static boolean validateUserPost(Activity activity,String moduleName,String title,String description){
+        if(moduleName.isEmpty()||moduleName==null){
+            return false;
+        }
+        if(title.isEmpty()||title==null){
+            return false;
+        }
+        if(description.isEmpty()||description==null){
+            return false;
+        }
+        return true;
+    }
+    public static void makeToast(Activity activity,String message){
+        Toast.makeText(activity,message , Toast.LENGTH_SHORT).show();
     }
 
 
