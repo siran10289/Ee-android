@@ -57,7 +57,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             holder.txtSubDesc.setVisibility(View.INVISIBLE);
 //            holder.txtDate.setText(getISOTime(articles.()));
             Picasso.with(mContext).load(articles.getThumbimg()).placeholder(mContext.getResources().getDrawable(R.drawable.y_logo)).transform(new RoundedTransformation(8, 0)).resize(80, 80).into(holder.imgArticle);
-            holder.imgArticle.setVisibility(View.GONE);
+            //holder.imgArticle.setVisibility(View.GONE);
             holder.card_row_list_order.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

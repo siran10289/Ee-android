@@ -128,7 +128,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
             txtDate = (TextView) v.findViewById(R.id.txtDate);
             txtType = (TextView) v.findViewById(R.id.txtType);
             imgArticle = (ImageView) v.findViewById(R.id.imgArticle);
-            imgArticle = (ImageView) v.findViewById(R.id.imgArticle);
+
 
         }
     }

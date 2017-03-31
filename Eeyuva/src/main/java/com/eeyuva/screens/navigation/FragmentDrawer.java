@@ -19,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.eeyuva.R;
 import com.eeyuva.screens.abouapp.AboutAppActivity;
@@ -260,7 +261,7 @@ public class FragmentDrawer extends Fragment implements View.OnClickListener {
 //                    case 22:
                 try {
                     if (!mDrawerItems.get(position).isHeader()) {
-                        if (mDrawerItems.get(position).getTitle().equalsIgnoreCase("logout")) {
+                        if (mDrawerItems.get(position).getTitle().equalsIgnoreCase("Logout")) {
                             mDrawerLayout.closeDrawer(containerView);
                             showListenerDialog("User logged out succesfully");
                         } else if (mDrawerItems.get(position).getTitle().equalsIgnoreCase("Change Password")) {
@@ -278,14 +279,12 @@ public class FragmentDrawer extends Fragment implements View.OnClickListener {
                             Intent intent =
                                     new Intent(getActivity(), LoginActivity.class);
                             startActivity(intent);
-                        } else if (mDrawerItems.get(position).getTitle().equalsIgnoreCase("notification")) {
+                        } else if (mDrawerItems.get(position).getTitle().equalsIgnoreCase("Notification")) {
                             if (getUserDetails() != null) {
-                                Intent intent =
-                                        new Intent(getActivity(), NotificationActivity.class);
+                                Intent intent = new Intent(getActivity(), NotificationActivity.class);
                                 startActivity(intent);
                             } else {
-                                Intent intent =
-                                        new Intent(getActivity(), LoginActivity.class);
+                                Intent intent =new Intent(getActivity(), LoginActivity.class);
                                 startActivity(intent);
                             }
                         }else if( mDrawerItems.get(position).getTitle().equalsIgnoreCase("About App")){
@@ -357,16 +356,24 @@ public class FragmentDrawer extends Fragment implements View.OnClickListener {
 
     public void setList(List<ResponseList> modules) {
         this.mMenuModuleList = modules;
+
         Log.i("mMenuModuleList", "mMenuModuleList" + mMenuModuleList.size());
     }
 
 
+
     private ResponseList getPosition(int position) {
-        String[] s = mDrawerItems.get(position).getTitle().split(" ");
+        String s = mDrawerItems.get(position).getTitle();
+        Log.i("option:",s.toString());
         for (ResponseList Rl : mMenuModuleList) {
-            Log.i("mMenuModuleListtitle", "mMenuModuleList" + Rl.getTitle() + "," + mDrawerItems.get(position).getTitle());
-            if ((Rl.getTitle().toLowerCase()).contains(s[0].toLowerCase()))
+            Log.i("mMenuModuleListtitle", Rl.getTitle());
+            if(Rl.getTitle().equalsIgnoreCase("Book Mark")){
+                Rl.setTitle("Bookmarks");
+            }
+            if ((Rl.getTitle().toLowerCase()).equalsIgnoreCase(s.toLowerCase())) {
+                Log.i("result", "true");
                 return Rl;
+            }
         }
         return null;
     }

@@ -55,7 +55,7 @@ public class AlertAdapter extends RecyclerView.Adapter<AlertAdapter.ViewHolder> 
         try {
            if(articles.getMsgtype().equalsIgnoreCase("Comment")) {
                if (articles.getStatus().equals("inactive")) {
-                   holder.txtTitle.setText("Your comment on "+articles.getTitle()+" has been unpublished");
+                   holder.txtTitle.setText("Your comment on "+articles.getTitle()+" is under Review");
                } else if (articles.getStatus().equals("active")) {
                    holder.txtTitle.setText("Your comment on "+articles.getTitle()+" has been published");
                }else {
@@ -63,7 +63,7 @@ public class AlertAdapter extends RecyclerView.Adapter<AlertAdapter.ViewHolder> 
                }
            }else if(articles.getMsgtype().equalsIgnoreCase("Usernews")){
                if (articles.getStatus().equals("inactive")) {
-                   holder.txtTitle.setText("Your article "+articles.getTitle()+ " has been unpublished");
+                   holder.txtTitle.setText("Your article "+articles.getTitle()+ " is under Review");
                } else if (articles.getStatus().equals("active")) {
                    holder.txtTitle.setText("Your article "+articles.getTitle()+ " has been published");
                }else {
