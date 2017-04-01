@@ -94,7 +94,7 @@ public class ProfileActivity extends ButterAppCompatActivity implements ProfileC
     TextView mTxtMail;
 
     @Bind(R.id.mTxtEditProfile)
-    TextView mTxtEditProfile;
+    ImageView mTxtEditProfile;
 
     @Bind(R.id.imgHome)
     ImageView imgHome;

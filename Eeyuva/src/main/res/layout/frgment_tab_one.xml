@@ -12,75 +12,86 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/five_dp"
             android:orientation="vertical">
 
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="horizontal">
 
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/ic_user"
-                    android:drawablePadding="5dp"
-                    android:padding="5dp"
-                    android:text="First Name"
-                    android:textAllCaps="true"
-                    android:textColor="@color/colorPrimary" />
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/mTxtName"
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/ic_user"
+                        android:drawablePadding="5dp"
+                        android:padding="5dp"
+                        android:text="First Name"
+                        android:textAllCaps="true"
+                        android:textColor="@color/colorPrimary" />
+
+                    <TextView
+                        android:id="@+id/mTxtName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:padding="5dp"
+                        android:text="Chandru"
+                        android:textAllCaps="true"
+                        android:textColor="@color/black" />
+
+                    <View
+                        android:id="@+id/view1"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@color/light_gray_line" />
+                </LinearLayout>
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:padding="5dp"
-                    android:text="Chandru"
-                    android:textAllCaps="true"
-                    android:textColor="@color/black" />
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
-                <View
-                    android:id="@+id/view1"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:background="@color/light_gray_line" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/ic_user"
+                        android:drawablePadding="5dp"
+                        android:padding="5dp"
+                        android:text="Last Name"
+                        android:textAllCaps="true"
+                        android:textColor="@color/colorPrimary" />
+
+                    <TextView
+                        android:id="@+id/mTxtLastName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:padding="5dp"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:textAllCaps="true"
+                        android:textColor="@color/black" />
+
+                    <View
+                        android:id="@+id/view2"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@color/light_gray_line" />
+                </LinearLayout>
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/ic_user"
-                    android:drawablePadding="5dp"
-                    android:padding="5dp"
-                    android:text="Last Name"
-                    android:textAllCaps="true"
-                    android:textColor="@color/colorPrimary" />
-
-                <TextView
-                    android:id="@+id/mTxtLastName"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:padding="5dp"
-                    android:textAllCaps="true"
-                    android:textColor="@color/black" />
-
-                <View
-                    android:id="@+id/view2"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:background="@color/light_gray_line" />
-            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -201,8 +212,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
+                    android:maxLines="2"
+                    android:ellipsize="end"
                     android:padding="5dp"
-                    android:maxLines="10"
                     android:textColor="@color/black" />
 
                 <View

@@ -280,7 +280,7 @@ public class DetailActivity extends ButterAppCompatActivity implements DetailCon
 
             if(url.contains("mp4")){
                 Log.e("IsVideoFound",true+"");
-                placeHolderDrawable=getResources().getDrawable(R.drawable.video_play_background);
+                placeHolderDrawable=getResources().getDrawable(R.drawable.ic_video_playback);
                 imageView.setImageDrawable(placeHolderDrawable);
             }else {
                 Log.e("IsVideoFound",false+"");

@@ -177,6 +177,7 @@ public class ApiInteractorImpl implements ApiInteractor {
 
     @Override
     public void getUserAlerts(BaseView mView, String url, LoadListener<AlertResponse> mAlertListner) {
+        Log.e("UserAlerts:",url);
         UiCallback<AlertResponse> callback = new UiCallback(mView, mAlertListner, true);
         Call<AlertResponse> call = mApi.getUserAlert(url);
         callback.start(call);

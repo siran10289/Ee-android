@@ -236,7 +236,7 @@ public class FragmentDrawer extends Fragment implements View.OnClickListener {
         mDrawerItems.add(new AppSetting("Career & Jobs", R.drawable.m_caree_job, false));
         mDrawerItems.add(new AppSetting("Money & Business", R.drawable.money_business, false));
         mDrawerItems.add(new AppSetting("Sports & Games", R.drawable.sports_games, false));
-        mDrawerItems.add(new AppSetting("Bookmarks", R.drawable.m_bookmark, false));
+        mDrawerItems.add(new AppSetting("Book-Mark", R.drawable.m_bookmark, false));
         mDrawerItems.add(new AppSetting("News Room", R.drawable.newroom, false));
         mDrawerItems.add(new AppSetting("Account Settings", R.drawable.account_settings, true));
         if (getUserDetails() != null) {
@@ -368,7 +368,7 @@ public class FragmentDrawer extends Fragment implements View.OnClickListener {
         for (ResponseList Rl : mMenuModuleList) {
             Log.i("mMenuModuleListtitle", Rl.getTitle());
             if(Rl.getTitle().equalsIgnoreCase("Book Mark")){
-                Rl.setTitle("Bookmarks");
+                Rl.setTitle("Book-Mark");
             }
             if ((Rl.getTitle().toLowerCase()).equalsIgnoreCase(s.toLowerCase())) {
                 Log.i("result", "true");
