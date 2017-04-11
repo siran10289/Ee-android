@@ -479,7 +479,7 @@ public class ProfilePresenterImpl implements ProfileContract.Presenter {
 
     @Override
     public void getViewComments(String mModuleId, String articleid) {
-        mApiInteractor.getViewComments(mView, Constants.ProfileFetchUserComments + "modid=" + mModuleId + "&eid=" + articleid, mCommentListArticleListener);
+        mApiInteractor.getViewComments(mView, Constants.ProfileFetchUserComments + "modid=" + mModuleId + "&eid=" + articleid + "&uid=" + mPrefsManager.getUserDetails().getUserid(), mCommentListArticleListener);
     }
 
     @Override

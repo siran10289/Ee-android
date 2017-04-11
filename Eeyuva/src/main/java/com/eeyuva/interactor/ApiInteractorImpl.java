@@ -141,6 +141,7 @@ public class ApiInteractorImpl implements ApiInteractor {
 
     @Override
     public void getViewComments(BaseView mView, String url, LoadListener<CommentListResponse> mOtherArticleListener) {
+        Log.e("Comments Url:",url);
         UiCallback<CommentListResponse> callback = new UiCallback(mView, mOtherArticleListener, true);
         Call<CommentListResponse> call = mApi.getCommentlist(url);
         callback.start(call);

@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.eeyuva.R;
@@ -63,7 +64,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
             holder.txtSubDesc.setVisibility(View.GONE);
             holder.txtDate.setText("View Comment");
             Picasso.with(mContext).load(articles.getArtimg()).placeholder(mContext.getResources().getDrawable(R.drawable.y_logo)).transform(new RoundedTransformation(8, 0)).resize(80, 80).into(holder.imgArticle);
-            holder.txtDate.setOnClickListener(new View.OnClickListener() {
+            holder.layHot.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     mAdapterCallBack.getComments(articles.getModuleid(), articles.getArtid());
@@ -120,6 +121,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
         public TextView txtType;
         public TextView txtSubDesc;
         public ImageView imgArticle;
+        public LinearLayout layHot;
 
         public ViewHolder(View v) {
             super(v);
@@ -128,6 +130,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
             txtDate = (TextView) v.findViewById(R.id.txtDate);
             txtType = (TextView) v.findViewById(R.id.txtType);
             imgArticle = (ImageView) v.findViewById(R.id.imgArticle);
+            layHot=(LinearLayout)v.findViewById(R.id.layHot);
 
 
         }

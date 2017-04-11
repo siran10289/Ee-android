@@ -141,7 +141,7 @@ public class GridHomeActivity extends ButterAppCompatActivity implements GridCon
         else if (mIndex == 3)
             mTxtHotStories.setText("Videos");
         else if (mIndex == 1)
-            mTxtHotStories.setText("User News");
+            mTxtHotStories.setText("IT'S MY POST");
 
     }
 

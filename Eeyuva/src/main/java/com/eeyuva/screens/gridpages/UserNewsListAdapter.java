@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.eeyuva.R;
 import com.eeyuva.screens.gridpages.model.PhotoList;
 import com.eeyuva.screens.gridpages.model.UserNewsList;
+import com.eeyuva.screens.home.loadmore.RoundedTransformation;
 import com.eeyuva.utils.Utils;
 import com.squareup.picasso.Picasso;
 
@@ -41,8 +42,7 @@ public class UserNewsListAdapter extends RecyclerView.Adapter<UserNewsListAdapte
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent,
-                                         int viewType) {
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_usernews_details, parent, false);
         ViewHolder vh = new ViewHolder(v);
         return vh;
@@ -51,7 +51,16 @@ public class UserNewsListAdapter extends RecyclerView.Adapter<UserNewsListAdapte
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         final UserNewsList rl = mModuleList.get(position);
-        Picasso.with(mContext).load(rl.getPicpath()).placeholder(mContext.getResources().getDrawable(R.drawable.user_default)).into(holder.mImgItem);
+       /* Picasso.with(mContext)
+                .load(rl.getPicpath())
+                .placeholder(mContext.getResources().getDrawable(R.drawable.user_default))
+                .transform(new RoundedTransformation(8, 0))
+                .into(holder.mImgItem);*/
+        Picasso.with(mContext).load(rl.getPicpath())
+                .placeholder(mContext.getResources().getDrawable(R.drawable.y_logo))
+                .transform(new RoundedTransformation(8, 0))
+                .resize(80, 80)
+                .into(holder.mImgItem);
         holder.mImgItem.setScaleType(ImageView.ScaleType.CENTER_CROP);
         holder.mImgLabel.setText(rl.getTitle());
         holder.txtSubDesc.setText("Posted By : "+rl.getUsername());

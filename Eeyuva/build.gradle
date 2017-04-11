@@ -26,8 +26,8 @@ android {
         applicationId "com.eeyuva"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 8
-        versionName "EeYuva 1.2.8"
+        versionCode 9
+        versionName "EeYuva 1.2.9"
 
         multiDexEnabled true
         buildConfigField "String", "BASE_URL", "\"http://www.eeyuva.com/\""

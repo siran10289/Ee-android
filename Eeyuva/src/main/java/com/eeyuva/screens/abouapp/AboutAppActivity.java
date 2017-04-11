@@ -215,8 +215,7 @@ public class AboutAppActivity  extends ButterAppCompatActivity implements HomeCo
 
 
     public void moveNext(int i) {
-        Intent intent =
-                new Intent(AboutAppActivity.this, GridHomeActivity.class);
+        Intent intent = new Intent(AboutAppActivity.this, GridHomeActivity.class);
         intent.putExtra("index", i);
         startActivity(intent);
     }
